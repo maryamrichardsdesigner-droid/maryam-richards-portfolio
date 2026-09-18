@@ -431,6 +431,8 @@ body{padding-top:var(--sitenav-h,60px)}
 .ac-growth:hover{color:var(--ac)}
 </style>
 <style id="hm-fixes">
+/* Testimonials: one card per row on phones */
+@media (max-width:760px){ .recs{grid-template-columns:1fr!important;gap:26px!important} }
 /* A status badge that is also a link must look like one */
 a.ac-live{border:1.5px solid rgba(249,108,67,.55);border-radius:999px;padding:8px 14px;cursor:pointer;
   transition:background .2s,border-color .2s,transform .2s}
@@ -1248,7 +1250,7 @@ a.ac-live:focus-visible{outline:2px solid #F96C43;outline-offset:3px}
 
   <div style="font-family:'Space Mono';font-size:9px;letter-spacing:.14em;color:rgba(27,26,23,.4);margin-top:14px">REAL RECOMMENDATIONS, FROM LINKEDIN</div>
 
-  <div style="max-width:900px;margin:36px auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:22px;text-align:left">
+  <div class="recs" style="max-width:900px;margin:36px auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:22px;text-align:left">
     <div style="background:#fff;border:2.5px solid #1B1A17;border-radius:16px;padding:22px;box-shadow:5px 6px 0 #CAC4F4;transform:rotate(-1.2deg);animation:revealUp linear both;animation-timeline:view();animation-range:entry 0% cover 40%">
       <div style="font-size:14px;line-height:1.55;font-weight:500">"I had the opportunity to work alongside Maryam for four transformative years, during which she consistently demonstrated unparalleled expertise and leadership in the field of design. She is not only a highly skilled designer but also a visionary leader whose contributions have left a lasting impact."</div>
       <div style="display:flex;align-items:center;gap:9px;margin-top:16px">
