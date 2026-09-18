@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Snap2Meal Series — Maryam Richards</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ccircle cx='50' cy='50' r='21' fill='%23DDE84A'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://www.maryam-richards.com/snap2meal-episodes.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maryam Richards — Senior Product Designer">
+  <meta property="og:title" content="The Snap2Meal Series — Maryam Richards">
+  <meta property="og:description" content="A build-in-public series on shipping a real iOS app — 13 short episodes, the decisions behind them, and the playbook you can steal.">
+  <meta property="og:url" content="https://www.maryam-richards.com/snap2meal-episodes.html">
+  <meta property="og:image" content="https://www.maryam-richards.com/assets/projects/device/snap2meal.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Snap2Meal Series — Maryam Richards">
+  <meta name="twitter:description" content="A build-in-public series on shipping a real iOS app — 13 short episodes, the decisions behind them, and the playbook you can steal.">
+  <meta name="twitter:image" content="https://www.maryam-richards.com/assets/projects/device/snap2meal.png">
+
+<meta name="description" content="A build-in-public series on shipping a real iOS app — 13 short episodes, the decisions behind them, and the playbook you can steal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F7F4F1; --surface:#FFFFFF; --surface-2:#FBF7F4;
+  --ink:#241C17; --ink-soft:#5C4F47; --ink-faint:#8B7D73;
+  --line:#E8E0D8; --line-strong:#D9CEC4;
+  --coral:#DE7145; --coral-ink:#B4531F; --coral-bg:#FBEADF; --coral-line:#F0CFB9;
+  --shadow:0 1px 2px rgba(36,28,23,.04),0 8px 28px rgba(36,28,23,.06);
+  --shadow-lift:0 2px 8px rgba(36,28,23,.07),0 22px 50px rgba(36,28,23,.13);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#181310; --surface:#211A15; --surface-2:#271F19;
+    --ink:#F3EAE2; --ink-soft:#C6B7AB; --ink-faint:#93857A;
+    --line:#342A22; --line-strong:#443729;
+    --coral:#EE9166; --coral-ink:#F0A886; --coral-bg:#33241B; --coral-line:#4A3324;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    --shadow-lift:0 2px 8px rgba(0,0,0,.4),0 24px 54px rgba(0,0,0,.55);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#181310; --surface:#211A15; --surface-2:#271F19;
+  --ink:#F3EAE2; --ink-soft:#C6B7AB; --ink-faint:#93857A;
+  --line:#342A22; --line-strong:#443729;
+  --coral:#EE9166; --coral-ink:#F0A886; --coral-bg:#33241B; --coral-line:#4A3324;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  --shadow-lift:0 2px 8px rgba(0,0,0,.4),0 24px 54px rgba(0,0,0,.55);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ground);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-top:var(--sitenav-h,60px)}
+img{max-width:100%}
+
+/* ---- mobile first: one column, generous touch targets ---- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.display{font-family:"Bricolage Grotesque","Inter",sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.03;text-wrap:balance}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--coral-ink)}
+
+.hero{padding:2.6rem 0 1.8rem;text-align:center}
+.season{display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
+.season .dot{width:9px;height:9px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--coral-bg)}
+.season span{font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.hero h1{font-size:2.5rem;margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:var(--coral)}
+.logline{font-size:1.05rem;color:var(--ink-soft);max-width:44ch;margin:0 auto;line-height:1.5}
+.logline b{color:var(--ink);font-weight:600}
+.cta-row{display:flex;flex-direction:column;gap:10px;margin-top:1.6rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;font-weight:600;font-size:1rem;padding:.95rem 1.5rem;border-radius:999px;transition:transform .15s,box-shadow .15s,border-color .15s;min-height:48px}
+.btn.primary{background:var(--coral);color:#fff;box-shadow:var(--shadow)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line-strong)}
+@media(hover:hover){
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+  .btn.ghost:hover{transform:translateY(-2px);border-color:var(--coral-line)}
+}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:2rem;text-align:center}
+.stat .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.6rem;color:var(--coral);line-height:1}
+.stat .l{font-size:.78rem;color:var(--ink-soft);margin-top:.3rem}
+
+.band{border-top:1px solid var(--line);padding:2.4rem 0}
+.sec-head{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.4rem}
+.sec-head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
+.sec-head p{font-size:.95rem;color:var(--ink-soft);max-width:52ch}
+
+.vgrid{display:grid;grid-template-columns:1fr;gap:16px}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s,border-color .18s;display:flex;flex-direction:column}
+@media(hover:hover){.vcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);border-color:var(--coral-line)}}
+.thumb{position:relative;aspect-ratio:9/16;display:grid;place-items:center;text-align:center;background:linear-gradient(150deg,#E88A5E,#C0491F);overflow:hidden}
+.thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 8%,rgba(255,255,255,.20),transparent 55%),linear-gradient(180deg,transparent 45%,rgba(0,0,0,.34))}
+.thumb .ov{position:relative;z-index:1;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:#fff;font-size:1.8rem;line-height:1;letter-spacing:-.02em;text-shadow:0 2px 16px rgba(0,0,0,.4);padding:0 1rem;text-transform:uppercase}
+.thumb .epnum,.thumb .dur,.thumb .start{position:absolute;z-index:2;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.7rem}
+.thumb .epnum{top:12px;left:12px;letter-spacing:.05em;color:#fff;background:rgba(0,0,0,.32);backdrop-filter:blur(4px);border-radius:8px;padding:.3rem .55rem}
+.thumb .dur{bottom:12px;right:12px;color:#fff;background:rgba(0,0,0,.42);border-radius:6px;padding:.25rem .5rem}
+.thumb .start{top:12px;right:12px;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--coral-ink);background:#fff;border-radius:999px;padding:.3rem .6rem}
+.play{position:absolute;z-index:2;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 8px 30px rgba(0,0,0,.35);transition:transform .18s}
+@media(hover:hover){.vcard:hover .play{transform:scale(1.08)}}
+.play svg{width:24px;height:24px;margin-left:3px;fill:var(--coral-ink)}
+.vmeta{padding:14px 16px 17px}
+.vmeta h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.02rem;line-height:1.18;margin-bottom:.35rem;letter-spacing:-.01em}
+.vmeta p{font-size:.87rem;color:var(--ink-soft);line-height:1.4}
+
+/* ---- the calls: decision + what it cost ---- */
+.calls{display:grid;grid-template-columns:1fr;gap:12px}
+.call{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.call h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
+.call p{font-size:.9rem;color:var(--ink-soft);margin-top:.45rem;line-height:1.5}
+.call .cost{display:flex;gap:.5rem;margin-top:.85rem;padding-top:.8rem;border-top:1px dashed var(--line-strong);font-size:.84rem;color:var(--ink)}
+.call .cost b{font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-ink);flex:none;padding-top:.2rem}
+
+/* ---- the admission: no card, deliberately quiet ---- */
+.admit{max-width:62ch}
+.admit p{font-size:1.05rem;line-height:1.6;color:var(--ink-soft)}
+.admit p b{color:var(--ink);font-weight:600}
+.admit p+p{margin-top:1rem}
+
+/* ---- playbook ---- */
+.pb{display:grid;grid-template-columns:1fr;gap:14px}
+.pbcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.pbcard .ic{font-size:1.5rem;line-height:1}
+.pbcard h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.02rem;margin:.7rem 0 .4rem;letter-spacing:-.01em}
+.pbcard p{font-size:.87rem;color:var(--ink-soft);line-height:1.5}
+
+.note{background:var(--coral-bg);border:1px solid var(--coral-line);border-radius:14px;padding:16px 18px;margin-top:1.4rem;font-size:.9rem;line-height:1.55}
+.note b{color:var(--coral-ink)}
+
+.links{display:grid;grid-template-columns:1fr;gap:12px;margin-top:1.2rem}
+.linkcard{display:flex;align-items:center;gap:12px;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;color:var(--ink);transition:transform .15s,border-color .15s;min-height:64px}
+@media(hover:hover){.linkcard:hover{transform:translateY(-2px);border-color:var(--coral-line)}}
+.linkcard .ic{font-size:1.4rem}
+.linkcard h4{font-size:.96rem;font-weight:600}
+.linkcard p{font-size:.8rem;color:var(--ink-soft)}
+
+footer{border-top:1px solid var(--line);padding:2.4rem 0 3rem;color:var(--ink-faint);font-size:.88rem;text-align:center}
+footer .display{font-size:1.25rem;color:var(--ink);margin-bottom:.5rem}
+footer a{color:var(--coral-ink);text-decoration:none;border-bottom:1px solid var(--coral-line)}
+a:focus-visible,.linkcard:focus-visible,.btn:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:10px}
+
+/* ---- scale up ---- */
+@media(min-width:560px){
+  .wrap{padding:0 24px}
+  .cta-row{flex-direction:row;justify-content:center}
+  .stats{display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
+  .vgrid,.pb{grid-template-columns:repeat(2,1fr)}
+  .calls{grid-template-columns:repeat(2,1fr)}
+  .links{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:3.4rem}
+}
+@media(min-width:900px){
+  body{font-size:17px}
+  .hero{padding:4.4rem 0 2.6rem}
+  .hero h1{font-size:5rem}
+  .band{padding:3.2rem 0}
+  .sec-head{flex-direction:row;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+  .sec-head h2{font-size:2rem}
+  .vgrid,.pb{grid-template-columns:repeat(3,1fr)}
+}
+@media(prefers-reduced-motion:no-preference){
+  .vcard,.hero>*{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ---------- shared site header ---------- */
+#sitenav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px clamp(16px,3vw,32px);backdrop-filter:blur(14px);font-family:'Archivo',system-ui,sans-serif}
+#sitenav.lt{background:rgba(253,252,248,.88);border-bottom:1px solid rgba(27,26,23,.10);color:#1B1A17}
+#sitenav.dk{background:rgba(10,10,10,.82);border-bottom:1px solid rgba(245,243,240,.12);color:#F5F3F0}
+#sitenav .snbrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;letter-spacing:-.01em;text-decoration:none;color:inherit;flex:none}
+#sitenav .snbrand span.dot{width:19px;height:19px;border-radius:50%;background:#DDE84A;border:2px solid currentColor;display:inline-block}
+#sitenav .snlinks{display:flex;gap:24px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+#sitenav .snlinks a{color:inherit;text-decoration:none;opacity:.72;transition:opacity .2s ease,border-color .2s ease;border-bottom:2px solid transparent;padding-bottom:2px}
+#sitenav .snlinks a:hover{opacity:1}
+#sitenav .snlinks a[aria-current="page"]{opacity:1;border-bottom-color:#DDE84A}
+#sitenav .snli{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-decoration:none;border-radius:999px;padding:8px 14px;flex:none}
+#sitenav.lt .snli{background:#1B1A17;color:#F2EEE4}
+#sitenav.dk .snli{background:#F5F3F0;color:#0A0A0A}
+#snburger{display:none;background:none;border:1.5px solid currentColor;color:inherit;border-radius:9px;width:38px;height:34px;font-size:15px;cursor:pointer;line-height:1;flex:none}
+@media(max-width:860px){
+  #sitenav .snlinks{position:fixed;top:var(--sitenav-h,60px);left:0;right:0;flex-direction:column;gap:0;padding:8px 20px 16px;display:none}
+  #sitenav.lt .snlinks{background:rgba(253,252,248,.98);border-bottom:1px solid rgba(27,26,23,.12)}
+  #sitenav.dk .snlinks{background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,243,240,.14)}
+  #sitenav .snlinks.open{display:flex}
+  #sitenav .snlinks a{padding:13px 0;border-bottom:1px solid rgba(128,128,128,.16)}
+  #sitenav .snlinks a[aria-current="page"]{border-bottom-color:#DDE84A}
+  #snburger{display:inline-flex;align-items:center;justify-content:center}
+  #sitenav .snli{display:none}
+}
+
+</style>
+</head>
+<body>
+
+<nav id="sitenav" class="lt">
+  <a class="snbrand" href="index.html"><span class="dot"></span>Maryam<span style="font-family:'Caveat',cursive;font-size:21px;color:#E64A2E;line-height:0">.</span></a>
+  <div class="snlinks" id="snlinks"><a href="index.html#projects-section">Work</a><a href="case-studies.html">Case Studies</a><a href="index.html#process">Thinking</a><a href="index.html#connect">Contact</a><a href="Maryam-Richards-CV.pdf?v=20260918" target="_blank" rel="noopener">CV</a></div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a class="snli" href="https://www.linkedin.com/in/maryam-r-37a0a0122/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+    <button id="snburger" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="season"><span class="dot"></span><span>Build-in-public &middot; 13 episodes</span></div>
+    <h1 class="display">The <em>Snap2Meal</em> Series</h1>
+    <p class="logline">A short-film series on building and shipping a real iOS app &mdash; <b>every disaster, every fix</b>, from a blank icon to a live App Store launch.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="https://apps.apple.com/app/id6785826413" target="_blank" rel="noopener">Download Snap2Meal</a>
+      <a class="btn ghost" href="#episodes">Watch the series &darr;</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">13</div><div class="l">episodes</div></div>
+      <div class="stat"><div class="n">2&times;</div><div class="l">rejected &amp; survived</div></div>
+      <div class="stat"><div class="n">$0</div><div class="l">photo budget</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">solo founder</div></div>
+    </div>
+  </header>
+
+  <section class="band" id="episodes">
+    <div class="sec-head"><span class="eyebrow">The lineup</span><h2 class="display">Every episode</h2></div>
+    <div class="vgrid">
+      <article class="vcard"><div class="thumb"><span class="epnum">EP 00</span><span class="start">Start here</span><div class="ov">The Pitch</div><span class="dur">0:28</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>The Pitch</h3><p>I built a real app and shipped it to the App Store.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 01</span><div class="ov">No Icon?!</div><span class="dur">0:40</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>The Icon That Wouldn&rsquo;t Show Up</h3><p>My app shipped with no icon &mdash; 3 rookie mistakes.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 02</span><div class="ov">Fix Your Onboarding</div><span class="dur">0:40</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>First Impressions</h3><p>My app hit new users with a form. No hello.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 03</span><div class="ov">It Broke Overnight</div><span class="dur">0:42</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>The Day the AI Died</h3><p>I woke up and my whole app was broken.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 04</span><div class="ov">Charged Them?!</div><span class="dur">0:40</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>The Paywall That Shouldn&rsquo;t Appear</h3><p>My app charged users for recipes they never got.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 05</span><div class="ov">$0 Fix</div><span class="dur">0:42</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>The Photo Bill I Couldn&rsquo;t Afford</h3><p>One feature was going to bankrupt my free app.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 06</span><div class="ov">Think Like a Cheater</div><span class="dur">0:40</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>Thinking Like a Cheater</h3><p>What stops people using my app free forever?</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 07</span><div class="ov">3 Days, No Install</div><span class="dur">0:40</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>TestFlight Hell</h3><p>I couldn&rsquo;t install my own app for 3 days.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 08</span><div class="ov">Rejected &times;2</div><span class="dur">0:42</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>Rejected. Twice.</h3><p>Apple rejected my app. Twice. Here&rsquo;s why.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 09</span><div class="ov">The Simulator Lied</div><span class="dur">0:40</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>The Bug Marathon</h3><p>5 bugs the simulator completely hid from me.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 10</span><div class="ov">Every Share = an Ad</div><span class="dur">0:40</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>The Free Marketing Loop</h3><p>I turned every share into a free ad.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 11</span><div class="ov">Look Legit</div><span class="dur">0:38</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>Making It Real</h3><p>The cheapest way to look like a real company.</p></div></article><article class="vcard"><div class="thumb"><span class="epnum">EP 12</span><div class="ov">It&rsquo;s Live &#128640;</div><span class="dur">0:34</span><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vmeta"><h3>Launch Day</h3><p>After everything&hellip; I hit Submit. And got approved.</p></div></article>
+    </div>
+    <div class="note"><b>Wiring up the videos:</b> each card links to wherever you post it &mdash; TikTok, YouTube, Reels. Add an <code style="font-family:'JetBrains Mono',monospace;font-size:.85em">href</code> per card once they&rsquo;re live.</div>
+  </section>
+
+  <section class="band" id="calls">
+    <div class="sec-head">
+      <span class="eyebrow">The calls</span><h2 class="display">What I decided, and what it cost</h2>
+      <p>The episodes show what happened. These are the decisions behind them &mdash; each one with the thing it cost me.</p>
+    </div>
+    <div class="calls">
+      <article class="call"><h3>Killed AI shopping lists</h3><p>&ldquo;A database query in a costume.&rdquo; Traditional software does it better and cheaper.</p><div class="cost"><b>Cost</b><span>Lost the AI-powered-everything pitch.</span></div></article><article class="call"><h3>Killed conversational meal chat</h3><p>Delightful in a demo. Nobody wants a conversation at 6pm.</p><div class="cost"><b>Cost</b><span>The most-requested feature, cut on principle.</span></div></article><article class="call"><h3>One snap, three options &mdash; not unlimited</h3><p>A vision call costs money every time. Frequency of use and cost per use fight each other.</p><div class="cost"><b>Cost</b><span>Less delightful. Sustainable per user.</span></div></article><article class="call"><h3>Shipped, then instrumented</h3><p>Got it live and added measurement after.</p><div class="cost"><b>Cost</b><span>A week of guessing at usage. I&rsquo;d reverse this one.</span></div></article>
+    </div>
+  </section>
+
+  <section class="band" id="wrong">
+    <div class="sec-head"><span class="eyebrow">Honestly</span><h2 class="display">What I&rsquo;d do differently</h2></div>
+    <div class="admit">
+      <p><b>I shipped before I instrumented.</b> Getting it live felt like the win, so measurement became the next thing rather than the first thing. I then spent a week guessing at how people actually used it &mdash; guessing, with the app already in their hands.</p>
+      <p>Weekly actives, snaps per user, return rate: still not properly measured. That&rsquo;s the next piece of work, and it isn&rsquo;t another feature. I&rsquo;d rather say that than put a number on this page I can&rsquo;t stand behind.</p>
+    </div>
+  </section>
+
+  <section class="band" id="playbook">
+    <div class="sec-head">
+      <span class="eyebrow">Steal this</span><h2 class="display">The playbook</h2>
+      <p>Three things from this build that transfer to any AI product. Take them.</p>
+    </div>
+    <div class="pb">
+      <article class="pbcard"><div class="ic">&#129513;</div><h4>The six-question AI test</h4><p>User value &middot; engineering complexity &middot; API cost per interaction &middot; frequency of use &middot; business sustainability &middot; and would traditional software do this better?</p></article><article class="pbcard"><div class="ic">&#128176;</div><h4>Unit economics before interaction design</h4><p>Work out cost per interaction first. It belongs in the wireframe, not the spreadsheet &mdash; it decided this entire interface.</p></article><article class="pbcard"><div class="ic">&#9997;</div><h4>Prototype the problem, then write the spec</h4><p>The spec can come after the idea survives a real interface. Everything I wrote before building was wrong in a way I couldn&rsquo;t have predicted.</p></article>
+    </div>
+    <div class="note"><b>The one that kills the most features:</b> would traditional software do this better? It&rsquo;s the question most AI products skip &mdash; and the reason two of the features above never shipped.</div>
+  </section>
+
+  <section class="band">
+    <div class="sec-head"><span class="eyebrow">Go deeper</span><h2 class="display">The full toolkit</h2></div>
+    <div class="links">
+      <a class="linkcard" href="snap2meal-series.html"><span class="ic">&#128218;</span><div><h4>The 13-chapter deep dive</h4><p>Every decision, in full</p></div></a>
+      <a class="linkcard" href="https://apps.apple.com/app/id6785826413" target="_blank" rel="noopener"><span class="ic">&#128241;</span><div><h4>Download Snap2Meal</h4><p>The app the series is about</p></div></a>
+      <a class="linkcard" href="case-studies.html"><span class="ic">&#128193;</span><div><h4>All case studies</h4><p>Five more products</p></div></a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="display">Snap. Cook. Ship.</div>
+    <p>The making of Snap2Meal &mdash; built &amp; launched in public by Maryam.</p>
+    <p style="margin-top:.8rem"><a href="https://snap2meal.com" target="_blank" rel="noopener">snap2meal.com</a></p>
+  </footer>
+
+</div>
+<script>
+/* shared header — burger works on every page, not just home */
+(function(){
+  var b=document.getElementById('snburger'), l=document.getElementById('snlinks');
+  if(!b||!l) return;
+  b.onclick=function(){ var o=l.classList.toggle('open');
+    b.setAttribute('aria-expanded',o?'true':'false'); b.innerHTML=o?'&#10005;':'&#9776;'; };
+  l.querySelectorAll('a').forEach(function(a){ a.onclick=function(){
+    l.classList.remove('open'); b.setAttribute('aria-expanded','false'); b.innerHTML='&#9776;'; }; });
+})();
+</script>
+
+<script>
+/* the header is fixed; publish its real height so layouts can reserve the space */
+(function(){
+  var n=document.getElementById('sitenav'); if(!n) return;
+  function sync(){ document.documentElement.style.setProperty('--sitenav-h', n.offsetHeight+'px'); }
+  sync();
+  addEventListener('resize', sync);
+  if (window.ResizeObserver) new ResizeObserver(sync).observe(n);
+  addEventListener('load', sync);
+})();
+</script>
+</body>
+</html>

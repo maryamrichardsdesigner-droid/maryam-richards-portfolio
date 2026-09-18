@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building FitConnect — A Product Designer's Founder Journey</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ccircle cx='50' cy='50' r='21' fill='%23DDE84A'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://www.maryam-richards.com/fitconnect-series.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maryam Richards — Senior Product Designer">
+  <meta property="og:title" content="Building FitConnect — A Product Designer's Founder Journey">
+  <meta property="og:description" content="A 19-episode behind-the-scenes series on designing and building a real marketplace product, from the first prompt to launch.">
+  <meta property="og:url" content="https://www.maryam-richards.com/fitconnect-series.html">
+  <meta property="og:image" content="https://www.maryam-richards.com/assets/projects/device/fitconnect.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Building FitConnect — A Product Designer's Founder Journey">
+  <meta name="twitter:description" content="A 19-episode behind-the-scenes series on designing and building a real marketplace product, from the first prompt to launch.">
+  <meta name="twitter:image" content="https://www.maryam-richards.com/assets/projects/device/fitconnect.png">
+
+<meta name="description" content="A 19-episode behind-the-scenes series on designing and building a real marketplace product, from the first prompt to launch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0A0A0A;color:#F5F3F0;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#F96C43}
+::selection{background:#F96C43;color:#0A0A0A}
+
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.mono{font-family:'Space Mono',monospace}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;background:repeating-linear-gradient(90deg,transparent,transparent 119px,rgba(245,243,240,.03) 119px,rgba(245,243,240,.03) 120px)}
+
+/* ---------- rail ---------- */
+#rail{position:fixed;left:0;top:56px;bottom:0;width:290px;z-index:60;background:#0C0C0C;border-right:1px solid rgba(245,243,240,.09);overflow-y:auto;padding:18px 0 40px}
+#rail::-webkit-scrollbar{width:6px}
+#rail::-webkit-scrollbar-thumb{background:rgba(245,243,240,.14);border-radius:3px}
+.season-head{width:100%;text-align:left;cursor:pointer;background:none;border:0;color:inherit;padding:13px 20px;display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:rgba(245,243,240,.5);transition:color .2s}
+.season-head:hover{color:#F5F3F0}
+.season-head .caret{margin-left:auto;transition:transform .28s ease;font-size:10px}
+.season.open .season-head{color:#F5F3F0}
+.season.open .season-head .caret{transform:rotate(90deg)}
+.season-body{max-height:0;overflow:hidden;transition:max-height .34s cubic-bezier(.3,.9,.3,1)}
+.season.open .season-body{max-height:520px}
+.ep{width:100%;text-align:left;cursor:pointer;background:none;border:0;border-left:2px solid transparent;color:rgba(245,243,240,.6);padding:9px 20px 9px 30px;display:flex;gap:10px;align-items:baseline;font-size:13px;line-height:1.35;transition:.18s}
+.ep:hover{background:rgba(245,243,240,.04);color:#F5F3F0}
+.ep.on{border-left-color:#F96C43;background:rgba(249,108,67,.08);color:#F5F3F0}
+.ep .n{font-family:'Space Mono',monospace;font-size:10px;color:rgba(245,243,240,.35);flex:none;width:20px}
+.ep.on .n{color:#F96C43}
+.ep .soon{margin-left:auto;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;color:rgba(245,243,240,.3);flex:none}
+
+/* ---------- stage ---------- */
+#stage{margin-left:290px;padding-top:56px;position:relative;z-index:2}
+.wrap{max-width:860px;margin:0 auto;padding:0 32px}
+.beat{border-left:2px solid rgba(249,108,67,.3);padding:0 0 0 20px;margin-top:26px;animation:fadeUp .45s ease both}
+.beat h3{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:#F96C43;margin:0 0 7px;font-weight:700}
+.beat p{margin:0;font-size:15.5px;line-height:1.62;color:rgba(245,243,240,.82)}
+.shots{display:flex;gap:12px;overflow-x:auto;padding:4px 0 10px;margin-top:26px;scroll-snap-type:x mandatory}
+.shots::-webkit-scrollbar{height:6px}
+.shots::-webkit-scrollbar-thumb{background:rgba(245,243,240,.14);border-radius:3px}
+.shot{flex:none;width:172px;scroll-snap-align:start}
+.shot img{width:100%;display:block;border-radius:12px;border:1px solid rgba(245,243,240,.12)}
+.shot span{display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.06em;color:rgba(245,243,240,.45);margin-top:7px}
+
+.navbtn{cursor:pointer;background:none;border:1px solid rgba(245,243,240,.18);color:#F5F3F0;border-radius:10px;padding:11px 16px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;transition:.2s;text-align:left;max-width:46%}
+.navbtn:disabled{opacity:.25;cursor:default}
+.navbtn.prev{border-color:#F96C43;color:#F96C43}
+.navbtn.prev:hover:not(:disabled){background:rgba(249,108,67,.1)}
+.navbtn.next{background:#F96C43;border-color:#F96C43;color:#0A0A0A;font-weight:700}
+.navbtn.next:hover:not(:disabled){filter:brightness(1.06)}
+
+/* spine */
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(245,243,240,.22);cursor:pointer;flex:none;transition:.2s}
+.dot:hover{transform:scale(1.5);background:rgba(249,108,67,.7)}
+.dot.on{background:#F96C43;box-shadow:0 0 0 3px rgba(249,108,67,.22)}
+.dot.done{background:rgba(249,108,67,.45)}
+
+#railToggle{display:none}
+@media(max-width:1024px){
+  #rail{transform:translateX(-100%);transition:transform .3s ease;width:270px}
+  #rail.open{transform:translateX(0)}
+  #stage{margin-left:0}
+  #railToggle{display:flex}
+}
+@media(max-width:620px){.wrap{padding:0 20px}.mock img{width:112px!important}}
+
+/* ---------- shared site header ---------- */
+#sitenav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px clamp(16px,3vw,32px);backdrop-filter:blur(14px);font-family:'Archivo',system-ui,sans-serif}
+#sitenav.lt{background:rgba(253,252,248,.88);border-bottom:1px solid rgba(27,26,23,.10);color:#1B1A17}
+#sitenav.dk{background:rgba(10,10,10,.82);border-bottom:1px solid rgba(245,243,240,.12);color:#F5F3F0}
+#sitenav .snbrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;letter-spacing:-.01em;text-decoration:none;color:inherit;flex:none}
+#sitenav .snbrand span.dot{width:19px;height:19px;border-radius:50%;background:#DDE84A;border:2px solid currentColor;display:inline-block}
+#sitenav .snlinks{display:flex;gap:24px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+#sitenav .snlinks a{color:inherit;text-decoration:none;opacity:.72;transition:opacity .2s ease,border-color .2s ease;border-bottom:2px solid transparent;padding-bottom:2px}
+#sitenav .snlinks a:hover{opacity:1}
+#sitenav .snlinks a[aria-current="page"]{opacity:1;border-bottom-color:#DDE84A}
+#sitenav .snli{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-decoration:none;border-radius:999px;padding:8px 14px;flex:none}
+#sitenav.lt .snli{background:#1B1A17;color:#F2EEE4}
+#sitenav.dk .snli{background:#F5F3F0;color:#0A0A0A}
+#snburger{display:none;background:none;border:1.5px solid currentColor;color:inherit;border-radius:9px;width:38px;height:34px;font-size:15px;cursor:pointer;line-height:1;flex:none}
+@media(max-width:860px){
+  #sitenav .snlinks{position:fixed;top:var(--sitenav-h,60px);left:0;right:0;flex-direction:column;gap:0;padding:8px 20px 16px;display:none}
+  #sitenav.lt .snlinks{background:rgba(253,252,248,.98);border-bottom:1px solid rgba(27,26,23,.12)}
+  #sitenav.dk .snlinks{background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,243,240,.14)}
+  #sitenav .snlinks.open{display:flex}
+  #sitenav .snlinks a{padding:13px 0;border-bottom:1px solid rgba(128,128,128,.16)}
+  #sitenav .snlinks a[aria-current="page"]{border-bottom-color:#DDE84A}
+  #snburger{display:inline-flex;align-items:center;justify-content:center}
+  #sitenav .snli{display:none}
+}
+
+
+/* reserve the fixed header's height on pages that scroll normally */
+body{padding-top:var(--sitenav-h,60px)}
+</style>
+</head>
+<body>
+
+<nav id="sitenav" class="dk">
+  <a class="snbrand" href="index.html"><span class="dot"></span>Maryam<span style="font-family:'Caveat',cursive;font-size:21px;color:#E64A2E;line-height:0">.</span></a>
+  <div class="snlinks" id="snlinks"><a href="index.html#projects-section">Work</a><a href="case-studies.html">Case Studies</a><a href="index.html#process">Thinking</a><a href="index.html#connect">Contact</a><a href="Maryam-Richards-CV.pdf?v=20260918" target="_blank" rel="noopener">CV</a></div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a class="snli" href="https://www.linkedin.com/in/maryam-r-37a0a0122/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+    <button id="snburger" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="grain"></div>
+
+<!-- NAV -->
+<div style="position:fixed;top:56px;left:0;right:0;height:2px;z-index:81;background:rgba(245,243,240,.08)"><div id="seriesBar" style="height:100%;width:0;background:#F96C43;transition:width .3s ease"></div></div>
+
+<!-- RAIL -->
+<aside id="rail"></aside>
+
+<!-- STAGE -->
+<main id="stage">
+
+  <!-- INTRO SCREEN -->
+  <section id="intro">
+    <header class="wrap" style="padding-top:66px;padding-bottom:0;text-align:center">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.3em;color:#F96C43">A DOCUMENTARY SERIES · 5 SEASONS · 19 EPISODES</div>
+      <h1 style="font-weight:900;font-size:clamp(34px,6vw,64px);line-height:.96;letter-spacing:-.04em;margin:16px 0 0">Building FitConnect:<br><span style="color:#F96C43">a product designer's founder journey.</span></h1>
+      <p style="font-size:16px;line-height:1.6;color:rgba(245,243,240,.62);max-width:520px;margin:18px auto 0">From idea to launch — documenting every product decision, challenge and lesson learned.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;justify-content:center">
+        <button id="startBtn" style="cursor:pointer;background:#F96C43;color:#0A0A0A;border:0;border-radius:10px;padding:13px 22px;font-family:'Space Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.06em">▶ START — S1 E1 · WHY I STARTED</button>
+        <a href="https://www.fitconnectrainers.com/" target="_blank" rel="noopener" style="background:none;border:1px solid rgba(245,243,240,.2);color:#F5F3F0;border-radius:10px;padding:13px 20px;font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-decoration:none">VISIT THE LIVE SITE &#8599;</a>
+      </div>
+
+      <!-- real app mockup -->
+      <div class="mock" style="display:flex;justify-content:center;align-items:flex-end;margin-top:46px">
+        <img src="assets/fitconnect/screens/map-gyms.jpg" alt="FitConnect — discover gyms" style="width:150px;border-radius:22px;border:1px solid rgba(245,243,240,.14);box-shadow:0 22px 46px rgba(0,0,0,.55);transform:rotate(-8deg) translateY(16px);position:relative;z-index:1">
+        <img src="assets/fitconnect/screens/trainer-profile.jpg" alt="FitConnect — trainer profile" style="width:176px;margin:0 -20px;border-radius:24px;border:1px solid rgba(245,243,240,.16);box-shadow:0 30px 58px rgba(0,0,0,.6);position:relative;z-index:2;animation:floaty 6s ease-in-out infinite">
+        <img src="assets/fitconnect/screens/booking-done.jpg" alt="FitConnect — booking confirmed" style="width:150px;border-radius:22px;border:1px solid rgba(245,243,240,.14);box-shadow:0 22px 46px rgba(0,0,0,.55);transform:rotate(8deg) translateY(16px);position:relative;z-index:1">
+      </div>
+      <div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:rgba(245,243,240,.4);margin-top:28px;padding-bottom:24px">DISCOVER · BOOK · TRAIN — LIVE ON THE WEB</div>
+    </header>
+  </section>
+
+  <!-- CHAPTER VIEW (revealed on START) -->
+  <div id="chapterView" style="display:none">
+    <section id="epStage" class="wrap" style="padding-top:40px;padding-bottom:20px;scroll-margin-top:70px"></section>
+
+    <section class="wrap" style="padding-bottom:80px">
+      <div style="display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(245,243,240,.1);padding-top:22px;margin-top:36px">
+        <button class="navbtn prev" id="prevEp">← PREV</button>
+        <button class="navbtn next" id="nextEp" style="text-align:right">NEXT →</button>
+      </div>
+      <div class="mono" style="text-align:center;font-size:10px;letter-spacing:.16em;color:rgba(245,243,240,.35);margin-top:22px">← → KEYS TO MOVE · <a href="javascript:void(0)" id="backToIntro" style="color:rgba(245,243,240,.55);text-decoration:none">← BACK TO INTRO</a></div>
+    </section>
+  </div>
+</main>
+
+<script>
+var SOON = null; // episodes with no body yet
+
+// free resources — real, free / free-tier tools, mapped by season
+var R = {
+  figma:['Figma — free design tier','https://www.figma.com'],
+  claude:['Claude — AI build partner','https://claude.ai'],
+  appleHIG:['Apple Human Interface Guidelines','https://developer.apple.com/design/human-interface-guidelines'],
+  expo:['Expo — build React Native apps','https://expo.dev'],
+  github:['GitHub — free version control','https://github.com'],
+  posthog:['PostHog — free product analytics','https://posthog.com']
+};
+var SEASON_RES = [['figma','claude'],['figma','appleHIG'],['claude','github'],['appleHIG','expo'],['posthog','claude']];
+
+var SEASONS = [
+  { t:'The Idea', eps:[
+    { n:1, t:'Why I Started FitConnect', topics:['The moment the idea clicked','The gap I saw in the fitness industry','Why existing solutions missed it'] },
+    { n:2, t:'Defining the Problem Before Designing', topics:['Trainers, clients, gyms','Marketplace challenges','Why the problem beats the UI'] },
+    { n:3, t:'Research Before Pixels', topics:['Competitor research','Feature mapping','User journey sketches'] },
+    { n:4, t:'Finding the MVP', topics:['What I cut','Why simplicity wins','Defining version one'] },
+    { n:5, t:'Mapping the User Experience', b:{
+      challenge:'Two sides of a marketplace, four journeys, one app. Trainer, client, search, booking — each with a different definition of "done".',
+      thinking:'Flows before screens. If a journey needs a diagram to explain, it needs simplifying before anyone opens Figma.',
+      decision:'Mapped each journey end to end and designed the booking path first — it is the only one that produces revenue.',
+      outcome:'Booking became the spine. Everything else was judged on whether it fed that path.',
+      takeaway:'Design the journey that pays for the product first.'
+    }, shots:[['trainer-onboard.jpg','Trainer journey'],['booking.jpg','Booking journey'],['booking-done.jpg','Confirmation'],['dashboard.jpg','Client journey']] }
+  ]},
+  { t:'Designing FitConnect', eps:[
+    { n:6, t:'The First Wireframes', topics:['Low-fidelity thinking','Exploring layouts','Testing before visuals'] },
+    { n:7, t:'Designing Trust', b:{
+      challenge:'You are asking someone to meet a stranger and pay them. Trust is the product, not a feature.',
+      thinking:'Trust is not a badge. It is verification, real reviews and a profile that shows the work.',
+      decision:'Built a verification flow with certifications and insurance, and made professional profiles the centre of the app.',
+      outcome:'Verification became the thing trainers ask about first when they join.',
+      takeaway:'In a marketplace, design credibility before you design conversion.'
+    }, shots:[['verification.jpg','Verification flow'],['trainer-profile.jpg','Professional profile']] },
+    { n:8, t:'Why We Changed the Onboarding', flag:'THE BIG ONE', b:{
+      challenge:'Ten screens before a new client saw a single real trainer. The value story was told twice, nearly word for word.',
+      thinking:'The onboarding sold "book a personal trainer". The product is a discovery platform — trainers, gyms, HYROX, studios. Fix the mismatch, then compress the path.',
+      decision:'Cut ten screens to four. Moved goal selection before signup, and promoted guest browsing from a buried text link to a first-class choice.',
+      outcome:'The hardest part was already built — anonymous guest browsing existed and already met Apple 5.1.1(v). It was just badly presented. Mostly resequencing, not new infrastructure.',
+      takeaway:'Audit before you redesign. The fix is often something you already shipped and hid.'
+    }, ba:true, shots:[['onboard-old.jpg','Original slides'],['role-pick.jpg','Role selection'],['signup.jpg','Signup wall']] },
+    { n:9, t:'Designing Search & Discovery', b:{
+      challenge:'"Near me" means something different for a trainer, a gym and a HYROX session.',
+      thinking:'One search that returns everything is a search that returns nothing useful. Separate the intents.',
+      decision:'Built map and list views for trainers and gyms separately, plus a HYROX surface, with filters and featured profiles.',
+      outcome:'Map became the default for gyms, list for trainers — people browse places but compare people.',
+      takeaway:'Match the view to the intent, not to the data model.'
+    }, shots:[['map-trainers.jpg','Trainers on map'],['map-gyms.jpg','Gyms map'],['list-gyms.jpg','List view'],['hyrox.jpg','HYROX']] },
+    { n:10, t:'Every Screen Needs a Purpose', b:{
+      challenge:'Dashboards attract clutter. Every stakeholder wants their module above the fold.',
+      thinking:'Each section has to answer a real user question. If I cannot name the question, the section goes.',
+      decision:'Rebuilt the dashboard around three questions: what is booked, who is nearby, what do I do next.',
+      outcome:'Boost and credits earned their place by answering a trainer question — how do I get seen.',
+      takeaway:'If you cannot name the question a section answers, delete the section.'
+    }, shots:[['dashboard.jpg','Client dashboard'],['boosting.jpg','Boost — trainer visibility']] }
+  ]},
+  { t:'Building with AI', eps:[
+    { n:11, t:'AI Became My Product Team', topics:['PRDs and documentation','UX writing','Product thinking and brainstorming'] },
+    { n:12, t:'Writing Better PRDs with AI', topics:['Before and after','What AI drafts well','What still needs me'] },
+    { n:13, t:'Designing Faster Without Cutting Corners', topics:['Rapid iteration','Human judgement','Validation'] }
+  ]},
+  { t:'Launch', eps:[
+    { n:14, t:'Preparing for Launch', b:{
+      challenge:'Knowing whether a build is genuinely shippable, not just finished.',
+      thinking:'Audit the product against the PRD screen by screen, then rank the risks. Opinion does not survive a compliance matrix.',
+      decision:'Ran a full release readiness audit — PRD compliance, screen-by-screen review, security rules, technical debt — and split the backlog into three sprints.',
+      outcome:'Only P0 items blocked launch. Everything else got an honest home in Sprint 2, 3 or the V2 roadmap.',
+      takeaway:'A ranked risk list is more useful than a longer to-do list.'
+    } },
+    { n:15, t:'The First Release', topics:['What went well','What surprised me','Lessons from shipping'] }
+  ]},
+  { t:'Growing FitConnect', eps:[
+    { n:16, t:'Launching Is Just the Beginning', b:{
+      challenge:'A two-sided marketplace with nothing on either side. No trainers means no clients, and the reverse.',
+      thinking:'Solve one side first. Supply before demand — an empty search result kills trust faster than a small selection.',
+      decision:'Went city by city, niche by niche. Build trainer supply in one beachhead before opening anywhere new.',
+      outcome:'One rule made the strategy concrete: do not open a new city until a client search never returns "no results near you".',
+      takeaway:'Cold start is a sequencing problem, not a marketing problem.'
+    } },
+    { n:17, t:'Marketing a Marketplace', b:{
+      challenge:'No budget, no audience, and a product that needs both sides to show up.',
+      thinking:'Rank channels by fit, not by reach. Go where trainers already are instead of buying strangers.',
+      decision:'QR cards in gyms, direct trainer outreach, gym partnerships and a two-week social calendar built on messaging pillars.',
+      outcome:'Partnerships and direct outreach beat broadcast — the supply side responds to people, not ads.',
+      takeaway:'For marketplaces, distribution is a relationship problem before it is a media buy.'
+    } },
+    { n:18, t:'Listening to User Feedback', topics:['What users asked for','What changed','How feedback shapes the roadmap'] },
+    { n:19, t:"What's Next for FitConnect", b:{
+      challenge:'Deciding what comes after a launch that worked well enough to keep going.',
+      thinking:'Judge every candidate feature against the north star and the KPIs, not against how fun it is to build.',
+      decision:'A 90-day plan split into Now, Next and Later — foundation and supply, then demand and proof, then amplify what works.',
+      outcome:'Season 5 is live. This is the part I am still in.',
+      takeaway:'A roadmap you can say out loud in three phases is a roadmap the team can actually run.'
+    } }
+  ]}
+];
+
+// flatten
+var EPS = [];
+SEASONS.forEach(function(s, si){ s.eps.forEach(function(e){ e.s = si; e.sTitle = s.t; EPS.push(e); }); });
+
+var cur = 0;
+
+// ---- build rail ----
+var rail = document.getElementById('rail');
+rail.innerHTML = SEASONS.map(function(s, si){
+  return '<div class="season" data-s="' + si + '">' +
+    '<button class="season-head"><span style="color:#F96C43">S' + (si+1) + '</span>' + s.t.toUpperCase() + '<span class="caret">▶</span></button>' +
+    '<div class="season-body">' + s.eps.map(function(e){
+      return '<button class="ep" data-n="' + e.n + '"><span class="n">' + String(e.n).padStart(2,'0') + '</span><span>' + e.t + '</span>' + (e.b ? '' : '<span class="soon">SOON</span>') + '</button>';
+    }).join('') + '</div></div>';
+}).join('');
+
+rail.querySelectorAll('.season-head').forEach(function(h){
+  h.addEventListener('click', function(){ h.parentElement.classList.toggle('open'); });
+});
+rail.querySelectorAll('.ep').forEach(function(b){
+  b.addEventListener('click', function(){ go(EPS.findIndex(function(e){ return e.n === parseInt(b.dataset.n,10); })); });
+});
+
+// ---- render episode ----
+function render(){
+  var e = EPS[cur];
+  var h = '';
+
+  h += '<div class="mono" style="font-size:10px;letter-spacing:.22em;color:rgba(245,243,240,.4)">SEASON ' + (e.s+1) + ' · ' + e.sTitle.toUpperCase() + '</div>';
+  h += '<div style="display:flex;align-items:baseline;gap:14px;margin-top:12px;flex-wrap:wrap">';
+  h += '<span style="font-weight:900;font-size:clamp(38px,6vw,64px);line-height:1;letter-spacing:-.04em;color:#F96C43">' + String(e.n).padStart(2,'0') + '</span>';
+  h += '<h2 style="font-weight:900;font-size:clamp(22px,3.4vw,38px);line-height:1.06;letter-spacing:-.03em;margin:0;flex:1;min-width:200px">' + e.t + '</h2>';
+  if (e.flag) h += '<span class="mono" style="font-size:9px;letter-spacing:.14em;background:#F96C43;color:#0A0A0A;padding:5px 10px;border-radius:999px;font-weight:700">' + e.flag + '</span>';
+  h += '</div>';
+
+  // video slot
+  h += '<div style="margin-top:26px;border:1px solid rgba(245,243,240,.12);border-radius:16px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:radial-gradient(ellipse 60% 60% at 50% 45%,rgba(249,108,67,.08),transparent 70%)">' +
+    '<div style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(249,108,67,.5);display:flex;align-items:center;justify-content:center;color:#F96C43;font-size:17px">▶</div>' +
+    '<div style="font-weight:700;font-size:14px">2-minute episode</div>' +
+    '<div class="mono" style="font-size:10px;letter-spacing:.12em;color:rgba(245,243,240,.4)">VIDEO COMING SOON</div>' +
+  '</div>';
+
+  // WHAT THIS EPISODE COVERS
+  h += '<div class="mono" style="font-size:10px;letter-spacing:.2em;color:rgba(245,243,240,.4);margin-top:32px">WHAT THIS EPISODE COVERS</div>';
+
+  if (e.b) {
+    var B = [['THE CHALLENGE', e.b.challenge], ['MY THINKING', e.b.thinking], ['THE DECISION', e.b.decision], ['THE OUTCOME', e.b.outcome], ['THE TAKEAWAY', e.b.takeaway]];
+    h += B.map(function(x, i){
+      return '<div class="beat" style="animation-delay:' + (i*.05) + 's"><h3>' + x[0] + '</h3><p>' + x[1] + '</p></div>';
+    }).join('');
+
+    if (e.ba) {
+      h += '<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-top:32px">' +
+        '<div style="border:1px solid rgba(245,243,240,.14);border-radius:14px;padding:20px;text-align:center">' +
+          '<div style="font-weight:900;font-size:46px;line-height:1;color:rgba(245,243,240,.5)">10</div>' +
+          '<div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:rgba(245,243,240,.4);margin-top:6px">SCREENS — BEFORE</div></div>' +
+        '<div style="color:#F96C43;font-size:22px;font-weight:900">→</div>' +
+        '<div style="border:1px solid #F96C43;border-radius:14px;padding:20px;text-align:center;background:rgba(249,108,67,.07)">' +
+          '<div style="font-weight:900;font-size:46px;line-height:1;color:#F96C43">4</div>' +
+          '<div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#F96C43;margin-top:6px">SCREENS — AFTER</div></div>' +
+      '</div>';
+    }
+
+    if (e.shots) {
+      h += '<div class="shots">' + e.shots.map(function(s){
+        return '<div class="shot"><img src="assets/fitconnect/screens/' + s[0] + '" alt="' + s[1] + '" loading="lazy"><span>' + s[1] + '</span></div>';
+      }).join('') + '</div>';
+    }
+  } else {
+    h += '<div style="margin-top:14px;border:1px dashed rgba(245,243,240,.2);border-radius:16px;padding:24px">' +
+      '<div class="mono" style="font-size:10px;letter-spacing:.18em;color:#F96C43;display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#F96C43;animation:pulse 1.6s infinite"></span>IN PRODUCTION</div>' +
+      '<ul style="margin:12px 0 0;padding-left:18px;color:rgba(245,243,240,.7);font-size:14.5px;line-height:1.85">' +
+        e.topics.map(function(t){ return '<li>' + t + '</li>'; }).join('') +
+      '</ul></div>';
+  }
+
+  // FREE RESOURCES
+  var rk = SEASON_RES[e.s] || ['claude'];
+  h += '<div style="margin-top:34px;border-top:1px solid rgba(245,243,240,.1);padding-top:22px">';
+  h += '<div class="mono" style="font-size:10px;letter-spacing:.2em;color:rgba(245,243,240,.4)">FREE RESOURCES YOU CAN USE</div>';
+  h += '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:13px">';
+  h += rk.map(function(k){ var r=R[k]; return '<a href="' + r[1] + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(245,243,240,.2);border-radius:10px;padding:10px 14px;font-family:\'Space Mono\',monospace;font-size:11px;letter-spacing:.02em;color:#F5F3F0;text-decoration:none">↗ ' + r[0] + '</a>'; }).join('');
+  h += '</div></div>';
+
+  document.getElementById('epStage').innerHTML = h;
+
+  // sync chrome
+  document.getElementById('epCounter').textContent = String(e.n).padStart(2,'0') + ' / 19';
+  document.getElementById('seriesBar').style.width = (((cur+1)/EPS.length)*100) + '%';
+  rail.querySelectorAll('.ep').forEach(function(b){ b.classList.toggle('on', parseInt(b.dataset.n,10) === e.n); });
+  rail.querySelectorAll('.season').forEach(function(s){ s.classList.toggle('open', parseInt(s.dataset.s,10) === e.s); });
+  document.querySelectorAll('#spine .dot').forEach(function(d, i){
+    d.classList.toggle('on', i === cur);
+    d.classList.toggle('done', i < cur);
+  });
+  document.getElementById('prevEp').disabled = cur === 0;
+  document.getElementById('nextEp').disabled = cur === EPS.length - 1;
+  document.getElementById('prevEp').textContent = cur > 0 ? '← E' + EPS[cur-1].n + ' · ' + EPS[cur-1].t : '← PREV';
+  document.getElementById('nextEp').textContent = cur < EPS.length-1 ? 'E' + EPS[cur+1].n + ' · ' + EPS[cur+1].t + ' →' : 'NEXT →';
+}
+
+function go(i){
+  if (i < 0 || i >= EPS.length) return;
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('chapterView').style.display = 'block';
+  cur = i;
+  render();
+  history.replaceState(null, '', '#s' + (EPS[i].s+1) + 'e' + EPS[i].n);
+  window.scrollTo(0, 0);
+  if (window.innerWidth <= 1024) rail.classList.remove('open');
+}
+
+function showIntro(){
+  document.getElementById('chapterView').style.display = 'none';
+  document.getElementById('intro').style.display = 'block';
+  history.replaceState(null, '', location.pathname);
+  window.scrollTo(0, 0);
+}
+
+document.getElementById('prevEp').addEventListener('click', function(){ go(cur-1); });
+document.getElementById('nextEp').addEventListener('click', function(){ go(cur+1); });
+document.getElementById('startBtn').addEventListener('click', function(){ go(0); });
+document.getElementById('railToggle').addEventListener('click', function(){ rail.classList.toggle('open'); });
+document.getElementById('backToIntro').addEventListener('click', function(ev){ ev.preventDefault(); showIntro(); });
+window.addEventListener('keydown', function(ev){
+  if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA') return;
+  if (document.getElementById('chapterView').style.display === 'none') return;
+  if (ev.key === 'ArrowRight') go(cur+1);
+  if (ev.key === 'ArrowLeft') go(cur-1);
+});
+
+// deep link — jump straight into a chapter if a hash is present
+(function(){
+  var m = (location.hash || '').match(/^#s\d+e(\d+)$/);
+  var i = m ? EPS.findIndex(function(e){ return e.n === parseInt(m[1],10); }) : -1;
+  if (i > -1){ go(i); }
+})();
+</script>
+
+<script>
+/* shared header — burger works on every page, not just home */
+(function(){
+  var b=document.getElementById('snburger'), l=document.getElementById('snlinks');
+  if(!b||!l) return;
+  b.onclick=function(){ var o=l.classList.toggle('open');
+    b.setAttribute('aria-expanded',o?'true':'false'); b.innerHTML=o?'&#10005;':'&#9776;'; };
+  l.querySelectorAll('a').forEach(function(a){ a.onclick=function(){
+    l.classList.remove('open'); b.setAttribute('aria-expanded','false'); b.innerHTML='&#9776;'; }; });
+})();
+</script>
+
+<script>
+/* the header is fixed; publish its real height so layouts can reserve the space */
+(function(){
+  var n=document.getElementById('sitenav'); if(!n) return;
+  function sync(){ document.documentElement.style.setProperty('--sitenav-h', n.offsetHeight+'px'); }
+  sync();
+  addEventListener('resize', sync);
+  if (window.ResizeObserver) new ResizeObserver(sync).observe(n);
+  addEventListener('load', sync);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maryam Richards — Senior Product Designer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ccircle cx='50' cy='50' r='21' fill='%23DDE84A'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://www.maryam-richards.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maryam Richards — Senior Product Designer">
+  <meta property="og:title" content="Maryam Richards — Senior Product Designer">
+  <meta property="og:description" content="Maryam Richards — senior product designer, 10+ years across fintech, logistics, AI sustainability, SaaS and wellness.">
+  <meta property="og:url" content="https://www.maryam-richards.com/">
+  <meta property="og:image" content="https://www.maryam-richards.com/assets/photos/maryam-portrait.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Maryam Richards — Senior Product Designer">
+  <meta name="twitter:description" content="Maryam Richards — senior product designer, 10+ years across fintech, logistics, AI sustainability, SaaS and wellness.">
+  <meta name="twitter:image" content="https://www.maryam-richards.com/assets/photos/maryam-portrait.jpg">
+
+<meta name="description" content="Maryam Richards — senior product designer, 10+ years across fintech, logistics, AI sustainability, SaaS and wellness.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:#F2EEE4;color:#1B1A17;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip}
+a{cursor:pointer}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes floaty2{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+@keyframes wobble{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes dashmove{to{stroke-dashoffset:-24}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.18);opacity:.45}}
+@keyframes spinslow{to{transform:rotate(360deg)}}
+@keyframes revealUp{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-6px) rotate(1deg)}}
+@keyframes curtainUp{to{transform:translateY(-101%)}}
+@keyframes lineUp{from{transform:translateY(112%)}}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes navIn{from{opacity:0;transform:translateY(-16px)}}
+@keyframes kickerIn{from{opacity:0;letter-spacing:.7em}}
+@keyframes chipPop{0%{opacity:0;transform:scale(.4)}70%{transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+@keyframes dealIn{from{opacity:0;transform:translateY(70px) rotate(5deg) scale(.92)}}
+@keyframes scriptIn{from{opacity:0;transform:rotate(-3deg) translateY(16px) scale(.7)}to{opacity:1;transform:rotate(-3deg)}}
+@keyframes dotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes eqbar{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+@keyframes capIn{from{opacity:0;transform:translate(-50%,26px)}to{opacity:1;transform:translate(-50%,0)}}
+@property --hv{syntax:"<number>";inherits:true;initial-value:0}
+@property --a{syntax:"<number>";inherits:true;initial-value:0}
+@property --p{syntax:"<number>";inherits:true;initial-value:0}
+
+/* hero cards: hover replaces onMouseEnter/Leave state */
+.hcard{position:relative;cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.hcard:hover{transform:translateY(-10px)}
+.hcard-tags{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none;opacity:0;transition:.45s}
+.hcard:hover .hcard-tags{opacity:1}
+
+/* mom-apps card: hover swaps blurb for real app logos */
+.momcard-face{transition:opacity .35s ease}
+.momcard-logos{position:absolute;inset:8px;display:flex;align-items:center;justify-content:center;gap:6px;opacity:0;transition:opacity .35s ease;pointer-events:none}
+.hcard:hover .momcard-face{opacity:0}
+.hcard:hover .momcard-logos{opacity:1}
+.momcard-logo-chip{display:flex;flex-direction:column;align-items:center;gap:4px;width:28px}
+.momcard-logo-chip img,.momcard-logo-chip svg{width:26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid #1B1A17;padding:3px;box-sizing:border-box;object-fit:contain}
+.momcard-logo-chip span{font-family:'Space Mono';font-size:5.5px;letter-spacing:.02em;color:#1B1A17;text-align:center;line-height:1.25}
+
+/* hero two-stage intro (name card -> value prop) */
+.hero-morph{display:grid;width:100%;max-width:1000px;margin:0 auto}
+.hero-layer{grid-column:1;grid-row:1;align-self:center;justify-self:center;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center}
+#hero-stage2{opacity:0;animation:heroInOut 2.3s ease 2.5s forwards}
+#hero-stage3{opacity:0;animation:heroIn .8s cubic-bezier(.16,1,.3,1) 4.7s forwards}
+@keyframes heroOut{to{opacity:0;transform:translateY(-18px);visibility:hidden}}
+@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroInOut{0%{opacity:0;transform:translateY(20px)}12%{opacity:1;transform:translateY(0)}86%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-16px);visibility:hidden}}
+.hero-cards{display:grid;grid-template-columns:repeat(4,minmax(0,188px));gap:16px;margin-top:48px;width:100%;max-width:816px;align-items:stretch}
+.hero-cards .hcard,.hero-cards .hcard>a,.hero-cards .hcard>div{height:100%}
+.hero-cards .hcard>a,.hero-cards .hcard>div{min-height:188px}
+@media(max-width:900px){.hero-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.hero-cards{grid-template-columns:1fr}}
+.stats-strip .stat:last-child{border-right:0!important}
+.stats-strip .stat{transition:background .25s ease,transform .25s ease}
+.stats-strip .stat:hover{background:#FBFAF6;transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){
+  #hero-stage2{display:none}
+  #hero-stage3{opacity:1;animation:none}
+  .hero-cards .hcard,.stats-strip{animation:none!important;opacity:1!important}
+}
+@media(max-width:880px){.mom-grid{grid-template-columns:1fr!important}}
+.living-row{display:grid;grid-template-columns:340px 1fr;gap:30px;align-items:stretch;max-width:1040px;margin:30px auto 0;text-align:left}
+.living-row .lv-media{position:relative;border-radius:14px;overflow:hidden;background:#EFEAE0;aspect-ratio:1/1}
+.living-row .lv-media video{width:100%;height:100%;object-fit:cover;display:block}
+.living-row .lv-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(27,26,23,.45);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;pointer-events:none;transition:opacity .3s}
+.living-row .lv-body{position:relative;display:flex;flex-direction:column;justify-content:center;padding-right:118px}
+.living-row .lv-logo{position:absolute;top:0;right:0;display:flex;align-items:center;gap:6px;font-weight:800;font-size:14px;letter-spacing:-.01em}
+.living-row .lv-logo img{width:20px;height:20px;object-fit:contain}
+@media(max-width:820px){
+  .living-row{grid-template-columns:1fr;gap:16px}
+  .living-row .lv-media{aspect-ratio:16/10}
+  .living-row .lv-body{padding-right:0;padding-top:30px}
+}
+/* projects grid — mockup cards */
+#projects-section .proj-grid{max-width:1180px;margin:46px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:1000px){#projects-section .proj-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){#projects-section .proj-grid{grid-template-columns:1fr;max-width:430px}}
+
+#projects-section .projcard{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;border:2px solid #1B1A17;border-radius:20px;overflow:hidden;box-shadow:0 2px 0 #1B1A17;transition:transform .45s cubic-bezier(.2,.9,.25,1),box-shadow .45s cubic-bezier(.2,.9,.25,1);animation:revealUp .7s ease both;animation-timeline:view();animation-range:entry 0% cover 20%}
+#projects-section .projcard:hover,#projects-section .projcard:focus-visible{transform:translate(-4px,-8px);box-shadow:9px 12px 0 #1B1A17;outline:none}
+
+/* brand plate — the device floats on the product's own colour */
+#projects-section .pc-plate{position:relative;height:252px;overflow:hidden;background:var(--pc-bg);display:flex;align-items:flex-end;justify-content:center;border-bottom:2px solid #1B1A17}
+#projects-section .pc-plate:before{content:"";position:absolute;left:50%;top:52%;width:120%;aspect-ratio:1;transform:translate(-50%,-50%) scale(.72);border-radius:50%;background:radial-gradient(circle,var(--pc-glow) 0%,transparent 62%);transition:transform .7s cubic-bezier(.2,.9,.25,1),opacity .5s ease;opacity:.85}
+#projects-section .projcard:hover .pc-plate:before{transform:translate(-50%,-50%) scale(.95);opacity:1}
+
+/* diagonal sheen that sweeps across on hover */
+#projects-section .pc-plate:after{content:"";position:absolute;inset:-40% -60%;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.20) 48%,rgba(255,255,255,.05) 56%,transparent 64%);transform:translateX(-70%);transition:transform .85s cubic-bezier(.3,.8,.3,1);pointer-events:none}
+#projects-section .projcard:hover .pc-plate:after{transform:translateX(70%)}
+
+#projects-section .pc-dev{position:relative;z-index:2;display:block;width:100%;height:236px;object-fit:contain;object-position:center bottom;padding:0 26px;filter:drop-shadow(0 22px 34px rgba(0,0,0,.34));transform:translate3d(var(--mx,0px),calc(12px + var(--my,0px)),0) rotate(0deg) scale(1);transition:transform .55s cubic-bezier(.2,.9,.25,1),filter .45s ease;will-change:transform}
+#projects-section .projcard:hover .pc-dev{transform:translate3d(var(--mx,0px),calc(2px + var(--my,0px)),0) rotate(-1.6deg) scale(1.055);filter:drop-shadow(0 30px 44px rgba(0,0,0,.42))}
+#projects-section .pc-dev.wide{height:200px;padding:0 12px}
+#projects-section .pc-dev.tall{height:296px;padding:0 40px;object-position:center top}
+
+/* brand mark chip */
+#projects-section .pc-mark{position:absolute;top:14px;left:14px;z-index:3;width:38px;height:38px;border-radius:11px;border:2px solid #1B1A17;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:2px 3px 0 #1B1A17;transition:transform .4s cubic-bezier(.2,.9,.25,1)}
+#projects-section .pc-mark img{width:100%;height:100%;object-fit:cover;display:block}
+#projects-section .pc-mark .mono-mark{font-family:'Space Mono';font-size:13px;font-weight:700;letter-spacing:-.04em}
+#projects-section .projcard:hover .pc-mark{transform:rotate(-8deg) scale(1.06)}
+
+#projects-section .ind{position:absolute;top:14px;right:14px;z-index:3;font-family:'Space Mono';font-weight:700;font-size:9px;letter-spacing:.08em;color:#1B1A17;border:2px solid #1B1A17;border-radius:999px;padding:5px 11px;background:#fff;box-shadow:2px 3px 0 #1B1A17;transition:transform .4s cubic-bezier(.2,.9,.25,1)}
+#projects-section .projcard:hover .ind{transform:translateY(-2px) rotate(2.5deg)}
+
+#projects-section .pc-body{flex:1;display:flex;flex-direction:column;padding:20px 20px 18px}
+#projects-section .pc-name{font-family:'Space Mono';font-size:9.5px;letter-spacing:.18em;color:rgba(27,26,23,.45)}
+#projects-section .pc-line{font-weight:800;font-size:16.5px;line-height:1.3;letter-spacing:-.02em;margin:8px 0 0}
+#projects-section .pc-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:auto;padding-top:18px}
+#projects-section .pc-metric b{display:block;font-weight:900;font-size:27px;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+#projects-section .pc-metric span{display:block;font-family:'Space Mono';font-size:8.5px;letter-spacing:.06em;color:rgba(27,26,23,.5);margin-top:5px}
+
+#projects-section .pc-cta{position:relative;flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;background:#1B1A17;color:#F2EEE4;border-radius:999px;padding:10px 15px;font-family:'Space Mono';font-size:9px;letter-spacing:.06em;overflow:hidden;transition:color .3s ease}
+#projects-section .pc-cta:before{content:"";position:absolute;inset:0;background:var(--pc-ink);transform:translateX(-101%);transition:transform .45s cubic-bezier(.3,.8,.3,1)}
+#projects-section .projcard:hover .pc-cta:before{transform:translateX(0)}
+#projects-section .pc-cta span,#projects-section .pc-cta em{position:relative;z-index:1;font-style:normal}
+#projects-section .pc-cta em{transition:transform .4s cubic-bezier(.2,.9,.25,1)}
+#projects-section .projcard:hover .pc-cta em{transform:translateX(4px)}
+
+@media(hover:none){#projects-section .pc-dev{transform:translate3d(0,6px,0)}}
+@media(prefers-reduced-motion:reduce){
+  #projects-section .projcard,#projects-section .pc-dev,#projects-section .pc-plate:before,
+  #projects-section .pc-plate:after,#projects-section .pc-mark,#projects-section .ind,
+  #projects-section .pc-cta:before,#projects-section .pc-cta em{transition:none!important;animation:none!important}
+}
+
+/* scroll reveal (non-pinned sections) */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+
+/* burger menu */
+.burger{display:none;cursor:pointer;background:none;border:2px solid #1B1A17;border-radius:8px;width:38px;height:34px;align-items:center;justify-content:center;font-size:16px;color:#1B1A17}
+@media(max-width:820px){
+  .nav-links{position:fixed;top:53px;left:0;right:0;flex-direction:column!important;gap:0!important;background:rgba(242,238,228,.98);backdrop-filter:blur(10px);border-bottom:2px solid #1B1A17;padding:6px 24px 16px;transform:translateY(-135%);transition:transform .32s cubic-bezier(.2,.8,.2,1);box-shadow:0 20px 44px rgba(27,26,23,.22)}
+  .nav-links.open{transform:none}
+  .nav-links a{padding:13px 0!important;border-bottom:1px solid rgba(27,26,23,.1)}
+  
+  
+  .burger{display:inline-flex}
+}
+
+/* mobile section fixes */
+@media(max-width:900px){
+  /* the pinned How-I-Think scroll needs height to work; show a static version instead */
+  #build-section{height:auto!important}
+  #build-section>div{position:static!important;height:auto!important;display:block!important;padding:60px 0}
+  #build-section>div>div{grid-template-columns:1fr!important;gap:26px!important}
+  #ai [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}
+}
+
+/* responsive: stack the pinned/complex sections on small screens */
+@media(max-width:820px){
+}
+@media(max-width:600px){
+  nav{padding:12px 16px!important}
+  .hero-cards{gap:12px!important}
+}
+
+/* AI card stepper */
+.ai-card .stage-panel{display:none}
+.ai-card[data-stage="0"] .stage-0{display:block}
+.ai-card[data-stage="1"] .stage-1{display:block}
+.ai-card[data-stage="2"] .stage-2{display:block}
+.ai-card[data-stage="3"] .stage-3{display:block}
+.ai-card .step-btn{--on:0;flex:1;text-align:center;cursor:pointer;font-family:'Space Mono';font-size:8px;letter-spacing:.06em;padding:6px 2px;border-radius:7px;border:1.5px solid #1B1A17;background:rgba(27,26,23,calc(var(--on,0)*.92));color:rgb(calc(27 + var(--on,0)*215) calc(26 + var(--on,0)*212) calc(23 + var(--on,0)*205));transition:.25s}
+.ai-card[data-stage="0"] .step-0, .ai-card[data-stage="1"] .step-1, .ai-card[data-stage="2"] .step-2, .ai-card[data-stage="3"] .step-3{--on:1}
+
+/* watch-me-build */
+.build-item{cursor:pointer;padding:18px 0;border-top:2px solid rgba(27,26,23,.15);opacity:.4;transition:.35s}
+.build-item.on{opacity:1;transform:translateX(10px)}
+.build-item .build-desc{font-family:'Space Mono';font-size:11px;color:rgba(27,26,23,.6);margin-top:6px;max-width:380px;max-height:0;overflow:hidden;transition:.35s}
+.build-item.on .build-desc{max-height:100px}
+.build-item .build-cta{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px;max-height:0;opacity:0;overflow:hidden;transition:.35s}
+.build-item.on .build-cta{max-height:60px;opacity:1}
+.build-item .build-link{display:inline-flex;align-items:center;gap:7px;background:#1B1A17;color:#F2EEE4;border-radius:9px;padding:8px 14px;font-family:'Space Mono';font-size:10px;letter-spacing:.08em;text-decoration:none;transition:.2s}
+.build-item .build-link:hover{transform:translateY(-2px)}
+.build-item .build-link.ghost{background:transparent;color:#1B1A17;border:1.5px solid #1B1A17}
+.build-item .build-link.ghost:hover{background:#1B1A17;color:#F2EEE4}
+.build-panel{display:none;border-radius:18px;border:3px solid #1B1A17;overflow:hidden;background:#fff;box-shadow:8px 10px 0 rgba(27,26,23,.9);position:relative}
+.build-panel.on{display:flex}
+
+/* 6-projects hover */
+.proj-tag{position:absolute;z-index:14;cursor:pointer;opacity:0;transition:opacity .1s linear}
+.proj-tag .badge{font-family:'Archivo';font-weight:900;font-size:clamp(20px,2vw,30px);letter-spacing:-.02em;color:#1B1A17;padding:2px 12px;box-shadow:3px 3px 0 rgba(27,26,23,.28);animation:bob 4s ease-in-out infinite;white-space:nowrap;transition:transform .2s ease}
+.proj-tag:hover .badge{transform:scale(1.06)}
+.proj-tag .tooltip{position:absolute;text-align:left;opacity:0;transform:translateY(10px);pointer-events:none;background:#fff;border-radius:18px;padding:20px 22px;box-shadow:0 18px 40px rgba(27,26,23,.2);border:2px solid #1B1A17;transition:.25s}
+.proj-tag:hover .tooltip{opacity:1;transform:translateY(0);pointer-events:auto}
+.proj-tag a{pointer-events:auto}
+.center-statement{transition:opacity .25s ease}
+.center-logo{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);z-index:9;opacity:0;pointer-events:none;transition:opacity .25s ease;text-align:center}
+.projects-stage:has(.proj-tag:hover) .center-statement{opacity:0!important}
+.projects-stage:has(.tag-wellness:hover) .logo-wellness{opacity:1}
+.projects-stage:has(.tag-fintech:hover) .logo-fintech{opacity:1}
+.projects-stage:has(.tag-travel:hover) .logo-travel{opacity:1}
+.projects-stage:has(.tag-sustainability:hover) .logo-sustainability{opacity:1}
+.projects-stage:has(.tag-education:hover) .logo-education{opacity:1}
+
+/* ---------- shared site header ---------- */
+#sitenav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px clamp(16px,3vw,32px);backdrop-filter:blur(14px);font-family:'Archivo',system-ui,sans-serif}
+#sitenav.lt{background:rgba(253,252,248,.88);border-bottom:1px solid rgba(27,26,23,.10);color:#1B1A17}
+#sitenav.dk{background:rgba(10,10,10,.82);border-bottom:1px solid rgba(245,243,240,.12);color:#F5F3F0}
+#sitenav .snbrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;letter-spacing:-.01em;text-decoration:none;color:inherit;flex:none}
+#sitenav .snbrand span.dot{width:19px;height:19px;border-radius:50%;background:#DDE84A;border:2px solid currentColor;display:inline-block}
+#sitenav .snlinks{display:flex;gap:24px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+#sitenav .snlinks a{color:inherit;text-decoration:none;opacity:.72;transition:opacity .2s ease,border-color .2s ease;border-bottom:2px solid transparent;padding-bottom:2px}
+#sitenav .snlinks a:hover{opacity:1}
+#sitenav .snlinks a[aria-current="page"]{opacity:1;border-bottom-color:#DDE84A}
+#sitenav .snli{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-decoration:none;border-radius:999px;padding:8px 14px;flex:none}
+#sitenav.lt .snli{background:#1B1A17;color:#F2EEE4}
+#sitenav.dk .snli{background:#F5F3F0;color:#0A0A0A}
+#snburger{display:none;background:none;border:1.5px solid currentColor;color:inherit;border-radius:9px;width:38px;height:34px;font-size:15px;cursor:pointer;line-height:1;flex:none}
+@media(max-width:860px){
+  #sitenav .snlinks{position:fixed;top:var(--sitenav-h,60px);left:0;right:0;flex-direction:column;gap:0;padding:8px 20px 16px;display:none}
+  #sitenav.lt .snlinks{background:rgba(253,252,248,.98);border-bottom:1px solid rgba(27,26,23,.12)}
+  #sitenav.dk .snlinks{background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,243,240,.14)}
+  #sitenav .snlinks.open{display:flex}
+  #sitenav .snlinks a{padding:13px 0;border-bottom:1px solid rgba(128,128,128,.16)}
+  #sitenav .snlinks a[aria-current="page"]{border-bottom-color:#DDE84A}
+  #snburger{display:inline-flex;align-items:center;justify-content:center}
+  #sitenav .snli{display:none}
+}
+
+
+/* reserve the fixed header's height on pages that scroll normally */
+body{padding-top:var(--sitenav-h,60px)}
+
+/* ---- How I Think: three questions, one real story, pinned while you scroll ---- */
+/* 300vh = 200vh of pinned scroll. Three scenes spread across it so the last one lands
+   at .80 and holds briefly — at 420vh with the old timings, ~835px scrolled past with
+   nothing changing before Senior Work arrived. */
+.hit{height:300vh;position:relative;
+  --a1:calc(1 - clamp(0,calc((var(--p,0) - .34)/.06),1));
+  --a2:calc(clamp(0,calc((var(--p,0) - .37)/.06),1) - clamp(0,calc((var(--p,0) - .70)/.06),1));
+  --a3:clamp(0,calc((var(--p,0) - .73)/.07),1)}
+.hit-stick{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hit-grid{width:min(1180px,93vw);display:grid;grid-template-columns:.86fr 1.14fr;gap:56px;align-items:center}
+.hit-eyebrow{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:rgba(27,26,23,.55);margin:0 0 16px 26px}
+.hit-q{position:relative;display:flex;gap:16px;padding:16px 0 16px 26px;transition:none}
+.hit-q h2{font-weight:900;font-size:clamp(20px,2.1vw,29px);line-height:1.08;letter-spacing:-.03em;margin:0;max-width:17ch}
+.hit-q p{font-size:14px;line-height:1.55;color:rgba(27,26,23,.64);margin:8px 0 0;max-width:44ch}
+.hit-n{font-weight:300;font-size:clamp(30px,3vw,44px);line-height:.9;color:#E64A2E;letter-spacing:-.04em;flex:0 0 auto;min-width:1.5em}
+.hit-bar{position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:2px;background:rgba(27,26,23,.1);overflow:hidden}
+.hit-bar i{position:absolute;left:0;top:0;width:100%;background:#E64A2E}
+.q1{opacity:calc(.3 + .7*var(--a1))} .q1 .hit-bar i{height:calc(var(--a1)*100%)}
+.q2{opacity:calc(.3 + .7*var(--a2))} .q2 .hit-bar i{height:calc(var(--a2)*100%)}
+.q3{opacity:calc(.3 + .7*var(--a3))} .q3 .hit-bar i{height:calc(var(--a3)*100%)}
+
+.hit-right{position:relative}
+.hit-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(27,26,23,.5);text-align:right;margin-bottom:12px}
+.hit-panel{position:relative;height:min(560px,72vh);background:#FBF8F2;border:3px solid #1B1A17;border-radius:22px;
+  box-shadow:8px 10px 0 rgba(27,26,23,.9);overflow:hidden;
+  background-image:linear-gradient(rgba(27,26,23,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(27,26,23,.04) 1px,transparent 1px);background-size:26px 26px}
+.hit-scene{position:absolute;inset:0}
+.s1{opacity:var(--a1);transform:translateY(calc((1 - var(--a1))*-14px))}
+.s2{opacity:var(--a2);transform:translateY(calc((1 - var(--a2))*14px));pointer-events:none}
+.s3{opacity:var(--a3);transform:translateY(calc((1 - var(--a3))*14px));pointer-events:none}
+.hit-src{position:absolute;left:6%;bottom:4.5%;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;color:rgba(27,26,23,.45)}
+
+.hand{position:absolute;font-family:'Caveat',cursive;font-weight:600;font-size:clamp(19px,1.9vw,25px);color:#1B1A17;line-height:1.05;display:flex;align-items:center;gap:6px}
+.hit-arrow{flex:0 0 auto}
+
+/* scene 1 */
+.brief{position:absolute;left:6%;top:8%;width:46%;background:#fff;border-radius:6px;padding:16px 18px;
+  box-shadow:0 14px 30px rgba(27,26,23,.14),0 2px 5px rgba(27,26,23,.08);rotate:-2.5deg}
+.brief-k{font-weight:800;font-size:13px;letter-spacing:.02em}
+.brief-q{font-size:clamp(14px,1.35vw,17px);line-height:1.4;margin-top:8px;color:#1B1A17}
+.h-brief{left:55%;top:9%;flex-direction:row-reverse}
+.notebook{position:absolute;left:26%;top:35%;width:48%;height:43%;background:#FFFDF6;border-radius:4px 10px 10px 4px;
+  box-shadow:0 18px 34px rgba(27,26,23,.18);rotate:2.5deg;padding:14px 16px 12px 36px;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 25px,rgba(90,120,160,.22) 25px 26px)}
+.notebook::before{content:"";position:absolute;left:10px;top:10px;bottom:10px;width:12px;
+  background:repeating-linear-gradient(to bottom,#8A8175 0 5px,transparent 5px 14px);border-radius:3px}
+.nb-lines{font-family:'Caveat',cursive;font-size:clamp(16px,1.6vw,21px);line-height:26px;color:#1B1A17}
+.nb-lines div:nth-child(2){margin-bottom:2px}
+.h-notes{left:5%;top:80%}
+
+/* scene 2 */
+.behav{position:absolute;left:6%;top:8%;width:62%;background:#fff;border-radius:12px;padding:18px 20px;
+  box-shadow:0 14px 30px rgba(27,26,23,.13),0 2px 5px rgba(27,26,23,.07)}
+.behav-h{font-weight:800;font-size:15px;margin-bottom:10px}
+.behav-r{display:flex;gap:10px;align-items:baseline;font-size:13.5px;line-height:1.4;color:rgba(27,26,23,.78);padding:6px 0;border-top:1px solid rgba(27,26,23,.08)}
+.behav-r .dot{width:8px;height:8px;border-radius:50%;background:#E64A2E;flex:0 0 auto;transform:translateY(-1px)}
+.h-insight{left:6%;top:41%}
+.sticky{position:absolute;left:35%;top:47%;width:37%;min-height:36%;background:#F7C9CF;padding:18px 18px;
+  font-family:'Caveat',cursive;font-weight:600;font-size:clamp(17px,1.7vw,22px);line-height:1.15;color:#1B1A17;
+  rotate:-3deg;box-shadow:0 18px 30px rgba(27,26,23,.16),inset 0 -10px 18px rgba(0,0,0,.03)}
+
+/* scene 3 */
+.proto{position:absolute;left:6%;top:6%;height:84%;width:auto;filter:drop-shadow(0 18px 26px rgba(27,26,23,.2));rotate:-2deg}
+.h-clear{left:48%;top:8%;width:44%;display:block}
+.metrics{position:absolute;left:48%;top:31%;width:32%;display:grid;gap:10px}
+.metrics .m b{display:block;font-weight:900;font-size:clamp(26px,2.7vw,38px);letter-spacing:-.04em;line-height:1;color:#1B1A17}
+.metrics .m span{display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:rgba(27,26,23,.55);margin-top:4px}
+.mcap{position:absolute;left:48%;top:78%;width:28%;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.06em;line-height:1.5;color:rgba(27,26,23,.5)}
+
+/* picture-in-picture: me, talking it through */
+.hit-pip{position:absolute;right:-24px;bottom:-30px;width:156px;margin:0;z-index:5}
+.hit-pip video{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:16px;border:3px solid #1B1A17;
+  background:#1B1A17;box-shadow:6px 7px 0 rgba(27,26,23,.9)}
+.hit-pip figcaption{position:absolute;left:9px;right:9px;bottom:9px;background:rgba(27,26,23,.86);color:#F2EEE4;border-radius:9px;padding:7px 8px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.08em;line-height:1.35;text-transform:uppercase;pointer-events:none}
+.pip-live{display:inline-block;width:7px;height:7px;border-radius:50%;background:#E64A2E;margin-right:6px;vertical-align:1px}
+.pip-soon{display:block;margin-top:2px;color:rgba(242,238,228,.55)}
+.hit-pip.ready .pip-soon{display:none}
+
+@media (max-width:900px){
+  .hit{height:auto}
+  .hit-stick{position:static;height:auto;display:block;padding:64px 0}
+  .hit-grid,.hit-left,.hit-right,.hit-panel{display:contents}
+  .hit-grid{width:auto}
+  /* align-items:center carried over from desktop shrinks each scene to its content width —
+     and everything inside a scene is absolutely positioned, so that width is zero */
+  .hit-stick>.hit-grid{display:flex;flex-direction:column;align-items:stretch;gap:14px;width:min(560px,92vw);margin:0 auto}
+  .hit-scene{width:100%}
+  .hit-eyebrow{order:0;margin-left:0}
+  .hit-tag{display:none}
+  .q1{order:1}.s1{order:2}.q2{order:3}.s2{order:4}.q3{order:5}.s3{order:6}.hit-pip{order:7}
+  .hit-q{opacity:1;padding-left:18px}
+  .hit-q .hit-bar i{height:100%}
+  .hit-scene{position:relative;inset:auto;height:min(430px,112vw);opacity:1;transform:none;pointer-events:auto;
+    background:#FBF8F2;border:3px solid #1B1A17;border-radius:20px;box-shadow:6px 7px 0 rgba(27,26,23,.9);overflow:hidden;margin-bottom:18px;
+    background-image:linear-gradient(rgba(27,26,23,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(27,26,23,.04) 1px,transparent 1px);background-size:22px 22px}
+  .hit-pip{position:relative;right:auto;bottom:auto;width:170px;margin:6px auto 0}
+  .nb-lines{font-size:15.5px;line-height:23px}
+  .notebook{width:62%;left:18%;background-image:repeating-linear-gradient(to bottom,transparent 0 22px,rgba(90,120,160,.22) 22px 23px)}
+  /* scenes get their own phone layout — desktop percentages collide at 350px wide */
+  .hit-scene{height:480px}
+  .brief,.notebook,.behav,.sticky{box-sizing:border-box}
+  .brief{left:5%;top:5%;width:72%}
+  .h-brief{left:54%;top:27%}
+  .notebook{left:9%;top:39%;width:82%;height:38%;rotate:1.5deg}
+  .h-notes{left:5%;top:80%}
+  .behav{left:5%;top:5%;width:90%;padding:14px 15px}
+  .behav-r{font-size:12.5px}
+  .h-insight{left:5%;top:40%}
+  .sticky{left:12%;top:51%;width:76%;min-height:0;font-size:17px;padding:14px 15px}
+  .proto{left:5%;top:6%;height:58%}
+  .h-clear{left:52%;top:6%;width:45%;font-size:17px}
+  .metrics{left:52%;top:31%;width:45%;gap:6px}
+  .metrics .m b{font-size:24px}
+  .mcap{left:5%;top:70%;width:88%}
+}
+@media (prefers-reduced-motion:reduce){.hit-scene{transform:none!important}}
+
+/* handwritten lead-in above the shipped apps */
+.shipnote{max-width:1360px;margin:0 auto 6px;display:flex;align-items:flex-start;gap:4px;padding-left:34px}
+.shipnote span{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(28px,3.2vw,42px);color:#1B1A17;line-height:1;rotate:-3deg;transform-origin:left center;margin-top:6px}
+.shipnote svg{flex:0 0 auto;margin-top:14px}
+@media (max-width:900px){.shipnote{padding-left:6px}.shipnote svg{width:84px;height:60px;margin-top:10px}}
+
+/* the How I Think lead-in, handwritten like the one above the shipped apps */
+.hit-eyebrow.hand-eyebrow{display:flex;align-items:flex-start;gap:2px;margin:0 0 4px 22px;letter-spacing:normal;color:#1B1A17}
+.hand-eyebrow span{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(25px,2.5vw,34px);line-height:1;rotate:-3deg;transform-origin:left center;margin-top:4px}
+.hand-eyebrow svg{flex:0 0 auto;margin-top:10px}
+@media (max-width:900px){.hit-eyebrow.hand-eyebrow{margin-left:4px}.hand-eyebrow svg{width:70px;height:50px}}
+
+/* ---- watch-me-think thumbnail on each app card, and the player it opens ---- */
+/* .appcard > * sets every card child to position:relative, so this needs the extra specificity */
+.appcard > .think-pip{position:absolute;right:26px;bottom:26px;z-index:4}
+.think-pip{width:118px;padding:0;border:0;background:none;cursor:pointer;
+  text-align:left;font:inherit;color:#F5F3F0;transition:transform .3s cubic-bezier(.2,.9,.25,1)}
+.think-pip:hover{transform:translateY(-3px)}
+.think-pip:focus-visible{outline:2px solid var(--ac,#fff);outline-offset:4px;border-radius:16px}
+.tp-frame{position:relative;display:block;border-radius:14px;overflow:hidden;border:2px solid rgba(245,243,240,.22);
+  box-shadow:0 16px 34px rgba(0,0,0,.5);aspect-ratio:4/5;background:#222}
+.tp-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.tp-play{position:absolute;left:50%;top:50%;translate:-50% -50%;width:36px;height:36px;border-radius:50%;
+  background:var(--ac,#F5F3F0);color:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.4);transition:scale .3s ease}
+.tp-play svg{margin-left:2px}
+.think-pip:hover .tp-play{scale:1.1}
+.tp-cap{display:flex;align-items:center;gap:6px;margin-top:8px;font-family:'Space Mono',monospace;font-size:9px;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(245,243,240,.82)}
+.tp-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#E64A2E;flex:0 0 auto}
+
+.tbox{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
+.tbox[hidden]{display:none}
+.tb-backdrop{position:absolute;inset:0;background:rgba(14,12,11,.78);backdrop-filter:blur(6px)}
+.tb-panel{position:relative;width:min(440px,100%);max-height:calc(100vh - 48px);overflow:auto;background:#141312;color:#F5F3F0;
+  border:1px solid rgba(245,243,240,.12);border-radius:24px;padding:22px 22px 24px;box-shadow:0 40px 90px rgba(0,0,0,.6);
+  animation:tbIn .35s cubic-bezier(.2,.9,.25,1)}
+@keyframes tbIn{from{opacity:0;translate:0 14px;scale:.98}to{opacity:1;translate:0 0;scale:1}}
+.tb-close{position:absolute;top:12px;right:14px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(245,243,240,.2);
+  background:none;color:#F5F3F0;font-size:22px;line-height:1;cursor:pointer}
+.tb-kicker{display:flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,243,240,.6)}
+.tb-title{font-weight:900;font-size:22px;letter-spacing:-.02em;margin:8px 44px 16px 0;line-height:1.15}
+.tb-stage video{display:block;width:100%;aspect-ratio:9/16;max-height:70vh;object-fit:cover;border-radius:16px;background:#000}
+.tb-soon img{display:block;width:100%;aspect-ratio:4/5;max-height:52vh;object-fit:cover;object-position:top;border-radius:16px}
+.tb-soon-copy{margin-top:14px;font-size:14px;line-height:1.55;color:rgba(245,243,240,.72)}
+.tb-soon-copy b{display:block;color:#F5F3F0;font-size:15px;margin-bottom:3px}
+.tb-soon-copy em{font-style:normal;color:#F5F3F0}
+@media (max-width:900px){
+  .appcard > .think-pip{position:relative;right:auto;bottom:auto;justify-self:center;width:132px;margin-top:4px}
+}
+@media (prefers-reduced-motion:reduce){.think-pip,.tp-play{transition:none}.tb-panel{animation:none}}
+@media (max-width:900px){#process{scroll-margin-top:var(--sitenav-h,60px)}}
+
+.ac-growth{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;font-weight:700;color:#F5F3F0;text-decoration:none;
+  border-bottom:2px solid var(--ac);padding-bottom:3px;white-space:nowrap}
+.ac-growth:hover{color:var(--ac)}
+</style>
+<style id="hm-fixes">
+/* A status badge that is also a link must look like one */
+a.ac-live{border:1.5px solid rgba(249,108,67,.55);border-radius:999px;padding:8px 14px;cursor:pointer;
+  transition:background .2s,border-color .2s,transform .2s}
+a.ac-live:hover{background:rgba(249,108,67,.14);border-color:#F96C43;transform:translateY(-1px)}
+a.ac-live:focus-visible{outline:2px solid #F96C43;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){a.ac-live{transition:none}a.ac-live:hover{transform:none}}
+#side-intro{background:#FFFFFF;padding:clamp(56px,7vw,88px) clamp(16px,3vw,24px) 8px;text-align:center}
+#side-intro .side-wrap{max-width:800px;margin:0 auto}
+#side-intro .side-k{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.3em;color:rgba(27,26,23,.5)}
+#side-intro h2{font-weight:900;font-size:clamp(26px,4.2vw,50px);letter-spacing:-.04em;line-height:1.02;margin:10px 0 0}
+#side-intro p{font-size:clamp(14.5px,1.4vw,16px);line-height:1.6;color:rgba(27,26,23,.64);margin:14px auto 0;max-width:54ch}
+[data-when-exists][hidden]{display:none!important}
+</style>
+<style id="phone-legibility">
+/* Phones and tablets: nothing readable goes below 10.5px (10px on tablets, where the desktop
+   layouts are still in play). Many labels set their size inline, so those inline values are
+   matched directly. */
+@media (max-width:1024px){
+  [style*="font-size:8px"],[style*="font-size:8.5px"],[style*="font-size:9px"],[style*="font-size:9.5px"],
+  .ac-tag,.ac-live,.ac-brand span,.tp-cap,.hit-src,.mcap,.pip-soon,.hit-pip figcaption,.rmk,.m span,
+  .fx-cap,.fx-cap b,
+  .wklist .lv-eyebrow,.wklist .lv-then .lv-eyebrow,.wklist .lv-stat span,.wklist .lv-src{font-size:10px!important;line-height:1.45}
+}
+@media (max-width:760px){
+  [style*="font-size:8px"],[style*="font-size:8.5px"],[style*="font-size:9px"],[style*="font-size:9.5px"],[style*="font-size:10px"],
+  .ac-tag,.ac-live,.ac-brand span,.tp-cap,.hit-src,.mcap,.pip-soon,.hit-pip figcaption,.rmk,.m span,
+  .fx-cap,.fx-cap b,
+  .wklist .lv-eyebrow,.wklist .lv-then .lv-eyebrow,.wklist .lv-stat span,.wklist .lv-src{font-size:10.5px!important}
+}
+/* Touch screens of any width: every link is a thumb-sized target. */
+@media (pointer:coarse){
+  .ac-growth,.smfollow{display:inline-flex;align-items:center;min-height:44px}
+  #sitenav .snbrand{min-height:40px}
+}
+@media (pointer:coarse) and (min-width:861px){ #sitenav .snlinks a{padding-block:10px} }
+@media (max-width:760px){ .ac-growth,.smfollow{display:inline-flex;align-items:center;min-height:44px} }
+</style>
+</head>
+<body>
+
+<div style="position:relative">
+
+<!-- entrance curtain -->
+<div style="position:fixed;inset:0;z-index:300;background:#1B1A17;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;animation:curtainUp .7s cubic-bezier(.76,0,.24,1) 1.9s forwards;pointer-events:none">
+  <div style="display:flex;align-items:center;gap:12px">
+    <span style="width:26px;height:26px;border-radius:50%;background:#DDE84A;border:2px solid #F2EEE4;animation:dotBounce .9s ease-in-out infinite;flex:none"></span>
+    <span style="overflow:hidden;display:inline-block"><span style="display:inline-block;font-weight:900;font-size:clamp(34px,6vw,52px);letter-spacing:-.04em;color:#F2EEE4;animation:lineUp .7s cubic-bezier(.16,1,.3,1) .08s backwards">Maryam Richards</span></span>
+    <span style="font-family:'Caveat';font-size:40px;color:#E64A2E;animation:fadeIn .4s .5s backwards">.</span>
+  </div>
+  <div style="font-family:'Space Mono';font-size:11px;letter-spacing:.4em;color:rgba(242,238,228,.55);animation:fadeIn .5s .55s backwards">PORTFOLIO 2026</div>
+</div>
+
+<!-- NAV -->
+<nav id="sitenav" class="lt">
+  <a class="snbrand" href="index.html"><span class="dot"></span>Maryam<span style="font-family:'Caveat',cursive;font-size:21px;color:#E64A2E;line-height:0">.</span></a>
+  <div class="snlinks" id="snlinks"><a href="#projects-section">Work</a><a href="case-studies.html">Case Studies</a><a href="#process">Thinking</a><a href="#connect">Contact</a><a href="Maryam-Richards-CV.pdf?v=20260918" target="_blank" rel="noopener">CV</a></div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a class="snli" href="https://www.linkedin.com/in/maryam-r-37a0a0122/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+    <button id="snburger" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+<!-- voice-over toggle -->
+<div id="voToggleBtn" title="Narrated tour" style="position:fixed;right:26px;bottom:24px;z-index:95;display:none;align-items:center;gap:10px;cursor:pointer;background:#1B1A17;color:#F2EEE4;border-radius:100px;padding:11px 17px;box-shadow:0 14px 34px rgba(27,26,23,.35);animation:fadeIn .6s 2.6s backwards">
+  <span style="display:flex;align-items:flex-end;gap:2.5px;height:13px">
+    <span id="eq0" style="width:3px;border-radius:2px;background:#DDE84A;height:13px;transform-origin:bottom;animation:eqbar .7s ease-in-out infinite;animation-play-state:paused"></span>
+    <span id="eq1" style="width:3px;border-radius:2px;background:#DDE84A;height:13px;transform-origin:bottom;animation:eqbar .9s ease-in-out .15s infinite;animation-play-state:paused"></span>
+    <span id="eq2" style="width:3px;border-radius:2px;background:#DDE84A;height:13px;transform-origin:bottom;animation:eqbar .8s ease-in-out .3s infinite;animation-play-state:paused"></span>
+  </span>
+  <span id="voLabel" style="font-family:'Space Mono';font-size:10px;letter-spacing:.14em;font-weight:700">VOICE OVER</span>
+</div>
+
+<!-- voice-over captions -->
+<div id="voCaption" style="display:none;position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:94;max-width:min(720px,88vw);background:rgba(27,26,23,.93);backdrop-filter:blur(8px);color:#F2EEE4;border-radius:14px;padding:13px 20px;box-shadow:0 18px 44px rgba(27,26,23,.4);animation:capIn .35s ease both">
+  <div id="voCaptionWords" style="display:flex;flex-wrap:wrap;gap:2px .32em;justify-content:center;font-size:15px;font-weight:600;line-height:1.55;text-align:center"></div>
+</div>
+
+<!-- HERO -->
+<header id="work" data-screen-label="Hero" class="hero" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:118px 24px 60px;position:relative;text-align:center">
+
+  <div class="hero-morph">
+    <!-- STAGE 2 · loading: role (name shown on the loading curtain) -->
+    <div id="hero-stage2" class="hero-layer">
+      <div style="font-family:'Space Mono';font-size:12px;letter-spacing:.3em;color:#E64A2E;margin-bottom:16px">10+ YEARS</div>
+      <div style="font-weight:900;font-size:clamp(34px,6.4vw,82px);line-height:1;letter-spacing:-.04em;max-width:14ch">Product Thinker,<br><span style="font-family:'Caveat';font-weight:700;color:#E64A2E;font-size:1.18em;letter-spacing:0;display:inline-block;transform:rotate(-3deg)">Designer</span> &amp; Builder</div>
+    </div>
+
+    <!-- STAGE 3 · value proposition -->
+    <div id="hero-stage3" class="hero-layer">
+      <div style="font-family:'Space Mono';font-size:11px;letter-spacing:.26em;color:rgba(27,26,23,.55);margin-bottom:16px">SENIOR PRODUCT DESIGNER</div>
+      <h1 style="font-weight:900;font-size:clamp(30px,5.2vw,66px);line-height:1.03;letter-spacing:-.035em;margin:0;max-width:16ch">Partnering with teams to build digital products that <span style="background:linear-gradient(transparent 60%, rgba(221,232,74,.75) 60%)">create business value</span>.</h1>
+      <p style="font-size:clamp(15px,1.5vw,18px);line-height:1.55;color:rgba(27,26,23,.7);max-width:560px;margin:20px auto 0">I notice annoying problems in everyday life, then build and test my way out of them &mdash; with AI as my digital collaborator to learn, fail and move forward.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 0">
+        <span style="background:#F5A3A3;border:2px solid #1B1A17;border-radius:20px;padding:4px 13px;font-family:'Space Mono';font-size:11px;letter-spacing:.04em">FINTECH</span>
+        <span style="background:#F0B5D4;border:2px solid #1B1A17;border-radius:20px;padding:4px 13px;font-family:'Space Mono';font-size:11px">EDUCATION</span>
+        <span style="background:#DDE84A;border:2px solid #1B1A17;border-radius:20px;padding:4px 13px;font-family:'Space Mono';font-size:11px">HEALTH</span>
+        <span style="background:#9AD4E6;border:2px solid #1B1A17;border-radius:20px;padding:4px 13px;font-family:'Space Mono';font-size:11px">TRAVEL</span>
+        <span style="background:#CAC4F4;border:2px solid #1B1A17;border-radius:20px;padding:4px 13px;font-family:'Space Mono';font-size:11px">WELLNESS</span>
+      </div>
+      
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px">
+        <a href="#projects-section" style="display:inline-flex;align-items:center;gap:8px;background:#1B1A17;color:#F2EEE4;border:2.5px solid #1B1A17;border-radius:11px;padding:12px 20px;font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-decoration:none">Explore my work &rarr;</a>
+        <button type="button" class="intro-btn" hidden data-when-exists="assets/video/intro.mp4" data-video="assets/video/intro.mp4" data-title="Two minutes on how I work" data-product="Intro" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:#1B1A17;border:2.5px solid #1B1A17;border-radius:11px;padding:12px 20px;font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-decoration:none;cursor:pointer">&#9654; Watch 2-min intro</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- hero cards: 3 "What I'm…" blocks + portrait -->
+  <div class="hero-cards">
+
+    <div class="hcard" style="animation:dealIn .9s cubic-bezier(.16,1,.3,1) 4.5s backwards">
+      <a href="case-studies.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;background:#9AD4E6;border:2.5px solid #1B1A17;border-radius:16px;padding:16px;box-sizing:border-box;text-align:left;transform:rotate(-2deg);box-shadow:5px 6px 0 rgba(27,26,23,.9)">
+        <div style="display:flex;align-items:center;gap:9px">
+          <span style="width:32px;height:32px;flex:none;border:2px solid #1B1A17;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1B1A17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><rect x="8" y="3" width="8" height="8" rx="1"/></svg></span>
+          <div style="font-weight:800;font-size:14.5px;letter-spacing:-.01em">What I'm Building</div>
+        </div>
+        <div style="font-family:'Space Mono';font-size:9px;line-height:1.5;margin-top:10px;color:rgba(27,26,23,.72)">5 digital products in different stages.</div>
+        <ul style="margin:9px 0 0;padding-left:15px;font-family:'Space Mono';font-size:9px;line-height:1.9;color:rgba(27,26,23,.82);flex:1">
+          <li>AceIt</li><li>Snap2Meal</li><li>FitConnect</li><li>Mother OS</li><li>Little Roots Play</li>
+        </ul>
+        <div style="font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-decoration:underline;text-underline-offset:3px;margin-top:8px">→ Explore</div>
+      </a>
+    </div>
+
+    <div class="hcard" style="animation:dealIn .9s cubic-bezier(.16,1,.3,1) 4.62s backwards">
+      <div class="hcard-tags" style="top:-50px">
+        <span style="background:#fff;border:2px solid #1B1A17;border-radius:8px;padding:4px 9px;font-family:'Caveat';font-size:18px;animation:wobble 2.6s ease-in-out infinite">that's me!</span>
+      </div>
+      <div style="border:2.5px solid #1B1A17;border-radius:16px;transform:rotate(2deg);box-shadow:5px 6px 0 rgba(27,26,23,.9);overflow:hidden;position:relative;min-height:188px">
+        <img src="assets/photos/maryam-portrait.jpg" alt="Maryam Richards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block">
+      </div>
+    </div>
+
+    <div class="hcard" style="animation:dealIn .9s cubic-bezier(.16,1,.3,1) 4.74s backwards">
+      <a href="case-studies.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;background:#A6E3CC;border:2.5px solid #1B1A17;border-radius:16px;padding:16px;box-sizing:border-box;text-align:left;transform:rotate(-1.5deg);box-shadow:5px 6px 0 rgba(27,26,23,.9)">
+        <div style="display:flex;align-items:center;gap:9px">
+          <span style="width:32px;height:32px;flex:none;border:2px solid #1B1A17;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1B1A17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7.5 6 6 10M12 6l-1.5 4M16.5 6 15 10"/></svg></span>
+          <div style="font-weight:800;font-size:14.5px;letter-spacing:-.01em">What I'm Breaking Down</div>
+        </div>
+        <div style="font-family:'Space Mono';font-size:9px;line-height:1.5;margin-top:10px;color:rgba(27,26,23,.72)">2-minute case study series on product decisions.</div>
+        <ul style="margin:9px 0 0;padding-left:15px;font-family:'Space Mono';font-size:9px;line-height:1.9;color:rgba(27,26,23,.82);flex:1">
+          <li>Ideas</li><li>Trade-offs</li><li>What worked / didn't</li><li>What I'd do differently</li>
+        </ul>
+        <div style="font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-decoration:underline;text-underline-offset:3px;margin-top:8px">→ Watch Videos</div>
+      </a>
+    </div>
+
+    <div class="hcard" style="animation:dealIn .9s cubic-bezier(.16,1,.3,1) 4.86s backwards">
+      <a href="#connect" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;background:#CAC4F4;border:2.5px solid #1B1A17;border-radius:16px;padding:16px;box-sizing:border-box;text-align:left;transform:rotate(2.5deg);box-shadow:5px 6px 0 rgba(27,26,23,.9)">
+        <div style="display:flex;align-items:center;gap:9px">
+          <span style="width:32px;height:32px;flex:none;border:2px solid #1B1A17;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1B1A17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M12 11C12 7 9.5 5 5.5 5.2 5.3 9 8 11 12 11z"/><path d="M12 11c0-3.5 2.5-5.5 6.5-5.3.2 3.8-2.5 5.3-6.5 5.3z"/></svg></span>
+          <div style="font-weight:800;font-size:14.5px;letter-spacing:-.01em">What I'm Living</div>
+        </div>
+        <div style="font-family:'Space Mono';font-size:9px;line-height:1.5;margin-top:10px;color:rgba(27,26,23,.72)">Real life inspires my work.</div>
+        <ul style="margin:9px 0 0;padding-left:15px;font-family:'Space Mono';font-size:9px;line-height:1.9;color:rgba(27,26,23,.82);flex:1">
+          <li>Modern motherhood</li><li>Fitness &amp; healthy living</li><li>Education &amp; learning</li><li>Human connection</li>
+        </ul>
+        <div style="font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-decoration:underline;text-underline-offset:3px;margin-top:8px">→ About Me</div>
+      </a>
+    </div>
+
+  </div>
+
+  <div style="position:absolute;bottom:26px;font-family:'Space Mono';font-size:10px;letter-spacing:.2em;color:rgba(27,26,23,.45);animation:fadeIn .6s 2.5s backwards, floaty 2.4s ease-in-out 3.1s infinite">SCROLL ↓</div>
+</header>
+
+<!-- TICKER BAND -->
+<div style="background:#1B1A17;color:#F2EEE4;padding:13px 0;overflow:hidden;transform:rotate(-1.2deg) scale(1.03);border-top:3px solid #1B1A17;border-bottom:3px solid #1B1A17">
+  <div style="display:flex;width:max-content;animation:marquee 26s linear infinite"><span style="display:flex;align-items:center;gap:26px;padding:0 13px;font-family:'Space Mono';font-size:13px;letter-spacing:.14em;white-space:nowrap">PLANNING <span style="color:#DDE84A">✦</span> PRIORITIZATION <span style="color:#F5A3A3">✦</span> AI WORKFLOWS <span style="color:#9AD4E6">✦</span> RESEARCH <span style="color:#CAC4F4">✦</span> PROTOTYPING <span style="color:#A6E3CC">✦</span> KINETIC MOTION <span style="color:#E64A2E">✦</span> SHIPPING <span style="color:#DDE84A">✦</span></span><span style="display:flex;align-items:center;gap:26px;padding:0 13px;font-family:'Space Mono';font-size:13px;letter-spacing:.14em;white-space:nowrap">PLANNING <span style="color:#DDE84A">✦</span> PRIORITIZATION <span style="color:#F5A3A3">✦</span> AI WORKFLOWS <span style="color:#9AD4E6">✦</span> RESEARCH <span style="color:#CAC4F4">✦</span> PROTOTYPING <span style="color:#A6E3CC">✦</span> KINETIC MOTION <span style="color:#E64A2E">✦</span> SHIPPING <span style="color:#DDE84A">✦</span></span></div>
+</div>
+
+<!-- TRUST MARKERS -->
+<section data-screen-label="Trust" class="reveal" style="padding:74px 24px;text-align:center;background:#F2EEE4">
+  <div style="font-family:'Space Mono';font-size:11px;letter-spacing:.28em;color:rgba(27,26,23,.5)">BY THE NUMBERS</div>
+  <h2 style="font-weight:900;font-size:clamp(22px,3vw,36px);letter-spacing:-.03em;margin:12px auto 0;max-width:620px;line-height:1.05">Real products, real industries, real shipping.</h2>
+  <div class="stats-strip" style="margin:28px auto 0;width:100%;max-width:900px;display:flex;flex-wrap:wrap;justify-content:center;border:2px solid #1B1A17;border-radius:14px;background:#fff;box-shadow:4px 5px 0 rgba(27,26,23,.85);overflow:hidden">
+    <div class="stat" style="flex:1 1 118px;min-width:104px;padding:18px 10px;text-align:center;border-right:1.5px solid rgba(27,26,23,.12)"><div class="count" data-to="4" style="font-weight:900;font-size:26px;letter-spacing:-.02em">0</div><div style="font-family:'Space Mono';font-size:8.5px;letter-spacing:.08em;color:rgba(27,26,23,.6);margin-top:5px">PRODUCTS BUILT</div></div>
+    <div class="stat" style="flex:1 1 118px;min-width:104px;padding:18px 10px;text-align:center;border-right:1.5px solid rgba(27,26,23,.12)"><div class="count" data-to="6" style="font-weight:900;font-size:26px;letter-spacing:-.02em">0</div><div style="font-family:'Space Mono';font-size:8.5px;letter-spacing:.08em;color:rgba(27,26,23,.6);margin-top:5px">INDUSTRIES</div></div>
+    <div class="stat" style="flex:1 1 118px;min-width:104px;padding:18px 10px;text-align:center;border-right:1.5px solid rgba(27,26,23,.12)"><div class="count" data-to="10" data-suffix="+" style="font-weight:900;font-size:26px;letter-spacing:-.02em">0</div><div style="font-family:'Space Mono';font-size:8.5px;letter-spacing:.08em;color:rgba(27,26,23,.6);margin-top:5px">YEARS DESIGNING</div></div>
+    
+    <div class="stat" style="flex:1 1 118px;min-width:104px;padding:18px 10px;text-align:center"><div style="font-weight:900;font-size:26px;letter-spacing:-.02em">AI</div><div style="font-family:'Space Mono';font-size:8.5px;letter-spacing:.08em;color:rgba(27,26,23,.6);margin-top:5px">IN THE LOOP</div></div>
+  </div>
+</section>
+
+<!-- PROJECTS / INDUSTRIES (mockup cards) -->
+<section id="projects-section" data-screen-label="Projects" style="background:#FFFFFF;padding:clamp(52px,7vw,80px) clamp(16px,3vw,24px) clamp(64px,8vw,96px);position:relative;overflow:hidden">
+  <div style="text-align:center;max-width:760px;margin:0 auto">
+    <div style="font-family:'Space Mono';font-size:11px;letter-spacing:.3em;color:rgba(27,26,23,.5)">ALMOSAFER &middot; SENIOR PRODUCT DESIGNER</div>
+    <h2 style="font-weight:900;font-size:clamp(28px,4.8vw,60px);letter-spacing:-.04em;margin:8px 0 0">Selected work at my most recent company.</h2>
+    <p style="font-size:15px;line-height:1.6;color:rgba(27,26,23,.6);max-width:520px;margin:14px auto 0">Two decisions on the same surface &mdash; the fare a traveller picks, then what they add to it. Someone else&rsquo;s roadmap, real revenue pressure, and eight carriers that each bundle differently. Each started with a call I had to defend, so that&rsquo;s what leads.</p>
+  </div>
+
+  <div class="wklist"><div class="living-row" style="background:#fff;border:3px solid #1B1A17;border-radius:18px;padding:20px;box-shadow:6px 7px 0 rgba(27,26,23,.85)">
+    <div class="lv-media fx-plate">
+      <div class="fx-phone fx-video">
+        <video data-lazyplay src="assets/almosafer/shipped-outcome.mp4" poster="assets/almosafer/video-poster.png" muted loop playsinline preload="none" width="384" height="848" aria-label="Screen recording of the shipped Almosafer fare selector: the cheapest fare is selected by default, higher fares are chosen deliberately"></video>
+      </div>
+      <div class="fx-cap">The shipped flow. <b>The cheapest fare arrives selected.</b></div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-logo"><img src="assets/projects/mark/almosafer.png" alt="">Almosafer</div>
+      <div class="lv-eyebrow">SENIOR PRODUCT DESIGNER &middot; FLIGHT BOOKING &middot; 8 CARRIERS</div>
+      <h3 class="lv-head">&ldquo;The cheapest fare stays selected.&rdquo;</h3>
+      <p class="lv-lede">Revenue wanted the upgrade pre-ticked. I refused the dark pattern and argued the harder position: travellers were losing to airline sites because they couldn&rsquo;t compare, not because they were cheap. So I made eight carriers&rsquo; bundles comparable on six attributes &mdash; and let people choose up on purpose.</p>
+      <div class="lv-trade"><b>Who I worked with:</b> product, engineering and the design team.</div>
+      <div class="lv-trade"><b>What it cost:</b> normalising eight carriers meant dropping some carrier-specific perks, and full fare rules moved one tap deeper. I took clarity over completeness.</div>
+      <div class="lv-stats">
+        <div class="lv-stat"><b>+17%</b><span>TARGETED UPSELL INTERACTIONS</span></div>
+      </div>
+      <div class="lv-then">
+        <div class="lv-eyebrow">THEN &mdash; THE SAME FLOW, ONE STEP LATER</div>
+        <div class="lv-then-grid">
+          <img src="assets/almosafer/addons-screen.png" alt="Almosafer booking flow add-ons: trip insurance, a stay discount and an eSIM, each with price and benefits" loading="lazy" width="1200" height="698">
+          <div>
+            <div class="lv-then-head">Adding revenue to a checkout I wasn&rsquo;t allowed to break.</div>
+            <p class="lv-then-tx">The brief was attachment rate on trip insurance, stay discounts and eSIM. The constraint I held: no extra could cost a completed booking &mdash; so placement, wording and timing were tested against completion, not just attach.</p>
+            <div class="lv-stats">
+              <div class="lv-stat"><b>+12%</b><span>ATTACHMENT RATE</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lv-src">All figures reported by Almosafer.</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">
+        <a href="almosafer-flights.html" style="display:inline-flex;align-items:center;gap:7px;background:#1B1A17;color:#F2EEE4;border-radius:9px;padding:11px 17px;font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-decoration:none">See how I got there &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+<script>
+/* Play the shipped-flow recording only while it's on screen, so its 9MB doesn't load with the page. */
+(function(){
+  var vids=document.querySelectorAll('video[data-lazyplay]'); if(!vids.length) return;
+  function play(v){ if(v.preload==='none'){ v.preload='auto'; } var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+  if(!('IntersectionObserver' in window)){ vids.forEach(play); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) play(e.target); else e.target.pause(); }); },{rootMargin:'200px 0px'});
+  vids.forEach(function(v){ io.observe(v); });
+})();
+</script>
+
+<!-- HOW I THINK — pinned split-scroll -->
+<section id="process" data-screen-label="HowIThink" class="hit">
+  <div class="hit-stick">
+    <div class="hit-grid">
+
+      <div class="hit-left">
+        <div class="hit-eyebrow hand-eyebrow"><span>The questions I keep coming back to</span><svg viewBox="0 0 100 70" width="92" height="64" aria-hidden="true"><path d="M6 12 C 40 2, 78 14, 86 52" fill="none" stroke="#1B1A17" stroke-width="2.4" stroke-linecap="round"/><path d="M86 52 L 75 43 M86 52 L 91 38" fill="none" stroke="#1B1A17" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+
+        <div class="hit-q q1"><span class="hit-bar"><i></i></span>
+          <div class="hit-n">01</div>
+          <div><h2>What are we actually trying to do?</h2>
+          <p>Before jumping to solutions, I want the real goal &mdash; what success looks like for the user, the business and the people behind the request.</p></div>
+        </div>
+
+        <div class="hit-q q2"><span class="hit-bar"><i></i></span>
+          <div class="hit-n">02</div>
+          <div><h2>What&rsquo;s making this harder than it needs to be?</h2>
+          <p>I look for the real constraint. Sometimes it&rsquo;s technical, sometimes behavioural &mdash; and sometimes we&rsquo;re solving the wrong problem entirely.</p></div>
+        </div>
+
+        <div class="hit-q q3"><span class="hit-bar"><i></i></span>
+          <div class="hit-n">03</div>
+          <div><h2>How do we know it worked?</h2>
+          <p>Outcomes, not prettier screens. Real change in behaviour, clarity, confidence or revenue &mdash; measured, not assumed.</p></div>
+        </div>
+      </div>
+
+      <div class="hit-right">
+        <div class="hit-tag">DIFFERENT PROJECTS. SAME MINDSET.</div>
+        <div class="hit-panel">
+
+          <!-- 01 — the brief, and the questions underneath it -->
+          <div class="hit-scene s1">
+            <div class="brief">
+              <div class="brief-k">FEATURE REQUEST</div>
+              <div class="brief-q">&ldquo;Get more travellers to upgrade their fare.&rdquo;</div>
+            </div>
+            <div class="hand h-brief">The brief <svg class="hit-arrow" viewBox="0 0 70 50" width="70" height="50" aria-hidden="true"><path d="M60 8 C 40 10, 22 22, 10 40 M10 40 L 12 28 M10 40 L 22 36" fill="none" stroke="#1B1A17" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="notebook">
+              <div class="nb-lines">
+                <div>But&hellip;</div>
+                <div>&ldquo;What&rsquo;s the real problem?&rdquo;</div>
+                <div>+ Are travellers confused?</div>
+                <div>+ Are they not seeing the value?</div>
+                <div>+ Is it a trust issue?</div>
+                <div>+ Are we overwhelming them?</div>
+              </div>
+            </div>
+            <div class="hand h-notes">My notes <svg class="hit-arrow" viewBox="0 0 70 50" width="70" height="50" aria-hidden="true"><path d="M6 42 C 26 42, 46 30, 60 10 M60 10 L 48 14 M60 10 L 58 22" fill="none" stroke="#1B1A17" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="hit-src">ALMOSAFER &middot; FARE FAMILIES</div>
+          </div>
+
+          <!-- 02 — what people actually did, and the reframe -->
+          <div class="hit-scene s2">
+            <div class="behav">
+              <div class="behav-h">What travellers actually did</div>
+              <div class="behav-r"><span class="dot"></span><span>Picked the cheapest fare, every time</span></div>
+              <div class="behav-r"><span class="dot"></span><span>Couldn&rsquo;t tell what each fare included</span></div>
+              <div class="behav-r"><span class="dot"></span><span>Our fastest design still didn&rsquo;t convert &mdash; too little to trust</span></div>
+            </div>
+            <div class="hand h-insight">The insight <svg class="hit-arrow" viewBox="0 0 70 50" width="70" height="50" aria-hidden="true"><path d="M6 12 C 28 10, 48 22, 62 40 M62 40 L 50 38 M62 40 L 60 28" fill="none" stroke="#1B1A17" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="sticky">
+              Travellers weren&rsquo;t seeing the value clearly.<br><br>
+              It wasn&rsquo;t a choice problem &mdash; it was a <u>communication</u> problem.
+            </div>
+            <div class="hit-src">ALMOSAFER &middot; FARE FAMILIES</div>
+          </div>
+
+          <!-- 03 — the shipped screen and what it changed -->
+          <div class="hit-scene s3">
+            <img class="proto" src="assets/almosafer/fare-prototype.png" alt="Almosafer fare-type selection: Eco Saver and Eco Basic compared on baggage and change rules" loading="lazy" width="501" height="925">
+            <div class="hand h-clear">Six comparable attributes.<br>Clearer options, happier travellers.</div>
+            <div class="metrics">
+              <div class="m"><b>+17%</b><span>TARGETED UPSELL INTERACTIONS</span></div>
+            </div>
+            <div class="mcap">Reported by the business across three shipped phases.</div>
+          </div>
+
+        </div>
+
+        <figure class="hit-pip" id="hitPip" hidden data-when-exists="assets/video/how-i-think.mp4">
+          <video id="hitVid" data-src="assets/video/how-i-think.mp4" poster="assets/photos/maryam-portrait.jpg" playsinline preload="none" aria-label="Maryam talking through how she thinks"></video>
+          <figcaption><span class="pip-live"></span>Watch me think it through<span class="pip-soon">RECORDING SOON</span></figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </div>
+</section>
+<script>
+/* The walkthrough video goes live on its own the moment assets/video/how-i-think.mp4 exists. */
+(function(){
+  var v=document.getElementById('hitVid'), pip=document.getElementById('hitPip'); if(!v) return;
+  var src=v.getAttribute('data-src');
+  if(!window.fetch) return;
+  fetch(src,{method:'HEAD'}).then(function(r){
+    if(!r.ok) return;
+    v.src=src; v.controls=true; pip.classList.add('ready');
+  }).catch(function(){});
+})();
+</script>
+
+
+
+
+
+<style>
+#build-section{padding:84px 24px;background:#FFFFFF}
+.wb{max-width:1360px;margin:0 auto;background:#141312;border-radius:30px;padding:74px 60px;min-height:660px;display:grid;grid-template-columns:.8fr 1.55fr .9fr;gap:46px;align-items:center;color:#F5F3F0;box-shadow:0 30px 70px rgba(27,26,23,.18)}
+.wb-kick{font-family:'Space Mono';font-size:10.5px;letter-spacing:.26em;color:#DDE84A}
+
+
+/* ---- Regula Momma: the third act ---- */
+.rmsec{padding:104px 24px;background:#FBF7EE;color:#1B1A17}
+.rmwrap{max-width:1180px;margin:0 auto}
+.rmtape{display:inline-block;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.2em;
+  background:#F7C9DC;color:#1B1A17;padding:8px 15px;transform:rotate(-2deg);font-weight:700}
+.rmtitle{font-weight:900;font-size:clamp(32px,5.2vw,66px);line-height:1.01;letter-spacing:-.045em;
+  margin:22px 0 0;max-width:17ch}
+.rmtitle em{font-style:normal;background:linear-gradient(transparent 62%,#DDE84A 62%)}
+.rmsub{font-size:clamp(15px,1.7vw,19px);line-height:1.6;color:rgba(27,26,23,.66);margin:18px 0 0;max-width:52ch}
+.rmwords{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.rmwords span{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.16em;background:#F7C9DC;
+  padding:7px 12px;transform:rotate(-1.5deg);font-weight:700}
+.rmwords span:nth-child(even){transform:rotate(1.5deg);background:#DDE84A}
+.rmquote{display:grid;grid-template-columns:230px 1fr;gap:34px;align-items:center;margin:58px 0 0;
+  background:#fff;border:2.5px solid #1B1A17;border-radius:22px;padding:26px;box-shadow:7px 8px 0 rgba(27,26,23,.85)}
+.rmqvid{width:100%;border-radius:14px;display:block;background:#000}
+.rmqmark{font-size:54px;line-height:.5;color:#E45A3A;font-weight:900}
+.rmqtext p{font-size:clamp(19px,2.3vw,30px);line-height:1.24;letter-spacing:-.025em;font-weight:500;margin:14px 0 0}
+.rmqtext p b{font-weight:900}
+.rmqnote{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:rgba(27,26,23,.55);margin-top:16px;line-height:1.6}
+.rmgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:26px;margin-top:52px}
+.rmcard{background:#fff;border:2.5px solid #1B1A17;border-radius:22px;overflow:hidden;
+  box-shadow:7px 8px 0 rgba(27,26,23,.85);display:flex;flex-direction:column}
+.rmvid{width:100%;aspect-ratio:9/13;object-fit:cover;display:block;background:#000;border-bottom:2.5px solid #1B1A17}
+.rmbody{padding:24px}
+.rmstage{display:inline-block;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.16em;
+  background:var(--rm);color:#fff;padding:5px 10px;border-radius:4px;font-weight:700}
+.rmcard h3{font-weight:900;font-size:29px;letter-spacing:-.03em;margin:13px 0 0}
+.rmline{font-size:15.5px;line-height:1.5;color:rgba(27,26,23,.7);margin:8px 0 16px}
+.rmrow{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:9px 0;border-top:1px solid rgba(27,26,23,.12);
+  font-size:13.5px;line-height:1.48;color:rgba(27,26,23,.74)}
+.rmk{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:var(--rm);font-weight:700;padding-top:3px}
+.rmcta{display:inline-block;margin-top:18px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;
+  font-weight:700;color:#1B1A17;text-decoration:none;border-bottom:2.5px solid var(--rm);padding-bottom:3px}
+@media (max-width:760px){
+  .rmsec{padding:64px 16px}
+  .rmquote{grid-template-columns:1fr;gap:20px;padding:20px}
+  .rmqvid{max-width:210px;margin:0 auto}
+}
+
+
+
+/* Senior rows reuse .living-row and should read exactly like the Regula Momma rows:
+   the media fills its cell rather than sitting contained on a plate. No aspect-ratio on
+   the cell itself — the row stretches it, and a ratio would then derive width from that
+   height and overflow the 340px track. */
+/* Senior rows lead with the decision, not the task: eyebrow sets scope, the headline is
+   the call in her own words, the trade states what it cost, then the numbers. */
+.wklist .lv-eyebrow{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.17em;color:#2E8AA3;font-weight:700}
+.wklist .lv-head{font-weight:900;font-size:clamp(23px,2.7vw,33px);letter-spacing:-.035em;line-height:1.06;margin:11px 0 0;max-width:19ch}
+.wklist .lv-lede{font-size:14.5px;line-height:1.62;color:rgba(27,26,23,.72);margin:13px 0 0;max-width:52ch}
+.wklist .lv-trade{margin:15px 0 0;padding-left:13px;border-left:3px solid #2E8AA3;font-size:13px;line-height:1.6;color:rgba(27,26,23,.6);max-width:52ch}
+.wklist .lv-trade b{color:rgba(27,26,23,.85);font-weight:700}
+.wklist .lv-stats{display:flex;flex-wrap:wrap;gap:26px;margin-top:20px}
+.wklist .lv-stat b{display:block;font-weight:900;font-size:clamp(25px,2.9vw,35px);letter-spacing:-.045em;line-height:1;color:#1B1A17}
+.wklist .lv-stat span{display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:rgba(27,26,23,.5);margin-top:5px}
+.wklist .lv-src{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.06em;color:rgba(27,26,23,.42);margin-top:14px}
+/* Shipped fare selector: the real screen recording from almosafer-flights.html, in a phone bezel */
+.wklist .lv-media.fx-plate{background:linear-gradient(160deg,#EAF1F3,#D7E4E8);padding:22px 16px 16px;height:auto;aspect-ratio:auto;align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.fx-phone.fx-video{width:100%;max-width:236px;background:#1d1140;padding:8px;border-radius:34px;box-shadow:0 22px 44px rgba(29,17,64,.28)}
+.fx-phone.fx-video video{display:block;width:100%;height:auto;aspect-ratio:384/848;border-radius:27px;background:#140a2e;object-fit:cover}
+.fx-cap{font-family:'Space Mono',monospace;font-size:9.5px;line-height:1.55;color:rgba(27,26,23,.6);text-align:center;max-width:250px}
+.fx-cap b{color:#1B1A17}
+/* Add-ons is chapter two of the same story, not a second project */
+.wklist .lv-then{margin-top:22px;padding-top:18px;border-top:2px solid #2E8AA3}
+.wklist .lv-then .lv-eyebrow{font-size:9px}
+.wklist .lv-then-grid{display:grid;grid-template-columns:128px 1fr;gap:18px;align-items:start;margin-top:12px}
+.wklist .lv-then-grid img{width:128px;height:auto;border-radius:9px;border:1.5px solid rgba(27,26,23,.14);display:block}
+.wklist .lv-then-head{font-weight:900;font-size:clamp(17px,1.8vw,21px);letter-spacing:-.03em;line-height:1.12}
+.wklist .lv-then-tx{font-size:13.5px;line-height:1.6;color:rgba(27,26,23,.68);margin:8px 0 0;max-width:50ch}
+.wklist .lv-then .lv-stats{margin-top:14px}
+.wklist .lv-then .lv-stat b{font-size:clamp(22px,2.4vw,28px)}
+@media (max-width:760px){
+  .wklist .lv-head,.wklist .lv-lede,.wklist .lv-trade,.wklist .lv-then-tx{max-width:none}
+  .wklist .lv-stats{gap:18px}
+  .wklist .lv-then-grid{grid-template-columns:1fr}
+  .wklist .lv-then-grid img{width:100%;max-width:320px}
+}
+.wklist .lv-media{min-width:0;min-height:0;aspect-ratio:auto;height:100%;background:#1B1A17;padding:0}
+.wklist .lv-media img{width:100%;height:100%;object-fit:cover;display:block}
+/* A tall prototype screen can't be cover-cropped into a wide cell without losing it,
+   so this one is contained on a soft plate instead. */
+.wklist .lv-media:has(.lv-proto){background:linear-gradient(160deg,#EAF1F3,#D7E4E8);padding:16px;height:auto;aspect-ratio:4/3;align-self:center}
+.wklist .lv-addons{width:100%;height:100%;object-fit:cover;object-position:top left;border-radius:8px}
+.wklist .lv-proto{width:auto;height:100%;max-width:100%;object-fit:contain;margin:0 auto}
+.wklist .lv-body{padding-right:118px}
+.wklist .lv-logo img{width:20px;height:20px;object-fit:contain}
+@media(max-width:820px){
+  .wklist .lv-body{padding-right:0}
+  .wklist .lv-media{height:auto;aspect-ratio:16/10}
+}
+
+/* ---- Regula Momma on social: a swipeable rail of posts ---- */
+.smsec{padding:96px 24px 132px;background:#F3EFE6}
+.smwrap{max-width:1180px;margin:0 auto}
+.smlogo{display:block;width:186px;height:auto;margin-bottom:16px}
+.smhead{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center}
+.smlogo{width:210px;height:auto;display:block;margin:0}
+.smhead-copy h2{font-weight:900;font-size:clamp(28px,4vw,52px);line-height:1.02;letter-spacing:-.042em;margin:0;max-width:20ch}
+.smhead-copy p{font-size:clamp(14.5px,1.6vw,18px);line-height:1.6;color:rgba(27,26,23,.62);margin:14px 0 0;max-width:56ch}
+.smhandle{display:inline-block;margin-top:14px;background:#F7C9DC;color:#1B1A17;font-family:'Space Mono',monospace;
+  font-size:10.5px;letter-spacing:.14em;font-weight:700;padding:8px 14px;transform:rotate(-1.6deg);text-decoration:none}
+.smrail{display:flex;gap:18px;align-items:center;overflow-x:auto;scroll-snap-type:x proximity;padding:34px 2px 10px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.smrail::-webkit-scrollbar{display:none}
+.sm-slide{position:relative;flex:0 0 auto;height:352px;scroll-snap-align:start;border:2.5px solid #1B1A17;
+  border-radius:14px;overflow:hidden;box-shadow:5px 6px 0 rgba(27,26,23,.85);display:block;background:#FBF9F4;
+  rotate:var(--rot,0deg);transition:rotate .3s cubic-bezier(.2,.9,.25,1),transform .3s cubic-bezier(.2,.9,.25,1),box-shadow .3s ease}
+.sm-slide:hover{rotate:0deg;transform:translateY(-5px);box-shadow:5px 12px 0 rgba(27,26,23,.85);z-index:2}
+.sm-slide img{display:block;height:100%;width:auto}
+.smctrls{display:flex;align-items:center;gap:10px;margin-top:22px}
+.smbtn{width:44px;height:44px;border-radius:50%;border:2.5px solid #1B1A17;background:#fff;cursor:pointer;
+  font-size:17px;line-height:1;transition:transform .25s ease}
+.smbtn:hover:not(:disabled){transform:translateY(-2px)}
+.smbtn:disabled{opacity:.3;cursor:default}
+.smfollow{margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;font-weight:700;
+  color:#1B1A17;text-decoration:none;border-bottom:2.5px solid #F58BC3;padding-bottom:3px}
+@media (max-width:760px){.smsec{padding:60px 16px 84px}.sm-slide{height:270px}.smlogo{width:132px}
+  .smhead{grid-template-columns:1fr;gap:16px}}
+@media (prefers-reduced-motion:reduce){.smbtn,.ac-badge,.sm-slide{transition:none}.sm-slide{rotate:0deg}}
+
+/* ---- shipped-app cards: text left, promo film between two slanted screens ---- */
+.appsec{padding:44px 24px;background:#FFFFFF}
+.appsec + .appsec{padding-top:0}
+#ai.appsec{padding-top:84px}
+.appcard{max-width:1360px;margin:0 auto;background:#141312;border-radius:30px;padding:66px 58px;
+  display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;color:#F5F3F0;
+  box-shadow:0 30px 70px rgba(27,26,23,.18);position:relative;overflow:hidden}
+.appcard::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(660px 420px at 84% 18%,var(--acglow),transparent 64%)}
+.appcard > *{position:relative;z-index:1}
+.ac-brand{display:flex;align-items:center;gap:13px;margin-bottom:22px}
+.ac-brand img{width:52px;height:52px;border-radius:13px;box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.ac-brand b{font-size:21px;letter-spacing:-.02em;display:block;line-height:1.1}
+.ac-brand span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:rgba(245,243,240,.55);display:block;margin-top:3px}
+.ac-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.26em;color:var(--ac)}
+.appcard h2{font-weight:900;font-size:clamp(28px,3.1vw,46px);line-height:1.04;letter-spacing:-.04em;margin:14px 0 0;max-width:17ch}
+.appcard h2 em{font-style:normal;color:var(--ac)}
+.ac-lede{font-size:15px;line-height:1.62;color:rgba(245,243,240,.6);margin:16px 0 0;max-width:44ch}
+/* the decision ledger: what I cut, and the one line that says why */
+.ac-ledger{margin:26px 0 0;border-top:1px solid rgba(245,243,240,.14)}
+.ac-row{display:grid;grid-template-columns:78px 1fr;gap:16px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid rgba(245,243,240,.1)}
+.ac-tag{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.14em;padding:5px 9px;border-radius:5px;
+  text-align:center;background:var(--ac);color:#141312;font-weight:700;align-self:center}
+.ac-tag.keep{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.ac-what{font-size:16.5px;font-weight:800;letter-spacing:-.015em;line-height:1.25}
+.ac-row.cut .ac-what{text-decoration:line-through;text-decoration-thickness:2px;
+  text-decoration-color:var(--ac);color:rgba(245,243,240,.55)}
+.ac-why{display:block;margin-top:5px;font-size:13.5px;line-height:1.45;color:rgba(245,243,240,.62);font-weight:400;text-decoration:none}
+.ac-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:26px}
+.ac-badge{display:inline-block;line-height:0;border-radius:9px;transition:transform .3s cubic-bezier(.2,.9,.25,1),filter .3s ease}
+.ac-badge:hover{transform:translateY(-2px);filter:drop-shadow(0 12px 26px rgba(0,0,0,.5))}
+.ac-badge img{height:52px;width:auto;display:block}
+.ac-live{display:inline-flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:9.5px;
+  letter-spacing:.14em;color:rgba(245,243,240,.72)}
+.ac-live i{width:7px;height:7px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 4px rgba(74,222,128,.18);font-style:normal}
+
+.ac-cta{display:inline-flex;align-items:center;gap:9px;margin-top:26px;background:var(--ac);color:#fff;
+  border-radius:999px;padding:14px 25px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;
+  font-weight:700;text-decoration:none;transition:transform .3s cubic-bezier(.2,.9,.25,1),box-shadow .3s ease}
+.ac-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px var(--acglow)}
+/* the film sits centre stage, a screen slanted away on each side */
+.ac-media{display:flex;align-items:center;justify-content:center}
+.ac-ph{width:25%;max-width:180px;height:auto;border-radius:19px;border:1px solid rgba(245,243,240,.14);
+  box-shadow:0 26px 54px rgba(0,0,0,.5);display:block}
+.ac-ph.l{transform:rotate(-8deg) translateX(20%);z-index:1}
+.ac-ph.r{transform:rotate(8deg) translateX(-20%);z-index:1}
+.ac-vid{width:44%;max-width:300px;aspect-ratio:9/16;height:auto;border-radius:25px;border:1px solid rgba(245,243,240,.2);
+  box-shadow:0 36px 80px rgba(0,0,0,.62);display:block;position:relative;z-index:2;background:#000}
+/* the tools that were in the room, drifting around the card */
+.ac-tools{position:absolute;inset:0;pointer-events:none;z-index:0}
+.ac-tool{position:absolute;display:flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;
+  background:rgba(245,243,240,.07);border:1px solid rgba(245,243,240,.16);backdrop-filter:blur(6px);
+  font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(245,243,240,.8);
+  animation:acfloat 9s ease-in-out infinite}
+.ac-tool svg{width:13px;height:13px;flex:0 0 auto}
+@keyframes acfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+@media (prefers-reduced-motion:reduce){.ac-tool{animation:none}.ac-cta{transition:none}}
+@media (max-width:900px){
+  .appsec{padding:26px 16px}
+  #ai.appsec{padding-top:52px}
+  .appcard{grid-template-columns:1fr;padding:40px 24px;gap:34px;border-radius:24px}
+  .appcard h2{max-width:none}
+  .ac-ph{max-width:112px}
+  .ac-vid{max-width:198px}
+  .ac-row{grid-template-columns:66px 1fr;gap:12px}
+  .ac-tools{display:none}
+}
+
+.wb h2{font-weight:900;font-size:clamp(32px,3.5vw,52px);line-height:1.02;letter-spacing:-.04em;margin:18px 0 0}
+.wb-lede{font-size:15.5px;line-height:1.7;color:rgba(245,243,240,.62);margin:20px 0 0;max-width:330px}
+.wb-cta{display:inline-flex;align-items:center;gap:10px;margin-top:32px;background:#DDE84A;color:#141312;border-radius:999px;padding:16px 26px;font-family:'Space Mono';font-size:11.5px;letter-spacing:.08em;font-weight:700;text-decoration:none;transition:transform .3s cubic-bezier(.2,.9,.25,1),box-shadow .3s ease}
+.wb-cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(221,232,74,.28)}
+.wb-cta em{font-style:normal;transition:transform .3s cubic-bezier(.2,.9,.25,1)}
+.wb-cta:hover em{transform:translateX(4px)}
+
+/* main player */
+.wb-stage{position:relative;border-radius:20px;overflow:hidden;background:#000;aspect-ratio:16/10}
+.wb-stage video{width:100%;height:100%;object-fit:cover;display:block}
+.wb-stage .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.10) 40%,rgba(0,0,0,.80));pointer-events:none;transition:opacity .3s ease}
+.wb-stage.playing .shade,.wb-stage.playing .wb-play,.wb-stage.playing .wb-meta,.wb-stage.playing .wb-badge{opacity:0}
+.wb-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.94);color:#141312;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:19px;padding-left:4px;box-shadow:0 12px 30px rgba(0,0,0,.4);transition:transform .3s cubic-bezier(.2,.9,.25,1),opacity .3s ease}
+.wb-stage:hover .wb-play{transform:translate(-50%,-50%) scale(1.08)}
+.wb-badge{position:absolute;top:14px;left:14px;background:#DDE84A;color:#141312;font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.08em;border-radius:6px;padding:5px 10px;transition:opacity .3s ease}
+.wb-meta{position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:baseline;justify-content:space-between;gap:14px;transition:opacity .3s ease}
+.wb-meta b{font-weight:800;font-size:20px;letter-spacing:-.015em}
+.wb-meta span{font-family:'Space Mono';font-size:11px;color:rgba(245,243,240,.72)}
+
+/* playlist */
+.wb-list{display:flex;flex-direction:column;gap:16px}
+.wb-item{display:flex;gap:13px;align-items:center;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-family:inherit;color:inherit;border-radius:12px;transition:opacity .25s ease}
+.wb-item img{width:108px;height:70px;flex:none;object-fit:cover;border-radius:9px;border:1px solid rgba(245,243,240,.14);transition:transform .35s cubic-bezier(.2,.9,.25,1),border-color .25s ease}
+.wb-item:hover img{transform:scale(1.04);border-color:rgba(221,232,74,.6)}
+.wb-item b{display:block;font-weight:700;font-size:14.5px;line-height:1.3}
+.wb-item span{display:block;font-size:12.5px;color:rgba(245,243,240,.52);margin-top:3px;line-height:1.35}
+.wb-item i{display:block;font-style:normal;font-family:'Space Mono';font-size:10px;color:rgba(245,243,240,.4);margin-top:5px}
+.wb-item.on b{color:#DDE84A}
+.wb-item.on img{border-color:#DDE84A}
+.wb-see{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:18px;font-family:'Space Mono';font-size:10px;letter-spacing:.1em;color:rgba(245,243,240,.62);text-decoration:none;transition:color .25s ease}
+.wb-see:hover{color:#DDE84A}
+.wb-see em{font-style:normal;transition:transform .3s cubic-bezier(.2,.9,.25,1)}
+.wb-see:hover em{transform:translateX(4px)}
+
+@media(max-width:1080px){
+  .wb{grid-template-columns:1fr 1fr;gap:36px;padding:56px 40px;min-height:0;align-items:start}
+  .wb-list{grid-column:1/-1;flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  .wb-item{flex:0 0 250px}
+  .wb-see{grid-column:1/-1;justify-content:flex-start;margin-top:0}
+}
+@media(max-width:720px){
+  #build-section{padding:56px 16px}
+  .wb{grid-template-columns:1fr;padding:40px 24px;border-radius:22px;min-height:0}
+  .wb-lede{max-width:none}
+  .wb-item{flex:0 0 220px}
+}
+@media(prefers-reduced-motion:reduce){.wb-cta,.wb-item img,.wb-play,.wb-see em{transition:none!important}}
+</style>
+
+<!-- WATCH ME BUILD -->
+
+
+
+
+<!-- INDEPENDENT WORK, 2024 – present: matches the Independent Consultant role on the CV -->
+<section id="side-intro" data-screen-label="Independent">
+  <div class="side-wrap">
+    <div class="side-k">INDEPENDENT CONSULTANT &middot; 2024 &ndash; PRESENT</div>
+    <h2>Independent work, designed and shipped end to end.</h2>
+    <p>Since 2024 I&rsquo;ve worked as an independent product designer &mdash; taking products from discovery and PRD through prototyping, AI-assisted build and launch. These are the ones I&rsquo;ve designed and shipped in that time, most of them live.</p>
+  </div>
+</section>
+
+<!-- AI SECTION (kinetic) -->
+<section id="ai" class="appsec" data-screen-label="AI">
+  <div class="shipnote" aria-hidden="true">
+    <span>What I built &amp; shipped</span>
+    <svg viewBox="0 0 120 86" width="120" height="86"><path d="M8 14 C 44 4, 86 18, 100 62" fill="none" stroke="#1B1A17" stroke-width="2.4" stroke-linecap="round"/><path d="M100 62 L 88 52 M100 62 L 104 47" fill="none" stroke="#1B1A17" stroke-width="2.4" stroke-linecap="round"/></svg>
+  </div>
+  <div class="appcard" style="--ac:#7C5CFC;--acglow:rgba(124,92,252,.26)">
+    <div class="ac-tools" aria-hidden="true"><div class="ac-tool" style="top:8%;right:6%;animation-delay:0.0s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/></svg>Claude</div><div class="ac-tool" style="top:30%;right:2.5%;animation-delay:1.4s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3.6 19 7.6v8L12 19.6 5 15.6v-8z"/><circle cx="12" cy="11.6" r="3.1"/></svg>ChatGPT</div><div class="ac-tool" style="bottom:34%;right:7%;animation-delay:2.8s"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.6 5.2 4.2 8.8 9.4 9.4-5.2.6-8.8 4.2-9.4 9.4-.6-5.2-4.2-8.8-9.4-9.4C7.8 10.8 11.4 7.2 12 2z"/></svg>Gemini</div><div class="ac-tool" style="bottom:8%;right:26%;animation-delay:4.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.2"/><path d="M15.3 9.4a4.1 4.1 0 1 0 0 5.2"/></svg>Canva</div></div>
+    <div class="ac-copy">
+      <div class="ac-brand"><img src="assets/aceit/icon.jpg" alt="AceIt app icon"><div><b>AceIt</b><span>AI MOCK INTERVIEWS &amp; FEEDBACK</span></div></div>
+      <div class="ac-eyebrow">A PROBLEM I KEPT WATCHING TEAMS HAVE</div>
+      <h2>Hiring is broken on <em>both sides</em> of the table.</h2>
+      <p class="ac-lede">Interviewers improvise and pitch it at the wrong level. Candidates guess what&rsquo;s being assessed. Nobody leaves with what they came for.</p>
+      <div class="ac-ledger"><div class="ac-row cut"><span class="ac-tag">CUT</span><div class="ac-what">Scoring tone, pace and filler words<span class="ac-why">Impressive demo. It made people perform for the metric instead of answering.</span></div></div><div class="ac-row cut"><span class="ac-tag">CUT</span><div class="ac-what">A generic question bank<span class="ac-why">Paste the job spec instead &mdash; the level is the whole point.</span></div></div><div class="ac-row keep-row"><span class="ac-tag keep">KEPT</span><div class="ac-what">Answering out loud<span class="ac-why">Reading a model answer is not the skill being tested.</span></div></div></div>
+      <div class="ac-actions"><a class="ac-badge" href="https://apps.apple.com/us/app/aceit-interview-prep/id6784162121" target="_blank" rel="noopener" aria-label="Download AceIt on the App Store"><img src="assets/badges/appstore.svg" alt="Download on the App Store" width="150" height="50"></a><span class="ac-live"><i></i>LIVE &middot; FREE TO DOWNLOAD</span><a class="ac-growth" href="aceit-growth.html">We launched. Now what? &rarr;</a></div>
+    </div>
+    <div class="ac-media">
+      <img class="ac-ph l" src="assets/aceit/practice.png" alt="AceIt practice screen" loading="lazy" width="900" height="1947">
+      <video class="ac-vid" src="assets/aceit/aceit-promo.mp4" poster="assets/aceit/aceit-promo-poster.jpg" controls muted playsinline preload="none" aria-label="AceIt film"></video>
+      <img class="ac-ph r" src="assets/aceit/questions.png" alt="AceIt question track" loading="lazy" width="900" height="1947">
+    </div>
+  
+    <button class="think-pip" hidden data-when-exists="assets/video/think-aceit.mp4" type="button" data-video="assets/video/think-aceit.mp4" data-title="How I thought about AceIt" data-product="AceIt" aria-label="Watch me think through AceIt"><span class="tp-frame"><img src="assets/photos/maryam-portrait.jpg" alt="" loading="lazy" width="452" height="800"><span class="tp-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></span><span class="tp-cap"><span class="tp-dot"></span>Watch me think</span></button>
+  </div>
+</section>
+
+<section id="snap2meal-card" class="appsec" data-screen-label="Snap2Meal" style="background:#FBF8F4">
+  <div class="appcard" style="--ac:#E8734A;--acglow:rgba(232,115,74,.24)">
+    <div class="ac-tools" aria-hidden="true"><div class="ac-tool" style="top:10%;right:5%;animation-delay:0.0s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/></svg>Claude</div><div class="ac-tool" style="top:32%;right:2%;animation-delay:1.4s"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.6 5.2 4.2 8.8 9.4 9.4-5.2.6-8.8 4.2-9.4 9.4-.6-5.2-4.2-8.8-9.4-9.4C7.8 10.8 11.4 7.2 12 2z"/></svg>Gemini</div><div class="ac-tool" style="bottom:24%;right:8%;animation-delay:2.8s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.2"/><path d="M15.3 9.4a4.1 4.1 0 1 0 0 5.2"/></svg>Canva</div><div class="ac-tool" style="bottom:9%;right:25%;animation-delay:4.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3.6 19 7.6v8L12 19.6 5 15.6v-8z"/><circle cx="12" cy="11.6" r="3.1"/></svg>ChatGPT</div></div>
+    <div class="ac-copy">
+      <div class="ac-brand"><img src="assets/snap2meal/logo-mark.png" alt="Snap2Meal logo" style="background:#fff;padding:6px"><div><b>Snap2Meal</b><span>NEVER KNOW WHAT TO COOK</span></div></div>
+      <div class="ac-eyebrow">THE OTHER ONE THAT SHIPPED</div>
+      <h2>It was never a shortage of food. It was <em>decision fatigue</em>.</h2>
+      <p class="ac-lede">5:47pm, a full fridge, and nobody can decide. The obvious build was a bigger recipe library &mdash; but more options was the problem, not the fix.</p>
+      <div class="ac-ledger"><div class="ac-row cut"><span class="ac-tag">CUT</span><div class="ac-what">AI shopping lists<span class="ac-why">&ldquo;A database query in a costume.&rdquo; Ordinary software does it better and cheaper.</span></div></div><div class="ac-row cut"><span class="ac-tag">CUT</span><div class="ac-what">The chat assistant<span class="ac-why">Delightful in a demo. Nobody wants a conversation at 6pm.</span></div></div><div class="ac-row keep-row"><span class="ac-tag keep">CAPPED</span><div class="ac-what">Three results, never thirty<span class="ac-why">Every snap costs a vision call &mdash; and thirty options was the original problem.</span></div></div></div>
+      <div class="ac-actions"><a class="ac-badge" href="https://apps.apple.com/us/app/snap2meal/id6785826413" target="_blank" rel="noopener" aria-label="Download Snap2Meal on the App Store"><img src="assets/badges/appstore.svg" alt="Download on the App Store" width="150" height="50"></a><span class="ac-live"><i></i>LIVE &middot; FREE TO DOWNLOAD</span><a class="ac-growth" href="snap2meal-growth.html">We launched. Now what? &rarr;</a></div>
+    </div>
+    <div class="ac-media">
+      <img class="ac-ph l" src="assets/snap2meal/card/scan.png" alt="Snap2Meal scan screen" loading="lazy" width="514" height="1086">
+      <video class="ac-vid" src="assets/snap2meal/card/snap2meal-promo.mp4" poster="assets/snap2meal/card/snap2meal-promo-poster.jpg" controls muted playsinline preload="none" aria-label="Snap2Meal film"></video>
+      <img class="ac-ph r" src="assets/snap2meal/card/meals.png" alt="Snap2Meal meal ideas" loading="lazy" width="514" height="1086">
+    </div>
+  
+    <button class="think-pip" hidden data-when-exists="assets/video/think-snap2meal.mp4" type="button" data-video="assets/video/think-snap2meal.mp4" data-title="How I thought about Snap2Meal" data-product="Snap2Meal" aria-label="Watch me think through Snap2Meal"><span class="tp-frame"><img src="assets/photos/maryam-portrait.jpg" alt="" loading="lazy" width="452" height="800"><span class="tp-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></span><span class="tp-cap"><span class="tp-dot"></span>Watch me think</span></button>
+  </div>
+</section>
+
+<section id="fitconnect-card" class="appsec" data-screen-label="FitConnect" style="background:#FFFFFF">
+  <div class="appcard" style="--ac:#F96C43;--acglow:rgba(249,108,67,.24)">
+    <div class="ac-tools" aria-hidden="true"><div class="ac-tool" style="top:9%;right:6%;animation-delay:0.0s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/></svg>Claude</div><div class="ac-tool" style="top:31%;right:2.5%;animation-delay:1.4s"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.6 5.2 4.2 8.8 9.4 9.4-5.2.6-8.8 4.2-9.4 9.4-.6-5.2-4.2-8.8-9.4-9.4C7.8 10.8 11.4 7.2 12 2z"/></svg>Gemini</div><div class="ac-tool" style="bottom:23%;right:7%;animation-delay:2.8s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.2"/><path d="M15.3 9.4a4.1 4.1 0 1 0 0 5.2"/></svg>Canva</div><div class="ac-tool" style="bottom:8%;right:25%;animation-delay:4.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3.6 19 7.6v8L12 19.6 5 15.6v-8z"/><circle cx="12" cy="11.6" r="3.1"/></svg>ChatGPT</div></div>
+    <div class="ac-copy">
+      <div class="ac-brand"><img src="assets/projects/mark/fitconnect.png" alt="FitConnect logo" style="background:#fff;padding:5px"><div><b>FitConnect</b><span>A MARKETPLACE FOR PERSONAL TRAINING</span></div></div>
+      <div class="ac-eyebrow">DESIGNED &amp; BUILT BY ME &middot; LIVE ON THE WEB</div>
+      <h2>Book a personal trainer the way you book anything else.</h2>
+      <p class="ac-lede"><b>What it is:</b> an app where you find verified personal trainers near you, see their price up front, and book and pay inside the app &mdash; plus a separate business tool where trainers manage their profile, availability and bookings. Two apps, one codebase, built in React Native on Firebase.</p><p class="ac-lede" style="margin-top:12px"><b>Why it exists:</b> booking a trainer ran through Instagram DMs and bank transfers. No price to compare, no proof anyone was qualified, no protection if it went wrong. <b>The insight:</b> choice was never the bottleneck &mdash; people want to trust the one they pick.</p>
+      <div class="ac-ledger"><div class="ac-row cut"><span class="ac-tag">CUT</span><div class="ac-what">Group classes, nutrition plans, a social feed<span class="ac-why">I wrote the non-goals down first, and that list did more scoping than the roadmap.</span></div></div><div class="ac-row cut"><span class="ac-tag">CUT</span><div class="ac-what">Ten screens of onboarding<span class="ac-why">Show the product, then ask. Ten screens became four.</span></div></div><div class="ac-row keep-row"><span class="ac-tag keep">KEPT</span><div class="ac-what">Human-reviewed verification<span class="ac-why">A slower path to a live profile, in exchange for a claim competitors could not make.</span></div></div></div>
+      <div class="ac-actions">
+        <a class="ac-cta" href="fitconnect-case-study.html">READ THE CASE STUDY <span style="font-size:14px">&rarr;</span></a>
+        <a class="ac-live" href="https://www.fitconnectrainers.com/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><i style="background:#F96C43;box-shadow:0 0 0 4px rgba(249,108,67,.18)"></i>LIVE &middot; FITCONNECTRAINERS.COM &#8599;</a>
+      </div>
+    </div>
+    <div class="ac-media">
+      <img class="ac-ph l" src="assets/fitconnect/screens/verification.jpg" alt="FitConnect certificate verification screen" loading="lazy" width="620" height="1348">
+      <video class="ac-vid" src="assets/media/fitconnect-promo.mp4" poster="assets/media/fitconnect-promo-poster.jpg" controls muted playsinline preload="none" aria-label="FitConnect film"></video>
+      <img class="ac-ph r" src="assets/fitconnect/screens/booking.jpg" alt="FitConnect booking and payment screen" loading="lazy" width="620" height="1348">
+    </div>
+  
+    <button class="think-pip" hidden data-when-exists="assets/video/think-fitconnect.mp4" type="button" data-video="assets/video/think-fitconnect.mp4" data-title="How I thought about FitConnect" data-product="FitConnect" aria-label="Watch me think through FitConnect"><span class="tp-frame"><img src="assets/photos/maryam-portrait.jpg" alt="" loading="lazy" width="452" height="800"><span class="tp-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></span><span class="tp-cap"><span class="tp-dot"></span>Watch me think</span></button>
+  </div>
+</section>
+
+<!-- MOM PRODUCTS -->
+<section id="mom-products" data-screen-label="MomProducts" style="padding:110px 24px;text-align:center">
+  <div style="font-family:'Caveat';font-size:40px;color:#E64A2E;animation:bob 4s ease-in-out infinite">♥</div>
+  <div style="font-family:'Space Mono';font-size:11px;letter-spacing:.28em;color:rgba(27,26,23,.5);margin-top:8px">WHAT I'M LIVING</div>
+  <h2 style="font-weight:900;font-size:clamp(28px,4.6vw,58px);letter-spacing:-.04em;margin:14px auto 0;max-width:920px;line-height:1.04">Designing &amp; building products inspired by parenting challenges &amp; everyday life.</h2>
+  <a href="#rm-social" style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:#E64A2E;color:#fff;border:2.5px solid #1B1A17;border-radius:10px;padding:9px 16px;font-family:'Space Mono';font-size:11px;letter-spacing:.08em;text-decoration:none;transform:rotate(-1.5deg)">▶ WATCH &amp; SUBSCRIBE FOR MORE</a>
+
+  <!-- MOTHER OS -->
+  <div class="living-row" style="background:#fff;border:3px solid #1B1A17;border-radius:18px;padding:20px;box-shadow:6px 7px 0 rgba(27,26,23,.85);animation:revealUp linear both;animation-timeline:view();animation-range:entry 0% cover 34%">
+    <div class="lv-media">
+      <video src="assets/media/mos-loop.mp4" poster="assets/media/mos-loop-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <span class="lv-play">▶</span>
+    </div>
+    <div class="lv-body">
+      <div class="lv-logo"><svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M14 34V18a4 4 0 0 1 4-4h16" fill="none" stroke="#1B1A17" stroke-width="8" stroke-linecap="round"/><path d="M86 34V18a4 4 0 0 0-4-4H66" fill="none" stroke="#1B1A17" stroke-width="8" stroke-linecap="round"/><path d="M14 66v16a4 4 0 0 0 4 4h16" fill="none" stroke="#1B1A17" stroke-width="8" stroke-linecap="round"/><path d="M86 66v16a4 4 0 0 1-4 4H66" fill="none" stroke="#1B1A17" stroke-width="8" stroke-linecap="round"/><circle cx="36" cy="50" r="7" fill="#E85D75"/><circle cx="50" cy="50" r="7" fill="#E85D75"/><circle cx="64" cy="50" r="7" fill="#E85D75"/></svg>MotherOS</div>
+      <span style="align-self:flex-start;background:#E85D75;color:#fff;border:2px solid #1B1A17;border-radius:20px;padding:2px 10px;font-family:'Space Mono';font-size:9px;letter-spacing:.06em">CURRENT STAGE · MVP IN DEVELOPMENT</span>
+      <h3 style="font-weight:900;font-size:clamp(21px,2.4vw,29px);letter-spacing:-.02em;margin:12px 0 0;line-height:1.14">Behaviour-change daily system for overwhelmed modern moms.</h3>
+      <div style="font-family:'Space Mono';font-size:10.5px;color:rgba(27,26,23,.62);margin-top:10px;line-height:1.7">Why: mornings run on invisible mental load. How: dinner, toddler, movement and outfit — decided by 6 AM. Research → PRD → a working MVP in 5 days, still in development.</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">
+        <a href="motheros-series.html" style="display:inline-flex;align-items:center;gap:7px;background:#1B1A17;color:#F2EEE4;border-radius:9px;padding:11px 17px;font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-decoration:none">&#9654; Watch me build &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LITTLE ROOTS PLAY -->
+  <div class="living-row" style="background:#fff;border:3px solid #1B1A17;border-radius:18px;padding:20px;box-shadow:6px 7px 0 rgba(27,26,23,.85);animation:revealUp linear both;animation-timeline:view();animation-range:entry 3% cover 37%">
+    <div class="lv-media">
+      <video src="assets/media/littleroots-loop.mp4" poster="assets/media/littleroots-loop-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <span class="lv-play">▶</span>
+    </div>
+    <div class="lv-body">
+      <div class="lv-logo"><img src="assets/momapps/little-roots-logo.png" alt="">LittleRoots</div>
+      <span style="align-self:flex-start;background:#4C9A6A;color:#fff;border:2px solid #1B1A17;border-radius:20px;padding:2px 10px;font-family:'Space Mono';font-size:9px;letter-spacing:.06em">LIVE &middot; WEB + APP STORE</span>
+      <h3 style="font-weight:900;font-size:clamp(21px,2.4vw,29px);letter-spacing:-.02em;margin:12px 0 0;line-height:1.14">Homeschool &amp; parent education platform — whole-child development through play.</h3>
+      <div style="font-family:'Space Mono';font-size:10.5px;color:rgba(27,26,23,.62);margin-top:10px;line-height:1.7">Why: parents and homeschoolers lack structure. How: an AI platform for mind, body, relationships, skills, creativity and values — inspired by Montessori, Reggio Emilia, Waldorf and Forest School, tied to none.</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">
+        <a href="littleroots-series.html" style="display:inline-flex;align-items:center;gap:7px;background:#1B1A17;color:#F2EEE4;border-radius:9px;padding:11px 17px;font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-decoration:none">&#9654; Watch me build &rarr;</a>
+        <a href="https://littlerootsmontessori.co.za/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;border:1.5px solid rgba(27,26,23,.35);color:#1B1A17;border-radius:9px;padding:10px 15px;font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-decoration:none">Visit the website &#8599;</a>
+        <a href="https://apps.apple.com/us/app/little-roots-play/id6803499457" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;border:1.5px solid rgba(27,26,23,.35);color:#1B1A17;border-radius:9px;padding:10px 15px;font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-decoration:none">App Store &#8599;</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- REGULA MOMMA ON SOCIAL — carousel -->
+<section id="rm-social" class="smsec" data-screen-label="Social">
+  <div class="smwrap">
+    <div class="smhead">
+      <img class="smlogo" src="assets/regulamomma/social/wordmark.png" alt="Regula Momma" width="520" height="254">
+      <div class="smhead-copy">
+        <h2>I post the problem before I post the fix.</h2>
+        <p>The build happens in public &mdash; the 6am problem, the failed attempt, then the thing I actually shipped.</p>
+        <a class="smhandle" href="https://www.instagram.com/regulamomma/" target="_blank" rel="noopener">@regulamomma &#8599;</a>
+      </div>
+    </div>
+    <div class="smrail" id="smRail" tabindex="0" aria-label="Regula Momma posts, scrollable"><a class="sm-slide" href="https://www.instagram.com/regulamomma/" target="_blank" rel="noopener"><img src="assets/regulamomma/social/post-01-intro.jpg" alt="I notice annoying problems in everyday life and try to build products and test my way out of them" loading="lazy" width="900" height="1080"></a><a class="sm-slide" href="https://www.instagram.com/regulamomma/" target="_blank" rel="noopener" style="--rot:-2.2deg"><img src="assets/regulamomma/social/post-02.jpg" alt="Mom problem #1: I have to think of everything" loading="lazy" width="900" height="1080"></a><a class="sm-slide" href="https://www.instagram.com/regulamomma/" target="_blank" rel="noopener" style="--rot:1.8deg"><img src="assets/regulamomma/social/post-03-motheros.jpg" alt="Solution: Mother OS, manage everything in one place" loading="lazy" width="900" height="1080"></a><a class="sm-slide" href="https://www.instagram.com/regulamomma/" target="_blank" rel="noopener" style="--rot:-1.4deg"><img src="assets/regulamomma/social/post-04-what-do-i-cook.jpg" alt="Mom problem: what do I cook today with what I have?" loading="lazy" width="900" height="1080"></a><a class="sm-slide" href="https://www.instagram.com/regulamomma/" target="_blank" rel="noopener" style="--rot:2.4deg"><img src="assets/regulamomma/social/post-05-snap2meal.jpg" alt="Solution: Snap2Meal, snap your ingredients" loading="lazy" width="900" height="1080"></a></div>
+    <div class="smctrls">
+      <button class="smbtn" id="smPrev" aria-label="Previous posts">&#8592;</button>
+      <button class="smbtn" id="smNext" aria-label="Next posts">&#8594;</button>
+      <a class="smfollow" href="https://www.instagram.com/regulamomma/" target="_blank" rel="noopener">FOLLOW THE BUILD &#8599;</a>
+    </div>
+  </div>
+</section>
+<script>
+/* Regula Momma rail — arrows nudge by one card; the rail is swipeable on touch. */
+(function(){
+  var rail=document.getElementById('smRail'); if(!rail) return;
+  var prev=document.getElementById('smPrev'), next=document.getElementById('smNext');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function stride(){
+    var card=rail.querySelector('.sm-slide');
+    return card ? card.getBoundingClientRect().width + 18 : 300;
+  }
+  function maxScroll(){ return rail.scrollWidth - rail.clientWidth; }
+  function onScreen(){
+    var r=rail.getBoundingClientRect();
+    return r.bottom > 0 && r.top < (innerHeight || 0);
+  }
+
+  /* Ask for a smooth scroll, but never depend on it: behavior:'smooth' is a no-op in
+     some rendering contexts, and a dead control is worse than an un-animated one. */
+  function glide(to){
+    if(reduce){ rail.scrollLeft=to; sync(); return; }
+    var from=rail.scrollLeft;
+    try { rail.scrollTo({left:to, behavior:'smooth'}); }
+    catch(e){ rail.scrollLeft=to; }
+    setTimeout(function(){
+      if(Math.abs(rail.scrollLeft-from) < 2) rail.scrollLeft = to;
+      sync();
+    }, 90);
+  }
+  function step(dir){
+    glide(Math.max(0, Math.min(maxScroll(), rail.scrollLeft + dir*stride())));
+  }
+  function sync(){
+    prev.disabled = rail.scrollLeft <= 2;
+    next.disabled = rail.scrollLeft >= maxScroll()-2;
+  }
+
+  /* One heartbeat that decides on each beat, rather than a timer started and stopped by
+     half a dozen events — that plumbing raced and could leave the rail permanently idle.
+     Advancing stops for good once a visitor takes over. */
+  var paused=false, surrendered=false, beats=0;
+  var BEAT=600, EVERY=6;               // advance every 6 beats ≈ 3.6s
+  setInterval(function(){
+    if(reduce || surrendered || paused || document.hidden || !onScreen()) { beats=0; return; }
+    if(maxScroll() < 10) return;       // nothing to scroll yet (images still loading)
+    if(++beats < EVERY) return;
+    beats=0;
+    if(rail.scrollLeft >= maxScroll()-2) glide(0);   // loop back to the first post
+    else step(1);
+  }, BEAT);
+
+  function surrender(){ surrendered=true; }
+  rail.addEventListener('pointerenter', function(){ paused=true; });
+  rail.addEventListener('pointerleave', function(){ paused=false; });
+  rail.addEventListener('focusin',  function(){ paused=true; });
+  rail.addEventListener('focusout', function(){ paused=false; });
+  ['pointerdown','wheel','touchstart','keydown'].forEach(function(ev){
+    rail.addEventListener(ev, surrender, {passive:true});
+  });
+
+  prev.addEventListener('click', function(){ surrender(); step(-1); });
+  next.addEventListener('click', function(){ surrender(); step(1); });
+  rail.addEventListener('scroll', sync, {passive:true});
+  addEventListener('resize', sync);
+  sync();
+})();
+</script>
+
+<!-- TESTIMONIALS -->
+<section data-screen-label="Testimonials" class="reveal" style="padding:90px 24px 110px;text-align:center;background:#ECE7DA">
+  <div style="font-family:'Space Mono';font-size:11px;letter-spacing:.22em;color:rgba(27,26,23,.5)">SUPERPOWER — SMILE, RESPECT &amp; HONESTY WITH KINDNESS</div>
+  <h2 style="font-weight:900;font-size:clamp(30px,5vw,64px);letter-spacing:-.04em;margin:12px 0 0">WHAT'S IT LIKE WORKING WITH ME</h2>
+
+  <div style="font-family:'Space Mono';font-size:9px;letter-spacing:.14em;color:rgba(27,26,23,.4);margin-top:14px">REAL RECOMMENDATIONS, FROM LINKEDIN</div>
+
+  <div style="max-width:900px;margin:36px auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:22px;text-align:left">
+    <div style="background:#fff;border:2.5px solid #1B1A17;border-radius:16px;padding:22px;box-shadow:5px 6px 0 #CAC4F4;transform:rotate(-1.2deg);animation:revealUp linear both;animation-timeline:view();animation-range:entry 0% cover 40%">
+      <div style="font-size:14px;line-height:1.55;font-weight:500">"I had the opportunity to work alongside Maryam for four transformative years, during which she consistently demonstrated unparalleled expertise and leadership in the field of design. She is not only a highly skilled designer but also a visionary leader whose contributions have left a lasting impact."</div>
+      <div style="display:flex;align-items:center;gap:9px;margin-top:16px">
+        <span data-avatar="rec-saja" style="width:30px;height:30px;border-radius:50%;background:#DDE84A;border:1.5px solid #1B1A17;display:inline-flex;align-items:center;justify-content:center;font-family:'Space Mono';font-size:11px;font-weight:700;color:#1B1A17;flex:0 0 auto">SA</span>
+        <div><div style="font-family:'Space Mono';font-size:10px;font-weight:700">Saja Alkhatib</div><div style="font-family:'Space Mono';font-size:9px;color:rgba(27,26,23,.5)">Senior Product Designer · managed Maryam directly</div></div>
+      </div>
+    </div>
+    <div style="background:#fff;border:2.5px solid #1B1A17;border-radius:16px;padding:22px;box-shadow:5px 6px 0 #DDE84A;transform:rotate(1deg);animation:revealUp linear both;animation-timeline:view();animation-range:entry 4% cover 42%">
+      <div style="font-size:14px;line-height:1.55;font-weight:500">"Authentic, charismatic and always willing to go the extra mile! Focused on growth and delivering quality outcomes. Her natural approachable manner, charm and sense of humor is useful in pressurized situations and enables her to build lasting relationships in the workplace."</div>
+      <div style="display:flex;align-items:center;gap:9px;margin-top:16px">
+        <span data-avatar="rec-lydia" style="width:30px;height:30px;border-radius:50%;background:#9FD8CB;border:1.5px solid #1B1A17;display:inline-flex;align-items:center;justify-content:center;font-family:'Space Mono';font-size:11px;font-weight:700;color:#1B1A17;flex:0 0 auto">LE</span>
+        <div><div style="font-family:'Space Mono';font-size:10px;font-weight:700">Lydia Erasmus Strydom</div><div style="font-family:'Space Mono';font-size:9px;color:rgba(27,26,23,.5)">People &amp; Talent Specialist</div></div>
+      </div>
+    </div>
+    <div style="background:#fff;border:2.5px solid #1B1A17;border-radius:16px;padding:22px;box-shadow:5px 6px 0 #F5A3A3;transform:rotate(-1deg);animation:revealUp linear both;animation-timeline:view();animation-range:entry 8% cover 44%">
+      <div style="font-size:14px;line-height:1.55;font-weight:500">"Working with Maryam was without a doubt a privilege. Maryam as the lead on the team — she takes everything head-on, never shying away from a task. She will take the time to explain something to you and work with you to ensure you understand."</div>
+      <div style="display:flex;align-items:center;gap:9px;margin-top:16px">
+        <span data-avatar="rec-yuseerah" style="width:30px;height:30px;border-radius:50%;background:#F4B6C2;border:1.5px solid #1B1A17;display:inline-flex;align-items:center;justify-content:center;font-family:'Space Mono';font-size:11px;font-weight:700;color:#1B1A17;flex:0 0 auto">YJ</span>
+        <div><div style="font-family:'Space Mono';font-size:10px;font-weight:700">Yuseerah Jhetam</div><div style="font-family:'Space Mono';font-size:9px;color:rgba(27,26,23,.5)">Lead User Experience Designer (CUA)</div></div>
+      </div>
+    </div>
+    <div style="background:#fff;border:2.5px solid #1B1A17;border-radius:16px;padding:22px;box-shadow:5px 6px 0 #9AD4E6;transform:rotate(1.2deg);animation:revealUp linear both;animation-timeline:view();animation-range:entry 12% cover 46%">
+      <div style="font-size:14px;line-height:1.55;font-weight:500">"Maryam brought enthusiasm, energy and passion for a professional user experience to our client projects. From the sale, to the scoping, to implementation and support, she was a vital part of the team and always delivered."</div>
+      <div style="display:flex;align-items:center;gap:9px;margin-top:16px">
+        <span data-avatar="rec-nick" style="width:30px;height:30px;border-radius:50%;background:#C9B8F0;border:1.5px solid #1B1A17;display:inline-flex;align-items:center;justify-content:center;font-family:'Space Mono';font-size:11px;font-weight:700;color:#1B1A17;flex:0 0 auto">NH</span>
+        <div><div style="font-family:'Space Mono';font-size:10px;font-weight:700">Nick Hart</div><div style="font-family:'Space Mono';font-size:9px;color:rgba(27,26,23,.5)">AI SDLC Strategist · managed Maryam directly</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORATE / CONNECT -->
+<section id="connect" data-screen-label="Connect" class="reveal" style="padding:100px 24px 120px;text-align:center;position:relative">
+  <div style="font-size:30px;animation:bob 4s ease-in-out infinite">👀</div>
+  <h2 style="font-weight:900;font-size:clamp(32px,5vw,68px);letter-spacing:-.04em;margin:10px 0 4px">Interested in Collaborating?</h2>
+  <div style="font-family:'Space Mono';font-size:11px;letter-spacing:.2em;color:rgba(27,26,23,.5)">A LITTLE NOTE TO READ</div>
+
+  <div style="max-width:620px;margin:40px auto 0;background:#fff;border:2.5px solid #1B1A17;border-radius:14px;padding:34px 30px;box-shadow:7px 8px 0 rgba(27,26,23,.9);transform:rotate(-1deg);text-align:left;position:relative">
+    <div style="font-family:'Caveat';font-size:30px;color:#E64A2E;transform:rotate(-2deg)">Dear Potential Collaborator,</div>
+    <p style="font-family:'Space Mono';font-size:12px;line-height:1.9;color:rgba(27,26,23,.75);margin:16px 0 0">If you're building something where process is the bottleneck and great design is the unlock — I'd love to help. I work fast, kindly, and with AI in the loop. Bring me your messiest problem.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px">
+      <span style="background:#DDE84A;border:2px solid #1B1A17;border-radius:20px;padding:5px 13px;font-family:'Space Mono';font-size:10px;transform:rotate(-2deg)">OPEN TO SENIOR IC ROLES</span>
+      <span style="background:#9AD4E6;border:2px solid #1B1A17;border-radius:20px;padding:5px 13px;font-family:'Space Mono';font-size:10px;transform:rotate(1.5deg)">CAPE TOWN</span>
+      <span style="background:#F5A3A3;border:2px solid #1B1A17;border-radius:20px;padding:5px 13px;font-family:'Space Mono';font-size:10px;transform:rotate(-1deg)">ANY TIME ZONE</span>
+    </div>
+    <div style="font-family:'Caveat';font-size:26px;margin-top:18px;transform:rotate(-2deg)">— Maryam</div>
+  </div>
+
+  <h3 style="font-family:'Caveat';font-size:clamp(40px,6vw,72px);margin:56px 0 18px">Let's Connect</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+    <a href="https://calendly.com/maryamrichardsdesigner/1-on-1" target="_blank" rel="noopener" style="background:#1B1A17;color:#F2EEE4;border:2.5px solid #1B1A17;border-radius:12px;padding:11px 20px;font-family:'Space Mono';font-size:12px;text-decoration:none;transition:transform .25s ease" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform=''">📅 BOOK A CALL</a>
+    <a href="https://www.linkedin.com/in/maryam-r-37a0a0122/" target="_blank" rel="noopener" style="background:#9AD4E6;color:#1B1A17;border:2.5px solid #1B1A17;border-radius:12px;padding:11px 20px;font-family:'Space Mono';font-size:12px;text-decoration:none;transition:transform .25s ease" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform=''">in  LINKEDIN</a>
+    <a href="mailto:maryamrichardsdesigner@gmail.com" style="background:#DDE84A;color:#1B1A17;border:2.5px solid #1B1A17;border-radius:12px;padding:11px 20px;font-family:'Space Mono';font-size:12px;text-decoration:none;transition:transform .25s ease" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform=''">✉ EMAIL ME</a>
+  </div>
+
+  <div style="font-family:'Space Mono';font-size:10px;letter-spacing:.2em;color:rgba(27,26,23,.4);margin-top:44px">FIND ME ELSEWHERE</div>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:16px">
+    <a href="https://www.linkedin.com/in/maryam-r-37a0a0122/" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid #1B1A17;text-decoration:none;color:#1B1A17;font-weight:800;font-size:14px;transition:transform .25s ease" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform=''">in</a>
+    <a href="https://github.com/maryamrichardsdesigner-droid" target="_blank" rel="noopener" aria-label="GitHub" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid #1B1A17;text-decoration:none;transition:transform .25s ease" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform=''">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="#1B1A17"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.77 10.78.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.1-3.16.69-3.83-1.34-3.83-1.34-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.35.77 1.04.77 2.11 0 1.52-.01 2.75-.01 3.12 0 .3.2.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5Z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/maryam-r-37a0a0122/" target="_blank" rel="noopener" target="_blank" rel="noopener" aria-label="YouTube" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid #1B1A17;text-decoration:none;transition:transform .25s ease" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform=''">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="#1B1A17"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.56 9.38.56 9.38.56s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.27 3.6-6.27 3.6Z"/></svg>
+    </a>
+  </div>
+
+  <div style="font-family:'Space Mono';font-size:10px;color:rgba(27,26,23,.4);margin-top:46px">© 2026 MARYAM RICHARDS · DESIGNED &amp; BUILT WITH AI IN THE LOOP</div>
+</section>
+
+</div>
+
+<script>
+// ---- AI card stepper ----
+function setAiStage(btn, stage){
+  btn.closest('.ai-card').setAttribute('data-stage', stage);
+}
+
+// ---- Projects: pointer parallax on the device + metric count-up ----
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var fine   = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // the mockup drifts a few px toward the cursor — reads as depth, not movement
+  if (fine && !reduce){
+    document.querySelectorAll('#projects-section .projcard').forEach(function(card){
+      var dev = card.querySelector('.pc-dev');
+      if (!dev) return;
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width  - 0.5;
+        var y = (e.clientY - r.top)  / r.height - 0.5;
+        dev.style.setProperty('--mx', (x * 16).toFixed(1) + 'px');
+        dev.style.setProperty('--my', (y * 10).toFixed(1) + 'px');
+      });
+      card.addEventListener('mouseleave', function(){
+        dev.style.setProperty('--mx', '0px');
+        dev.style.setProperty('--my', '0px');
+      });
+    });
+  }
+
+  // numeric metrics tick up once, the first time the card is seen
+  var nums = [].slice.call(document.querySelectorAll('#projects-section .pc-metric b[data-count]'))
+    .filter(function(el){ return /[\d.]/.test(el.dataset.count); });
+  if (!nums.length) return;
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      var el = en.target; io.unobserve(el);
+      var raw = el.dataset.count;
+      var m = raw.match(/^([^\d]*)([\d.]+)(.*)$/);
+      if (!m) return;
+      var pre = m[1], target = parseFloat(m[2]), post = m[3];
+      var dp = (m[2].split('.')[1] || '').length;
+      var t0 = null, dur = 900;
+      el.textContent = pre + (0).toFixed(dp) + post;
+      (function step(ts){
+        if (t0 === null) t0 = ts;
+        var k = Math.min(1, (ts - t0) / dur);
+        var e = 1 - Math.pow(1 - k, 3);            // ease-out cubic
+        el.textContent = pre + (target * e).toFixed(dp) + post;
+        if (k < 1) requestAnimationFrame(step);
+        else el.textContent = raw;
+      })(performance.now());
+    });
+  }, { threshold: 0.6 });
+  nums.forEach(function(el){ io.observe(el); });
+})();
+
+// ---- Voice-over narration ----
+var NARR = {
+  Hero: "Hi, I'm Maryam — a senior product designer, ten years in, across six industries. Hover the cards to peek around.",
+  HowIThink: "This is how I think. I start by framing the real problem, not the one in the brief.",
+  Decisions: "Then the trade-offs get named out loud — every call costs something, and I say what.",
+  Outcome: "And then evidence, because without it a decision is only an opinion.",
+  Projects: "Six products. Six industries. One problem hiding in all of them — it's always the process. Hover an industry to see the work.",
+  AI: "I help teams solve process problems with AI. The tools are woven into the work, not bolted on.",
+  MomProducts: "On the side, I build and launch products for moms and women. Problem, solution, outcome.",
+  Testimonials: "Here's what it's like to work with me.",
+  Connect: "If process is your bottleneck, I'd love to help. Let's connect."
+};
+var voOn = false, voSec = null, voice = null, voFadeTimer = null;
+
+function pickVoice(){
+  if (!window.speechSynthesis) return;
+  var vs = speechSynthesis.getVoices();
+  voice = vs.find(function(v){ return /Google US English|Samantha|Aria|Jenny/i.test(v.name); })
+    || vs.find(function(v){ return v.lang && v.lang.indexOf('en') === 0 && /female/i.test(v.name); })
+    || vs.find(function(v){ return v.lang && v.lang.indexOf('en') === 0; }) || null;
+}
+pickVoice();
+if (window.speechSynthesis) speechSynthesis.onvoiceschanged = pickVoice;
+
+function speakSec(label){
+  var text = NARR[label];
+  if (!text) return;
+  clearTimeout(voFadeTimer);
+  setCaption(text, -1);
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  if (voice) u.voice = voice;
+  u.rate = 1.04; u.pitch = 1.0;
+  u.onboundary = function(e){
+    if (e.name !== 'word') return;
+    var idx = text.slice(0, e.charIndex).split(/\s+/).filter(Boolean).length;
+    setCaption(text, idx);
+  };
+  u.onend = function(){
+    setCaption(text, 999);
+    voFadeTimer = setTimeout(function(){
+      document.getElementById('voCaption').style.display = 'none';
+    }, 1600);
+  };
+  speechSynthesis.speak(u);
+}
+function setCaption(text, wordIdx){
+  var box = document.getElementById('voCaption');
+  var wordsEl = document.getElementById('voCaptionWords');
+  box.style.display = 'block';
+  var words = text.split(/\s+/).filter(Boolean);
+  wordsEl.innerHTML = words.map(function(w, i){
+    var lit = i < wordIdx;
+    return '<span style="color:' + (lit ? '#DDE84A' : 'rgba(242,238,228,.9)') + ';display:inline-block;transform:translateY(' + (lit ? '-2px' : '0') + ');transition:color .15s ease, transform .15s ease">' + w + '</span>';
+  }).join('');
+}
+function voToggle(){
+  if (voOn){
+    if (window.speechSynthesis) speechSynthesis.cancel();
+    clearTimeout(voFadeTimer);
+    voOn = false;
+    document.getElementById('voCaption').style.display = 'none';
+  } else {
+    voOn = true;
+    speakSec(voSec || 'Hero');
+  }
+  document.getElementById('voLabel').textContent = voOn ? 'VOICE ON' : 'VOICE OVER';
+  ['eq0','eq1','eq2'].forEach(function(id){
+    document.getElementById(id).style.animationPlayState = voOn ? 'running' : 'paused';
+  });
+}
+document.getElementById('voToggleBtn').addEventListener('click', voToggle);
+
+// ---- scroll-linked pin / progress engine ----
+(function(){
+  var PIN = { HowIThink:1 };
+  var ENTER = { AI:1 };
+
+  function update(){
+    var vh = window.innerHeight || document.documentElement.clientHeight || 800;
+    var nodes = document.querySelectorAll('[data-screen-label]');
+    var voBest = null, voD = 1e9;
+    for (var i = 0; i < nodes.length; i++){
+      var el = nodes[i];
+      var label = el.getAttribute('data-screen-label');
+      var r = el.getBoundingClientRect();
+      var effLabel = label;
+      if (label === 'HowIThink'){
+        var hp = Math.max(0, Math.min(1, (-r.top) / Math.max(1, r.height - vh)));
+        effLabel = hp < .33 ? 'HowIThink' : hp < .66 ? 'Decisions' : 'Outcome';
+      }
+      if (NARR[effLabel]){
+        var d = (r.top <= vh * .5 && r.bottom >= vh * .5) ? 0 : Math.min(Math.abs(r.top - vh * .5), Math.abs(r.bottom - vh * .5));
+        if (d < voD){ voD = d; voBest = effLabel; }
+      }
+      var pin = PIN[label], enter = ENTER[label];
+      if (!pin && !enter) continue;
+      var p;
+      if (pin) p = (-r.top) / Math.max(1, r.height - vh);
+      else p = (vh * 0.85 - r.top) / (vh * 0.7);
+      p = Math.max(0, Math.min(1, p));
+      el.style.setProperty('--p', p.toFixed(4));
+    }
+    if (voBest && voBest !== voSec){
+      voSec = voBest;
+      if (voOn) speakSec(voBest);
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  setInterval(update, 33);
+  update(); setTimeout(update, 300); setTimeout(update, 1000);
+})();
+
+
+// scroll reveal + number count-up
+(function(){
+  function countUp(el){
+    if (el.dataset.done) return; el.dataset.done = '1';
+    var to = parseFloat(el.getAttribute('data-to')) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    var dur = 1100, start = null;
+    function tick(ts){
+      if (!start) start = ts;
+      var p = Math.min(1, (ts - start) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(to * eased) + (p === 1 ? suffix : '');
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function reveal(t){ t.classList.add('in'); t.querySelectorAll('.count').forEach(countUp); }
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)){ els.forEach(reveal); return; }
+  var io = new IntersectionObserver(function(ents){
+    ents.forEach(function(en){ if (en.isIntersecting){ reveal(en.target); io.unobserve(en.target); } });
+  }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+</script>
+
+<script>
+/* shared header — burger works on every page, not just home */
+(function(){
+  var b=document.getElementById('snburger'), l=document.getElementById('snlinks');
+  if(!b||!l) return;
+  b.onclick=function(){ var o=l.classList.toggle('open');
+    b.setAttribute('aria-expanded',o?'true':'false'); b.innerHTML=o?'&#10005;':'&#9776;'; };
+  l.querySelectorAll('a').forEach(function(a){ a.onclick=function(){
+    l.classList.remove('open'); b.setAttribute('aria-expanded','false'); b.innerHTML='&#9776;'; }; });
+})();
+</script>
+
+<script>
+/* the header is fixed; publish its real height so layouts can reserve the space */
+(function(){
+  var n=document.getElementById('sitenav'); if(!n) return;
+  function sync(){ document.documentElement.style.setProperty('--sitenav-h', n.offsetHeight+'px'); }
+  sync();
+  addEventListener('resize', sync);
+  if (window.ResizeObserver) new ResizeObserver(sync).observe(n);
+  addEventListener('load', sync);
+})();
+</script>
+
+<div id="thinkBox" class="tbox" hidden role="dialog" aria-modal="true" aria-labelledby="tbTitle">
+  <div class="tb-backdrop" data-close></div>
+  <div class="tb-panel">
+    <button class="tb-close" type="button" data-close aria-label="Close">&times;</button>
+    <div class="tb-kicker"><span class="tp-dot"></span>WATCH ME THINK</div>
+    <h3 id="tbTitle" class="tb-title"></h3>
+    <div class="tb-stage">
+      <video id="tbVideo" playsinline controls preload="none"></video>
+      <div class="tb-soon" id="tbSoon">
+        <img src="assets/photos/maryam-portrait.jpg" alt="Maryam Richards" width="452" height="800">
+        <div class="tb-soon-copy">
+          <b>Recording soon.</b>
+          <span>I&rsquo;ll talk through the decisions behind <em id="tbProduct"></em> &mdash; what I noticed, what I cut, and what I&rsquo;d do differently.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+/* Watch-me-think: a thumbnail on each app card opens this player. The video goes live on
+   its own once the file exists; until then it shows an honest "recording soon" state. */
+(function(){
+  var box=document.getElementById('thinkBox'); if(!box) return;
+  var vid=document.getElementById('tbVideo'), soon=document.getElementById('tbSoon');
+  var title=document.getElementById('tbTitle'), product=document.getElementById('tbProduct');
+  var lastFocus=null;
+
+  function show(on){ vid.hidden=!on; soon.hidden=on; }
+  function open(btn){
+    lastFocus=btn;
+    title.textContent=btn.getAttribute('data-title');
+    product.textContent=btn.getAttribute('data-product');
+    var src=btn.getAttribute('data-video');
+    vid.pause(); vid.removeAttribute('src'); show(false);
+    box.hidden=false; document.documentElement.style.overflow='hidden';
+    box.querySelector('.tb-close').focus();
+    if(window.fetch){
+      fetch(src,{method:'HEAD'}).then(function(r){
+        if(!r.ok||box.hidden) return;
+        vid.src=src; show(true); var p=vid.play(); if(p&&p.catch) p.catch(function(){});
+      }).catch(function(){});
+    }
+  }
+  function close(){
+    vid.pause(); box.hidden=true; document.documentElement.style.overflow='';
+    if(lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll('.think-pip,.intro-btn').forEach(function(b){ b.addEventListener('click',function(){ open(b); }); });
+  box.addEventListener('click',function(e){ if(e.target.closest('[data-close]')) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!box.hidden) close(); });
+})();
+</script>
+<script>
+/* Land on the #anchor in the URL. The browser tries this itself during load, but the hero
+   layout, lazy media and smooth scroll-behavior all shift the page underneath it, so it ends
+   up at the top. Jump explicitly once layout has settled, then once more after load.
+   Same-page anchor clicks go through the same path: smooth where the browser can animate it,
+   and a direct jump where it can't — smooth scrolling silently does nothing in some contexts. */
+(function(){
+  function targetY(el){
+    var nav=document.getElementById('sitenav');
+    // the pinned How I Think section wants its exact top; everything else (and that section on
+    // phones, where it isn't pinned) clears the fixed nav
+    var stick=el.querySelector('.hit-stick');
+    var pinned=stick && getComputedStyle(stick).position==='sticky';
+    var offset=pinned ? 0 : (nav ? nav.offsetHeight : 0);
+    return Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - offset);
+  }
+  function go(id, smooth){
+    var el=document.getElementById(id); if(!el) return false;
+    var y=targetY(el), html=document.documentElement, prev=html.style.scrollBehavior;
+    if(smooth && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var from=window.pageYOffset;
+      try{ window.scrollTo({top:y, behavior:'smooth'}); }catch(e){ window.scrollTo(0,y); }
+      setTimeout(function(){ if(Math.abs(window.pageYOffset-from)<2){ html.style.scrollBehavior='auto'; window.scrollTo(0,y); html.style.scrollBehavior=prev; } }, 120);
+    } else {
+      html.style.scrollBehavior='auto'; window.scrollTo(0,y); html.style.scrollBehavior=prev;
+    }
+    return true;
+  }
+  function land(){ var id=decodeURIComponent((location.hash||'').slice(1)); if(id) go(id,false); }
+
+  if('scrollRestoration' in history && location.hash) history.scrollRestoration='manual';
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(land, 0); });
+  window.addEventListener('load', function(){ land(); setTimeout(land, 350); });
+
+  document.addEventListener('click', function(e){
+    var a=e.target.closest && e.target.closest('a[href^="#"]'); if(!a) return;
+    var id=a.getAttribute('href').slice(1); if(!id || !document.getElementById(id)) return;
+    e.preventDefault();
+    if(history.pushState) history.pushState(null,'','#'+id);
+    go(id,true);
+    var menu=document.getElementById('snlinks'), burger=document.getElementById('snburger');
+    if(menu) menu.classList.remove('open'); if(burger) burger.setAttribute('aria-expanded','false');
+  });
+})();
+</script>
+<script>
+/* Anything that promises a video stays hidden until that file is actually on the server.
+   Drop the file into assets/video/ and it appears — no HTML to edit. */
+(function(){
+  if(!window.fetch) return;
+  document.querySelectorAll('[data-when-exists]').forEach(function(el){
+    fetch(el.getAttribute('data-when-exists'),{method:'HEAD'}).then(function(r){ if(r.ok) el.hidden=false; }).catch(function(){});
+  });
+})();
+</script>
+</body>
+</html>

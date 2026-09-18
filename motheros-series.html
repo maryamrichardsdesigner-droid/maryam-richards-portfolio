@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mother OS — How I Built It</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ccircle cx='50' cy='50' r='21' fill='%23DDE84A'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://www.maryam-richards.com/motheros-series.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maryam Richards — Senior Product Designer">
+  <meta property="og:title" content="Mother OS — How I Built It">
+  <meta property="og:description" content="An 8-chapter guided walkthrough of how Mother OS went from an overwhelming morning to a working MVP in five days — research, the reframe, scoping, the AI build and the first feedback.">
+  <meta property="og:url" content="https://www.maryam-richards.com/motheros-series.html">
+  <meta property="og:image" content="https://www.maryam-richards.com/assets/photos/maryam-portrait.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mother OS — How I Built It">
+  <meta name="twitter:description" content="An 8-chapter guided walkthrough of how Mother OS went from an overwhelming morning to a working MVP in five days — research, the reframe, scoping, the AI build and the first feedback.">
+  <meta name="twitter:image" content="https://www.maryam-richards.com/assets/photos/maryam-portrait.jpg">
+
+<meta name="description" content="An 8-chapter guided walkthrough of how Mother OS went from an overwhelming morning to a working MVP in five days — research, the reframe, scoping, the AI build and the first feedback.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#17151A; --panel:#141217; --card:#1E1B23;
+  --ink:#F2EEE6; --ink2:rgba(242,238,230,.76); --dim:rgba(242,238,230,.54); --dim2:rgba(242,238,230,.34);
+  --line:rgba(242,238,230,.10); --line2:rgba(242,238,230,.17);
+  --gr:#E85D75; --gr-soft:rgba(232,93,117,.12); --gr-line:rgba(232,93,117,.40);
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.30);
+  --bgt:rgba(23,21,26,.9); --bgt0:rgba(23,21,26,0);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gr);color:#17151A}
+.mono{font-family:'Space Mono',monospace}
+img{max-width:100%}
+
+/* ---------------- intro ---------------- */
+#intro{min-height:100vh;display:flex;align-items:center;padding:99px 40px 70px}
+#intro .wrap{max-width:1180px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.brandline{display:flex;align-items:center;gap:12px}
+.bmark{width:44px;height:44px;border-radius:13px;background:var(--gr);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;flex:none}
+.bname{font-weight:900;font-size:16px;letter-spacing:.02em}
+.bsub{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.24em;color:var(--gr);margin-top:3px}
+#intro h1{font-weight:900;font-size:clamp(38px,5.4vw,68px);line-height:1.02;letter-spacing:-.035em;margin:30px 0 0}
+#intro h1 em{font-family:'Caveat',cursive;font-style:normal;font-weight:700;color:var(--gr);font-size:1.12em;line-height:.9}
+#intro .lede{font-size:17px;line-height:1.65;color:var(--ink2);max-width:520px;margin:22px 0 0}
+.covers{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0}
+.covers span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink2);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+.cta{display:inline-flex;align-items:center;gap:11px;background:var(--gr);color:#17151A;border:0;cursor:pointer;font-family:'Archivo';font-weight:700;font-size:15px;border-radius:999px;padding:16px 28px;box-shadow:0 6px 20px rgba(232,93,117,.28);transition:transform .3s cubic-bezier(.2,.9,.25,1),box-shadow .3s ease}
+.cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,93,117,.34)}
+.cta em{font-style:normal;transition:transform .3s cubic-bezier(.2,.9,.25,1)}
+.cta:hover em{transform:translateX(4px)}
+.quiet{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--dim);border-bottom:1px solid var(--line2);padding-bottom:2px;transition:color .25s ease,border-color .25s ease}
+.quiet:hover{color:var(--gr);border-color:var(--gr-line)}
+.ctarow{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:34px}
+.handwrite{font-family:'Caveat',cursive;font-size:23px;color:var(--gr);margin-top:30px}
+
+.toc{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:12px;box-shadow:var(--shadow)}
+.toc .th{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.22em;color:var(--dim);padding:14px 16px 10px}
+.toc button{width:100%;display:flex;gap:14px;align-items:baseline;text-align:left;background:none;border:0;cursor:pointer;font-family:inherit;padding:11px 16px;border-radius:14px;transition:background .2s ease}
+.toc button:hover{background:var(--panel)}
+.toc .tn{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--gr);flex:none;width:20px}
+.toc .tt{font-weight:700;font-size:14.5px}
+.toc .ts{display:block;font-family:'Space Mono',monospace;font-size:9.5px;color:var(--dim);margin-top:3px;font-weight:400}
+
+/* ---------------- shell ---------------- */
+#shell{display:none;padding-top:var(--sitenav-h,60px);grid-template-columns:300px 1fr;min-height:100vh}
+#shell.on{display:grid;padding-top:var(--sitenav-h,60px)}
+
+#side{background:var(--panel);border-right:1px solid var(--line);padding:24px 0 28px;position:sticky;top:var(--sitenav-h,60px);height:calc(100vh - var(--sitenav-h,60px));overflow-y:auto}
+#side::-webkit-scrollbar{width:5px}
+#side::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+.sbrand{display:flex;align-items:center;gap:12px;padding:0 22px 20px}
+.slabel{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.22em;color:var(--dim);padding:0 22px 10px}
+.chap{width:100%;display:flex;gap:13px;align-items:flex-start;text-align:left;background:none;border:0;border-left:3px solid transparent;cursor:pointer;font-family:inherit;color:var(--ink2);padding:11px 20px 11px 19px;transition:background .2s ease,color .2s ease}
+.chap:hover{background:rgba(34,39,31,.035);color:var(--ink)}
+.chap.on{background:var(--gr-soft);border-left-color:var(--gr);color:var(--ink)}
+.chap .cn{flex:none;width:26px;height:26px;border-radius:8px;background:rgba(242,238,230,.05);border:1px solid var(--line2);color:var(--dim);font-family:'Space Mono',monospace;font-size:10px;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:.2s}
+.chap.on .cn{background:var(--gr);border-color:var(--gr);color:#17151A}
+.chap .ct{font-weight:700;font-size:14.5px;line-height:1.25}
+.chap .cs{display:block;font-family:'Space Mono',monospace;font-size:9.5px;color:var(--dim);margin-top:3px;font-weight:400;line-height:1.4}
+
+.qa{margin:22px 16px 0;padding-top:20px;border-top:1px solid var(--line)}
+.qa .slabel{padding:0 6px 10px}
+.vcard{position:relative;display:block;border-radius:16px;overflow:hidden;border:1px solid var(--line);cursor:pointer;background:#000}
+.vcard img{width:100%;height:96px;object-fit:cover;display:block;opacity:.92;transition:transform .5s cubic-bezier(.2,.9,.25,1)}
+.vcard:hover img{transform:scale(1.05)}
+.vcard .vp{position:absolute;top:34px;left:16px;width:34px;height:34px;border-radius:50%;background:rgba(232,93,117,.95);color:#17151A;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gr)}
+.vcard .vm{display:block;background:var(--card);padding:11px 14px}
+.vcard .vm b{display:block;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:var(--gr)}
+.vcard .vm span{display:block;font-size:12px;color:var(--dim);margin-top:3px}
+.sbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:9px;border:1px solid var(--line2);border-radius:12px;padding:11px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink2);background:var(--card);transition:.2s;cursor:pointer}
+.sbtn:hover{border-color:var(--gr-line);color:var(--gr)}
+
+/* ---------------- main ---------------- */
+#main{display:flex;flex-direction:column;min-width:0}
+#top{position:sticky;top:var(--sitenav-h,60px);z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 34px;background:var(--bgt);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.crumb{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim)}
+.crumb a:hover{color:var(--gr)}
+.crumb b{color:var(--gr);font-weight:400}
+.tbtn{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);background:var(--card);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;font-family:inherit;transition:.22s}
+.tbtn:hover{border-color:var(--gr-line);color:var(--gr)}
+.tbtn .ic{width:20px;height:20px;border-radius:50%;background:var(--gr-soft);color:var(--gr);display:flex;align-items:center;justify-content:center;font-size:9px;flex:none}
+
+#canvas{flex:1;padding:36px 34px 120px;max-width:1320px;width:100%;margin:0 auto}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.blk{animation:fadeUp .45s cubic-bezier(.2,.9,.25,1) both}
+
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:44px;align-items:start}
+.kick{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--gr)}
+h1.ch{font-weight:900;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-.032em;margin:14px 0 0}
+h1.ch em{font-style:normal;color:var(--gr)}
+.lede{font-size:16px;line-height:1.62;color:var(--ink2);margin:18px 0 0}
+.note{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:24px}
+.note .ni{flex:none;font-size:16px;line-height:1.2}
+.note b{display:block;font-size:14px;font-weight:800}
+.note p{margin:6px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink2)}
+
+.vwrap{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:var(--shadow)}
+.vwrap video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.walk{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-top:16px;box-shadow:var(--shadow)}
+.walk .wl{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.2em;color:var(--dim);margin-bottom:12px}
+.walk .wi{display:flex;gap:12px;align-items:flex-start;padding:7px 0;font-size:14px;line-height:1.45;color:var(--ink2);cursor:pointer;transition:color .2s ease}
+.walk .wi:hover{color:var(--gr)}
+.walk .wi.on{color:var(--ink);font-weight:600}
+.walk .wn{flex:none;width:22px;height:22px;border-radius:50%;background:var(--panel);color:var(--dim);font-family:'Space Mono',monospace;font-size:10px;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:.2s}
+.walk .wi.on .wn{background:var(--gr-soft);color:var(--gr)}
+
+/* ---------------- about tab ---------------- */
+.about{display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center}
+.ab-head{font-weight:900;font-size:clamp(32px,3.6vw,50px);line-height:1.02;letter-spacing:-.038em;margin:0}
+.ab-head em{font-family:'Caveat',cursive;font-style:normal;font-weight:700;color:var(--gr);font-size:1.14em}
+.ab-lede{font-size:16.5px;line-height:1.6;color:var(--ink2);max-width:430px;margin:18px 0 0}
+.ab-feats{display:grid;grid-template-columns:repeat(4,1fr);margin:32px 0 0}
+.ab-feats div{padding:0 16px;border-left:1px solid var(--line)}
+.ab-feats div:first-child{padding-left:0;border-left:0}
+.ab-feats .fi{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:11px}
+.ab-feats b{display:block;font-size:13.5px;font-weight:800;line-height:1.25}
+.ab-feats span{display:block;font-size:11.5px;line-height:1.5;color:var(--dim);margin-top:5px}
+.ab-hand{font-family:'Caveat',cursive;font-size:22px;color:var(--gr);margin:30px 0 0}
+
+.ab-scene{position:relative;border-radius:24px;overflow:hidden;min-height:440px;background:var(--panel)}
+.ab-scene>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ab-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(23,21,26,.94) 0%,rgba(23,21,26,.60) 40%,rgba(23,21,26,.12) 74%)}
+.ab-float{position:absolute;z-index:3;display:flex;gap:11px;align-items:flex-start;background:rgba(30,27,35,.93);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:15px;padding:11px 14px;box-shadow:0 10px 26px rgba(34,39,31,.10);animation:abfloat 6s ease-in-out infinite}
+@keyframes abfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.ab-float .fic{width:28px;height:28px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+.ab-float b{display:block;font-size:12.5px;font-weight:800;white-space:nowrap}
+.ab-float span{display:block;font-size:10.5px;line-height:1.45;color:var(--dim);margin-top:3px}
+
+.ab-app{position:absolute;right:18px;top:50%;transform:translateY(-50%);z-index:4;width:224px;background:var(--card);border-radius:24px;border:1px solid var(--line);box-shadow:0 22px 54px rgba(34,39,31,.20);padding:14px 12px 11px}
+.ab-app .ah{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ab-app .ah b{font-size:11.5px;font-weight:800}
+.ab-app .ah i{font-style:normal;font-size:9.5px;color:var(--dim);display:block;margin-top:2px}
+.ab-app .av{width:24px;height:24px;border-radius:50%;background:var(--gr-soft);flex:none}
+.ab-app .idea{position:relative;margin-top:10px;border-radius:13px;overflow:hidden;height:86px}
+.ab-app .idea img{width:100%;height:100%;object-fit:cover;display:block}
+.ab-app .idea .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.62));color:#fff;padding:8px 10px;display:flex;flex-direction:column;justify-content:flex-end}
+.ab-app .idea .ov i{font-style:normal;font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.1em;opacity:.85}
+.ab-app .idea .ov b{font-size:11.5px;margin-top:2px;line-height:1.25}
+.ab-app .idea .tag{position:absolute;top:7px;left:8px;background:rgba(255,255,255,.93);color:var(--gr);font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.06em;border-radius:999px;padding:3px 7px}
+.ab-app .prog{display:flex;align-items:baseline;justify-content:space-between;margin-top:11px}
+.ab-app .prog b{font-size:10.5px;font-weight:800}
+.ab-app .prog i{font-style:normal;font-family:'Space Mono',monospace;font-size:7.5px;color:var(--dim)}
+.ab-app .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:7px}
+.ab-app .nums div{background:var(--panel);border-radius:10px;padding:8px 5px;text-align:center}
+.ab-app .nums b{display:block;font-size:15px;font-weight:900;color:var(--gr);line-height:1}
+.ab-app .nums i{display:block;font-style:normal;font-family:'Space Mono',monospace;font-size:6.5px;letter-spacing:.05em;color:var(--dim);margin-top:4px}
+.ab-app .row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.ab-app .row img{width:27px;height:27px;border-radius:8px;object-fit:cover;flex:none}
+.ab-app .row b{display:block;font-size:10.5px;font-weight:700}
+.ab-app .row i{display:block;font-style:normal;font-size:8.5px;color:var(--dim);margin-top:1px}
+.ab-app .row u{margin-left:auto;text-decoration:none;font-family:'Space Mono',monospace;font-size:8.5px;color:var(--gr)}
+
+.ab-strip{display:flex;align-items:center;gap:26px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 24px;margin-top:26px}
+.ab-strip img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}
+.ab-strip .s1{font-size:15px;line-height:1.45;font-weight:600;max-width:250px}
+.ab-strip .s2{font-family:'Caveat',cursive;font-size:21px;color:var(--gr);line-height:1.2;border-left:1px solid var(--line2);padding-left:24px}
+.ab-safe{font-size:12px;color:var(--dim);margin-top:12px}
+
+/* step body */
+.step{display:none}
+.step.on{display:block;animation:fadeUp .45s cubic-bezier(.2,.9,.25,1) both}
+#steps{margin-top:34px}
+
+.journey{display:flex;align-items:stretch;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 20px;box-shadow:var(--shadow);overflow-x:auto}
+.journey .jstep{flex:1;min-width:150px;text-align:center;padding:0 10px}
+.journey .jic{width:52px;height:52px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:19px;margin:0 auto 12px}
+.journey b{display:block;font-size:15px;font-weight:800}
+.journey span{display:block;font-size:12.5px;line-height:1.5;color:var(--dim);margin-top:6px}
+.journey i{flex:none;display:flex;align-items:center;color:var(--gr);font-style:normal;font-size:15px;padding-bottom:34px}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pane{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow)}
+.pane.on{background:var(--gr-soft);border-color:var(--gr-line)}
+.pl{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.16em;color:var(--dim)}
+.pane.on .pl{color:var(--gr)}
+.pane b{display:block;font-size:19px;font-weight:800;margin-top:10px;letter-spacing:-.01em}
+.pane.on b{color:var(--gr)}
+.pane p{margin:9px 0 0;font-size:13.5px;line-height:1.62;color:var(--ink2)}
+
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cards3 .c{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.cards3 .c p{margin:10px 0 0;font-size:13.5px;line-height:1.62;color:var(--ink2)}
+
+.rows{display:flex;flex-direction:column;gap:12px}
+.rows .r{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow)}
+.rows .ric{flex:none;width:42px;height:42px;border-radius:12px;background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:17px}
+.rows b{display:block;font-size:16px;font-weight:800}
+.rows p{margin:6px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink2)}
+
+.bigstat{background:var(--gr-soft);border:1px solid var(--gr-line);border-radius:20px;padding:30px 32px}
+.bigstat b{display:block;font-size:30px;font-weight:900;letter-spacing:-.03em;color:var(--gr)}
+.bigstat span{display:block;font-size:15px;line-height:1.6;color:var(--ink2);margin-top:10px;max-width:640px}
+
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stats3 div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+.stats3 b{display:block;font-size:38px;font-weight:900;letter-spacing:-.03em;color:var(--gr);line-height:1}
+.stats3 span{display:block;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:var(--dim);margin-top:9px}
+.stats3.muted b{color:var(--dim2)}
+.pnote{font-size:13.5px;line-height:1.62;color:var(--ink2);margin:16px 0 0;max-width:640px}
+
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pillars.small{grid-template-columns:repeat(4,1fr)}
+.pillars figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.pillars img{width:100%;height:180px;object-fit:cover;object-position:top;display:block;background:#000}
+.pillars figcaption{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--ink2);padding:11px 14px}
+
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ph{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.ph.next{background:transparent;border-style:dashed;box-shadow:none}
+.pn{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--gr);color:#17151A;font-family:'Space Mono',monospace;font-size:11px;align-items:center;justify-content:center}
+.ph.next .pn{background:var(--panel);color:var(--dim)}
+.ph b{display:block;font-size:15.5px;font-weight:800;margin-top:12px}
+.ph i{display:block;font-family:'Space Mono',monospace;font-style:normal;font-size:9px;letter-spacing:.1em;color:var(--gr);margin-top:4px}
+.ph.next i{color:var(--dim)}
+.ph ul{margin:12px 0 0;padding-left:16px;font-size:12.5px;line-height:1.85;color:var(--ink2)}
+
+.lessons{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lessons .l{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.lessons .l span{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--gr-soft);color:var(--gr);font-family:'Space Mono',monospace;font-size:11px;align-items:center;justify-content:center}
+.lessons .l b{display:block;font-size:16px;font-weight:800;margin-top:12px}
+.lessons .l p{margin:8px 0 0;font-size:13.5px;line-height:1.62;color:var(--ink2)}
+
+/* quote + takeaway */
+.qt{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin-top:18px}
+.qbox{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px 32px;overflow:hidden}
+.qbox .qm{font-size:44px;line-height:.6;color:var(--gr);opacity:.5}
+.qbox p{margin:16px 0 0;font-size:17px;line-height:1.62;max-width:88%}
+.qbox p b{color:var(--gr);font-weight:700}
+.qbox .who{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:var(--dim);margin-top:16px}
+.qbox svg{position:absolute;right:20px;bottom:14px;width:96px;height:96px;opacity:.5}
+.tbox{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gr);border-radius:18px;padding:24px 26px;box-shadow:var(--shadow)}
+.tbox .tl{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.18em;color:var(--gr)}
+.tbox p{margin:14px 0 0;font-size:14.5px;line-height:1.6;color:var(--ink2)}
+.tbox p+p{margin-top:14px;font-weight:700;color:var(--ink)}
+
+/* bottom */
+#bot{position:sticky;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 34px 22px;background:linear-gradient(180deg,var(--bgt0),var(--bg) 34%);max-width:1320px;width:100%;margin:0 auto}
+.back{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);background:var(--card);border-radius:999px;padding:12px 20px;font-size:13px;color:var(--ink2);cursor:pointer;font-family:inherit;transition:.22s}
+.back:hover{border-color:var(--gr-line);color:var(--gr)}
+.lbl-short{display:none}
+.prog{display:flex;align-items:center;gap:14px}
+.prog .pt{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--dim)}
+.prog .dots{display:flex;gap:6px}
+.sd{width:26px;height:5px;border-radius:3px;background:var(--line2);cursor:pointer;transition:.25s}
+.sd.on{background:var(--gr)}
+.sd.done{background:var(--gr-line)}
+.next{display:inline-flex;align-items:center;gap:10px;background:var(--gr);color:#17151A;border:0;border-radius:999px;padding:14px 24px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 20px rgba(232,93,117,.26);transition:transform .3s cubic-bezier(.2,.9,.25,1),box-shadow .3s ease}
+.next:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,93,117,.32)}
+.next em{font-style:normal;transition:transform .3s cubic-bezier(.2,.9,.25,1)}
+.next:hover em{transform:translateX(4px)}
+
+/* responsive */
+#chapbar{display:none}
+@media(max-width:1120px){
+  .about{grid-template-columns:1fr;gap:30px}
+  .ab-app{position:static;transform:none;width:100%;max-width:270px;margin:0 auto}
+  .ab-scene{min-height:auto;padding:22px}
+  .ab-scene>img.bg,.ab-scene:after{display:none}
+  .ab-float{position:static;animation:none;margin-bottom:10px}
+  .head{grid-template-columns:1fr;gap:26px}
+  .qt{grid-template-columns:1fr}
+  .pillars,.cards3{grid-template-columns:repeat(2,1fr)}
+  .pillars.small{grid-template-columns:repeat(2,1fr)}
+  .phases{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:980px){
+  #intro .wrap{grid-template-columns:1fr;gap:36px}
+  #shell.on{grid-template-columns:1fr}
+  #side{display:none}
+  #chapbar{display:flex;gap:8px;overflow-x:auto;padding:11px 20px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:calc(var(--sitenav-h,60px) + 61px);z-index:29}
+  #chapbar::-webkit-scrollbar{height:3px}
+  .cchip{flex:none;border:1px solid var(--line2);background:var(--card);border-radius:999px;padding:8px 14px;font-family:'Space Mono',monospace;font-size:10px;white-space:nowrap;cursor:pointer;color:var(--ink2)}
+  .cchip.on{background:var(--gr);border-color:var(--gr);color:#17151A}
+}
+@media(max-width:720px){
+  #intro{padding:48px 22px}
+  #canvas{padding:26px 20px 130px}
+  #top{padding:13px 20px;flex-wrap:wrap;row-gap:10px}
+  #top .crumb{width:100%}
+  .tbtn{flex:1;justify-content:center;font-size:12px;padding:9px 12px}
+  #chapbar{top:auto;position:static}
+  .split,.lessons,.stats3,.cards3,.pillars,.pillars.small,.phases{grid-template-columns:1fr}
+  .ab-feats{grid-template-columns:1fr 1fr;gap:20px 0}
+  .ab-feats div:nth-child(3){padding-left:0;border-left:0}
+  .ab-strip .s2{border-left:0;padding-left:0}
+  #bot{flex-wrap:wrap;gap:12px;padding:14px 20px 20px;background:var(--bg);border-top:1px solid var(--line)}
+  .lbl-short{display:inline}
+  .lbl-long{display:none}
+  .next,.back{white-space:nowrap}
+  .prog{order:3;width:100%;justify-content:center}
+  .next{flex:1;justify-content:center}
+  .back{flex:1;justify-content:center}
+  .qbox svg{display:none}
+}
+@media(prefers-reduced-motion:reduce){.blk,.step.on{animation:none!important}.cta,.next,.vcard img{transition:none!important}}
+
+/* ---------- shared site header ---------- */
+#sitenav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px clamp(16px,3vw,32px);backdrop-filter:blur(14px);font-family:'Archivo',system-ui,sans-serif}
+#sitenav.lt{background:rgba(253,252,248,.88);border-bottom:1px solid rgba(27,26,23,.10);color:#1B1A17}
+#sitenav.dk{background:rgba(10,10,10,.82);border-bottom:1px solid rgba(245,243,240,.12);color:#F5F3F0}
+#sitenav .snbrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;letter-spacing:-.01em;text-decoration:none;color:inherit;flex:none}
+#sitenav .snbrand span.dot{width:19px;height:19px;border-radius:50%;background:#DDE84A;border:2px solid currentColor;display:inline-block}
+#sitenav .snlinks{display:flex;gap:24px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+#sitenav .snlinks a{color:inherit;text-decoration:none;opacity:.72;transition:opacity .2s ease,border-color .2s ease;border-bottom:2px solid transparent;padding-bottom:2px}
+#sitenav .snlinks a:hover{opacity:1}
+#sitenav .snlinks a[aria-current="page"]{opacity:1;border-bottom-color:#DDE84A}
+#sitenav .snli{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-decoration:none;border-radius:999px;padding:8px 14px;flex:none}
+#sitenav.lt .snli{background:#1B1A17;color:#F2EEE4}
+#sitenav.dk .snli{background:#F5F3F0;color:#0A0A0A}
+#snburger{display:none;background:none;border:1.5px solid currentColor;color:inherit;border-radius:9px;width:38px;height:34px;font-size:15px;cursor:pointer;line-height:1;flex:none}
+@media(max-width:860px){
+  #sitenav .snlinks{position:fixed;top:var(--sitenav-h,60px);left:0;right:0;flex-direction:column;gap:0;padding:8px 20px 16px;display:none}
+  #sitenav.lt .snlinks{background:rgba(253,252,248,.98);border-bottom:1px solid rgba(27,26,23,.12)}
+  #sitenav.dk .snlinks{background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,243,240,.14)}
+  #sitenav .snlinks.open{display:flex}
+  #sitenav .snlinks a{padding:13px 0;border-bottom:1px solid rgba(128,128,128,.16)}
+  #sitenav .snlinks a[aria-current="page"]{border-bottom-color:#DDE84A}
+  #snburger{display:inline-flex;align-items:center;justify-content:center}
+  #sitenav .snli{display:none}
+}
+
+
+/* chapter titles were buttons with no colour set, so they fell back to the browser's black */
+.toc button{color:var(--ink)}
+.toc button:hover .tt{color:var(--gr)}
+/* the app, floating in front of the chapter list with a little depth */
+.heroside{position:relative;perspective:1400px}
+.heromock{display:block;margin:0 0 -80px auto;width:min(52%,268px);height:auto;position:relative;z-index:2;
+  transform:rotateY(-19deg) rotateX(7deg) rotateZ(2deg);transform-origin:center;
+  filter:drop-shadow(0 34px 44px rgba(0,0,0,.42)) drop-shadow(0 8px 12px rgba(0,0,0,.2));
+  animation:mockfloat 7s ease-in-out infinite}
+.heromock.wide{width:min(80%,440px);margin-bottom:-60px}
+.heroside .toc{position:relative;z-index:1}
+@keyframes mockfloat{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@media(prefers-reduced-motion:reduce){.heromock{animation:none}}
+@media(max-width:900px){.heromock{width:min(62%,240px);margin:0 auto -54px}.heromock.wide{width:min(88%,360px)}}
+</style>
+</head>
+<body>
+
+<nav id="sitenav" class="dk">
+  <a class="snbrand" href="index.html"><span class="dot"></span>Maryam<span style="font-family:'Caveat',cursive;font-size:21px;color:#E64A2E;line-height:0">.</span></a>
+  <div class="snlinks" id="snlinks"><a href="index.html#projects-section">Work</a><a href="case-studies.html">Case Studies</a><a href="index.html#process">Thinking</a><a href="index.html#connect">Contact</a><a href="Maryam-Richards-CV.pdf?v=20260918" target="_blank" rel="noopener">CV</a></div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a class="snli" href="https://www.linkedin.com/in/maryam-r-37a0a0122/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+    <button id="snburger" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+
+<!-- ============================ INTRO ============================ -->
+<section id="intro">
+  <div class="wrap">
+    <div>
+      <div class="brandline">
+        <div class="bmark" style="background:#1D2748" role="img" aria-label="Mother OS"><span style="display:grid;grid-template-columns:repeat(2,5px);gap:5px"><i style="width:5px;height:5px;border-radius:50%;background:#fff"></i><i style="width:5px;height:5px;border-radius:50%;background:#fff"></i><i style="width:5px;height:5px;border-radius:50%;background:#fff"></i><i style="width:5px;height:5px;border-radius:50%;background:#fff"></i></span></div>
+        <div><div class="bname">MOTHER OS</div><div class="bsub">HOW I BUILT IT</div></div>
+      </div>
+
+      <h1>Eight chapters on<br>building <em>Mother OS</em>.</h1>
+      <p class="lede">The morning that started it, what eighteen moms actually said, the reframe that changed the product, and what I refused to build. Roughly two minutes a chapter.</p>
+
+      <div class="covers">
+        <span>THE 5AM PROBLEM</span><span>18 INTERVIEWS</span><span>THE REFRAME</span><span>WHAT I CUT</span><span>MVP IN 5 DAYS</span>
+      </div>
+
+      <div class="ctarow">
+        <button class="cta" onclick="go(0)">Start the journey <em>&rarr;</em></button>
+        <a class="quiet" href="case-studies.html">See the other case studies</a>
+      </div>
+
+      <div class="handwrite">Research to a working MVP, solo, in five days. &#9825;</div>
+    </div>
+
+    <div class="heroside"><img class="heromock" src="assets/projects/device/motheros.png" alt="Mother OS app on a phone" width="640" height="774"><div class="toc">
+      <div class="th">THE EIGHT CHAPTERS</div>
+            <button onclick="go(1)"><span class="tn">01</span><span><span class="tt">The 5am Problem</span><span class="ts">Where it started</span></span></button>
+      <button onclick="go(2)"><span class="tn">02</span><span><span class="tt">Talking to Moms</span><span class="ts">18 interviews + diary study</span></span></button>
+      <button onclick="go(3)"><span class="tn">03</span><span><span class="tt">The Reframe</span><span class="ts">Decisions, not tasks</span></span></button>
+      <button onclick="go(4)"><span class="tn">04</span><span><span class="tt">Who It&rsquo;s For</span><span class="ts">Five real personas</span></span></button>
+      <button onclick="go(5)"><span class="tn">05</span><span><span class="tt">What I Cut</span><span class="ts">Scoping the MVP</span></span></button>
+      <button onclick="go(6)"><span class="tn">06</span><span><span class="tt">Building With AI</span><span class="ts">Claude + Lovable</span></span></button>
+      <button onclick="go(7)"><span class="tn">07</span><span><span class="tt">Back to the Group Chat</span><span class="ts">The MVP + feedback</span></span></button>
+      <button onclick="go(8)"><span class="tn">08</span><span><span class="tt">What I Learned</span><span class="ts">Reflection</span></span></button>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============================ SHELL ============================ -->
+<div id="shell">
+  <aside id="side">
+    <div class="sbrand">
+      <div class="bmark" style="background:#1D2748" role="img" aria-label="Mother OS"><span style="display:grid;grid-template-columns:repeat(2,5px);gap:5px"><i style="width:5px;height:5px;border-radius:50%;background:#fff"></i><i style="width:5px;height:5px;border-radius:50%;background:#fff"></i><i style="width:5px;height:5px;border-radius:50%;background:#fff"></i><i style="width:5px;height:5px;border-radius:50%;background:#fff"></i></span></div>
+      <div><div class="bname">MOTHER OS</div><div class="bsub">HOW I BUILT IT</div></div>
+    </div>
+    <nav id="aboutnav"></nav>
+    <div class="slabel" style="padding-top:16px">CHAPTERS</div>
+    <nav id="chapnav"></nav>
+
+    <div class="qa">
+      <div class="slabel">QUICK ACTIONS</div>
+      <a class="vcard" onclick="watch()">
+        <img id="vposter" src="assets/media/mos-loop-poster.jpg" alt="">
+        <span class="vp">&#9654;</span>
+        <span class="vm"><b>WATCH CHAPTER (2 MIN)</b><span id="vcap"></span></span>
+      </a>
+      <a class="sbtn" href="case-studies.html">&#8592; ALL WORK</a>
+    </div>
+  </aside>
+
+  <div id="main">
+    <div id="top">
+      <div class="crumb">
+        <a href="case-studies.html">ALL WORK</a> / <span style="color:var(--dim)">MOTHER OS</span> / <b id="crumbch"></b>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="tbtn" onclick="watch()"><span class="ic">&#9654;</span> <span class="lbl-long">Watch chapter (2 min)</span><span class="lbl-short">Watch</span></button>
+        
+      </div>
+    </div>
+
+    <div id="chapbar"></div>
+    <main id="canvas"></main>
+
+    <div id="bot">
+      <button class="back" id="backBtn">&#8592; <span id="backTxt">Back to all chapters</span></button>
+      <div class="prog"><span class="pt" id="stepTxt"></span><div class="dots" id="dots"></div></div>
+      <button class="next" id="nextBtn">Continue <em>&rarr;</em></button>
+    </div>
+  </div>
+</div>
+
+<script>
+var CH = [{"id": "ch00", "n": "00", "t": "About Mother OS", "s": "What it is", "kicker": "ABOUT", "about": true, "head": "", "intro": "", "note": null, "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "What Mother OS is", "html": "", "quote": null, "who": null, "take": null}]}, {"id": "ch01", "n": "01", "t": "The 5am Problem", "s": "Where it started", "kicker": "WHERE IT STARTED", "about": false, "head": "It was never a <em>time</em> problem.", "intro": "Four decisions before anyone else was awake. Dinner, toddler, movement, outfit.<br><b>Not hard decisions &mdash; just relentless ones.</b>", "note": ["Problem in one line", "Answering the same four questions every morning is the first work of the day, before the first cup of coffee."], "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "The morning, as it happens", "html": "<div class=\"journey\"><div class=\"jstep\"><span class=\"jic\">&#9749;</span><b>Wake</b><span>Before the house is up</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#10067;</span><b>Four open questions</b><span>Dinner &middot; toddler &middot; movement &middot; outfit</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#9201;</span><b>Decide</b><span>On no sleep, no context</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#128533;</span><b>Start the day</b><span>Already depleted</span></div></div>", "quote": null, "who": null, "take": ["The cost isn&rsquo;t time. It&rsquo;s decisions.", "By 7am the budget for good judgment is already spent."]}, {"label": "Why an app didn&rsquo;t fix it", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">WHAT I HAD</span><b>Recipe apps, Pinterest, a planner</b><p>Every one handed me more options.</p></div><div class=\"pane on\"><span class=\"pl\">WHAT I NEEDED</span><b>Today&rsquo;s answer, already chosen</b><p>More options is the opposite of help.</p></div></div>", "quote": "I had apps for all of them &mdash; recipe apps, activity apps, workout apps, a planner. Every one handed me more options. <b>That is the opposite of help when the problem is having too much to choose between.</b>", "who": null, "take": ["More choice made the problem worse, not better.", "The category was solving the wrong job."]}]}, {"id": "ch02", "n": "02", "t": "Talking to Moms", "s": "18 interviews + diary study", "kicker": "THE RESEARCH", "about": false, "head": "I checked whether it was <em>just me</em>.", "intro": "Eighteen moms one-on-one, then a two-week diary study.<br><b>Voice notes, not forms &mdash; a form is one more thing to fill in.</b>", "note": ["How I ran it", "Eighteen interviews over three weeks, then daily voice notes from a subset for a fortnight."], "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "Who I spoke to", "html": "<div class=\"stats3\"><div><b>18</b><span>MOMS INTERVIEWED</span></div><div><b>2 wks</b><span>DIARY STUDY</span></div><div><b>14 / 18</b><span>SHARED THE SAME PATTERN</span></div></div>", "quote": null, "who": null, "take": ["Fourteen of eighteen described the identical loop.", "That&rsquo;s not a me-problem. That&rsquo;s a category problem."]}, {"label": "What they actually said", "html": "<div class=\"cards3\"><div class=\"c\"><span class=\"pl\">INTERVIEW &middot; MOM OF 2</span><p>&ldquo;It&rsquo;s not that I don&rsquo;t know what to cook. It&rsquo;s that by 5pm I don&rsquo;t want to be the one who decides.&rdquo;</p></div><div class=\"c\"><span class=\"pl\">DIARY STUDY &middot; WEEK 2</span><p>&ldquo;I searched &lsquo;toddler activities&rsquo; and &lsquo;easy dinners&rsquo; again. Same searches as last week.&rdquo;</p></div><div class=\"c\"><span class=\"pl\">PATTERN &middot; 14 OF 18</span><p>Search, scroll, save, don&rsquo;t use, repeat tomorrow. The saving felt productive. Nothing came of it.</p></div></div>", "quote": "It&rsquo;s not that I don&rsquo;t know what to cook. It&rsquo;s that by 5pm I don&rsquo;t want to be the one who decides.", "who": "INTERVIEW &middot; MOM OF 2", "take": ["Saving is a coping mechanism, not a solution.", "The labour is the deciding, not the finding."]}]}, {"id": "ch03", "n": "03", "t": "The Reframe", "s": "Decisions, not tasks", "kicker": "THE INSIGHT", "about": false, "head": "Moms aren&rsquo;t short on apps. They&rsquo;re short on <em>decisions being made</em>.", "intro": "I went in to build a better planner.<br><b>The transcripts said something else entirely.</b>", "note": ["The unit change", "Once the unit became &ldquo;decision&rdquo; instead of &ldquo;task&rdquo;, most of the roadmap deleted itself."], "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "The reframe", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">WHAT I ASSUMED</span><b>Moms need a better planner</b><p>Organise the chaos, surface the options, make saving easier.</p></div><div class=\"pane on\"><span class=\"pl\">WHAT WAS TRUE</span><b>Moms need fewer decisions</b><p>Make the call for them, be right often enough to be trusted, allow a one-tap override.</p></div></div>", "quote": null, "who": null, "take": ["The decision itself is the labour.", "Every product in the category hands that labour back."]}, {"label": "What that changed", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#9986;</span><div><b>No browse tab</b><p>Browsing is the behaviour that was already failing them.</p></div></div><div class=\"r\"><span class=\"ric\">&#128273;</span><div><b>One decision per card</b><p>Readable in the two seconds she actually has.</p></div></div><div class=\"r\"><span class=\"ric\">&#128260;</span><div><b>Override in one tap</b><p>Trust needs an exit &mdash; and the swap teaches the next pick.</p></div></div></div>", "quote": "Not another app. Fewer decisions.", "who": null, "take": ["Anything requiring a comparison is not an answer.", "The override is the preference signal."]}]}, {"id": "ch04", "n": "04", "t": "Who It&rsquo;s For", "s": "Five real personas", "kicker": "WHO IT SERVES", "about": false, "head": "Five moms from the interviews became <em>five personas</em>.", "intro": "Not invented archetypes.<br><b>Each persona is a real person, with her real morning and her real constraint.</b>", "note": ["Why real people", "It&rsquo;s much harder to design a feature nobody asked for when the persona is someone who will read it."], "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "Five real people", "html": "<div class=\"pillars small\"><figure><img src=\"assets/motheros/shots/personas.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Five personas, five real interviews</figcaption></figure><figure><img src=\"assets/motheros/shots/hero.jpg\" alt=\"\" loading=\"lazy\"><figcaption>The morning screen</figcaption></figure><figure><img src=\"assets/motheros/shots/cta.jpg\" alt=\"\" loading=\"lazy\"><figcaption>The invite that went back to them</figcaption></figure></div>", "quote": null, "who": null, "take": ["Real names keep you honest.", "Invented personas agree with whatever you already wanted to build."]}, {"label": "What differs between them", "html": "<div class=\"cards3\"><div class=\"c\"><span class=\"pl\">CONSTRAINT: TIME</span><p>Back at work, tightest window. Needs the 20-minute dinner and nothing that requires a shop.</p></div><div class=\"c\"><span class=\"pl\">CONSTRAINT: ENERGY</span><p>Home all day, decision-fatigued by mid-afternoon. Needs the 3pm slump answered before it arrives.</p></div><div class=\"c\"><span class=\"pl\">CONSTRAINT: HANDOVER</span><p>Shares the day with a partner or au pair. Needs the plan to be legible to someone else.</p></div></div>", "quote": null, "who": null, "take": ["Same product, three different constraints.", "The constraint decides the sort order, not the feature list."]}]}, {"id": "ch05", "n": "05", "t": "What I Cut", "s": "Scoping the MVP", "kicker": "PRODUCT THINKING", "about": false, "head": "Four decisions. <em>Zero</em> setup screens.", "intro": "The hard part was never what to build.<br><b>It was what to refuse to build &mdash; because every setting is a decision.</b>", "note": ["The scoping rule", "If it adds a decision, it doesn&rsquo;t ship. That one rule cut the backlog by more than half in an afternoon."], "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "The four decisions", "html": "<div class=\"pillars small\"><figure><img src=\"assets/motheros/shots/meals.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Dinner &mdash; already picked</figcaption></figure><figure><img src=\"assets/motheros/shots/child.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Toddler &mdash; no-prep activity</figcaption></figure><figure><img src=\"assets/motheros/shots/workout.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Movement &mdash; fits the nap window</figcaption></figure><figure><img src=\"assets/motheros/shots/style.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Outfit &mdash; one look, done</figcaption></figure></div>", "quote": null, "who": null, "take": ["Four answers, ready before she is.", "Nothing else made the first version."]}, {"label": "What I refused to build", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#128683;</span><div><b>Onboarding questionnaire</b><p>Twelve decisions before any value. The first week of swaps can infer it instead.</p></div></div><div class=\"r\"><span class=\"ric\">&#128683;</span><div><b>Weekly meal planning</b><p>The pain is at 5pm today, not on Sunday. Weekly planning was the thing already failing.</p></div></div><div class=\"r\"><span class=\"ric\">&#128683;</span><div><b>Social feed</b><p>Comparison is a cost for this audience. Nobody in eighteen asked for it.</p></div></div><div class=\"r\"><span class=\"ric\">&#9989;</span><div><b>Kept: one-tap swap</b><p>Trust needs an exit &mdash; and the swap is itself the preference signal.</p></div></div></div>", "quote": "Every one of these was requested at least once. Cutting what nobody asked for is easy.", "who": null, "take": ["One rule: if it adds a decision, it doesn&rsquo;t ship."]}]}, {"id": "ch06", "n": "06", "t": "Building With AI", "s": "Claude + Lovable", "kicker": "THE BUILD", "about": false, "head": "Research to a working MVP, solo, in <em>five days</em>.", "intro": "AI did the volume work. I made the calls.<br><b>It clustered transcripts and drafted the PRD I edited.</b>", "note": ["The honest version", "The draft PRD came back with onboarding and a weekly planner &mdash; exactly what the research said to avoid."], "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "How AI was actually used", "html": "<div class=\"journey\"><div class=\"jstep\"><span class=\"jic\">&#128451;</span><b>Cluster</b><span>18 transcripts &mdash; the insight fell out of the clustering</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#128221;</span><b>PRD</b><span>Drafted together, edited by me</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#9889;</span><b>Prototype</b><span>Lovable turned the spec into a running app</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#128260;</span><b>Iterate</b><span>Nap windows, small changes, live each time</span></div></div>", "quote": "The draft PRD came back with onboarding and a weekly planner, <b>because that&rsquo;s what this category normally has</b> &mdash; and both were exactly what the research said to avoid.", "who": "OVERRULING THE MODEL", "take": ["Concrete uses, not vague ones.", "AI did the volume between the decisions."]}, {"label": "The five days", "html": "<div class=\"phases\"><div class=\"ph\"><span class=\"pn\">1</span><b>Synthesis</b><i>Day 1</i><ul><li>18 transcripts clustered</li><li>Insight named</li></ul></div><div class=\"ph\"><span class=\"pn\">2</span><b>PRD</b><i>Day 2</i><ul><li>Four decisions scoped</li><li>Non-goals written down</li></ul></div><div class=\"ph\"><span class=\"pn\">3</span><b>Build</b><i>Days 3&ndash;4</i><ul><li>Lovable prototype</li><li>Real content in</li></ul></div><div class=\"ph\"><span class=\"pn\">4</span><b>Ship</b><i>Day 5</i><ul><li>Live link</li><li>Back to the 18</li></ul></div></div>", "quote": "AI is very good at giving you the average product in your category. The research is what tells you not to ship it.", "who": null, "take": ["Naming what to cut is still the job.", "Judgment didn&rsquo;t get automated."]}]}, {"id": "ch07", "n": "07", "t": "Back to the Group Chat", "s": "The MVP + feedback", "kicker": "FIRST FEEDBACK", "about": false, "head": "The same 18 moms got the <em>link</em>.", "intro": "I didn&rsquo;t take it to strangers.<br><b>The MVP went back to the people who told me the problem.</b>", "note": ["How feedback arrived", "As voice notes, not tickets. Two things came back repeatedly and both went into the MVP."], "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "What their mornings changed", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#128260;</span><div><b>Swap, not settings</b><p>&ldquo;It picked fish and my kid won&rsquo;t eat fish&rdquo; &mdash; one-tap swap beat a preferences screen.</p></div></div><div class=\"r\"><span class=\"ric\">&#128337;</span><div><b>Timing beats variety</b><p>&ldquo;I don&rsquo;t care what it is, I care that it fits&rdquo; &mdash; sorting by time-available won.</p></div></div></div>", "quote": "I don&rsquo;t care what it is, I care that it fits.", "who": null, "take": ["Their actual mornings became the roadmap.", "The swap is itself the preference signal."]}, {"label": "Honest status", "html": "<div class=\"stats3 muted\"><div><b>&mdash;</b><span>ACTIVE USERS</span></div><div><b>&mdash;</b><span>RETURN RATE</span></div><div><b>2</b><span>CHANGES MADE FROM FEEDBACK</span></div></div><p class=\"pnote\">Early product. I&rsquo;d rather show the thinking than dress up numbers that aren&rsquo;t there yet.</p>", "quote": null, "who": null, "take": ["Two real changes beat two invented metrics.", "Instrumentation is the next honest step."]}]}, {"id": "ch08", "n": "08", "t": "What I Learned", "s": "Reflection", "kicker": "REFLECTION", "about": false, "head": "What I&rsquo;d do <em>differently</em>.", "intro": "What held up, what I over-built, and what I still don&rsquo;t know.<br><b>The honest version.</b>", "note": ["The open question", "Whether a decision made for you stays trusted over months, not days."], "video": "assets/media/mos-loop.mp4", "poster": "assets/media/mos-loop-poster.jpg", "steps": [{"label": "What held up", "html": "<div class=\"lessons\"><div class=\"l\"><span>1</span><b>Research first, even when it&rsquo;s your own problem</b><p>I was certain I knew the answer. The interviews changed the unit of the product from task to decision &mdash; and that changed everything downstream.</p></div><div class=\"l\"><span>2</span><b>Non-goals are the deliverable</b><p>The list of what I would not build did more scoping work than the feature list did.</p></div></div>", "quote": null, "who": null, "take": ["Being the user is not the same as knowing the user.", "Write the non-goals down or they don&rsquo;t exist."]}, {"label": "What I&rsquo;d do differently", "html": "<div class=\"lessons\"><div class=\"l\"><span>1</span><b>I over-built the outfit decision</b><p>It was the least-mentioned of the four and took the most work. I built it because it was fun, not because the research pointed at it.</p></div><div class=\"l\"><span>2</span><b>I should have instrumented on day one</b><p>I put it in front of people without analytics and spent week two guessing. Voice notes are rich, but they are not a retention curve.</p></div></div>", "quote": "The next real question is whether a decision made for you stays trusted over months, not days.", "who": null, "take": ["That needs instrumentation and a longer study.", "Not more features."]}]}];
+var TOTAL = CH.length;
+var NCH = CH.filter(function(c){ return !c.about; }).length;   // About isn't a numbered chapter
+var NCHP = (NCH < 10 ? '0' : '') + NCH;
+var cur = 0, step = 0;
+
+/* ---- sidebar + chapter bar ---- */
+var nav = document.getElementById('chapnav');
+nav.innerHTML = CH.map(function(c,i){
+  if (c.about) return '';
+  return '<button class="chap" data-i="'+i+'"><span class="cn">'+c.n+'</span>'
+       + '<span><span class="ct">'+c.t+'</span><span class="cs">'+c.s+'</span></span></button>';
+}).join('');
+nav.querySelectorAll('.chap').forEach(function(b){ b.onclick=function(){ go(+b.dataset.i); }; });
+
+document.getElementById('aboutnav').innerHTML = CH.map(function(c,i){
+  if (!c.about) return '';
+  return '<button class="chap about" data-i="'+i+'"><span class="cn">&#9432;</span>'
+       + '<span><span class="ct">'+c.t+'</span><span class="cs">'+c.s+'</span></span></button>';
+}).join('');
+document.querySelectorAll('#aboutnav .chap').forEach(function(b){ b.onclick=function(){ go(+b.dataset.i); }; });
+
+var bar = document.getElementById('chapbar');
+bar.innerHTML = CH.map(function(c,i){ return '<button class="cchip" data-i="'+i+'">'+(c.about?'&#9432; About':c.n+' · '+c.t)+'</button>'; }).join('');
+bar.querySelectorAll('.cchip').forEach(function(b){ b.onclick=function(){ go(+b.dataset.i); }; });
+
+/* ---- render ---- */
+var ABOUT_HTML = "<div class=\"about\">\n  <div>\n    <div class=\"kick\">ABOUT MOTHER OS</div>\n    <h1 class=\"ab-head\" style=\"margin-top:14px\">Four decisions,<br>made <em>before 6am</em>.</h1>\n    <p class=\"ab-lede\">Dinner, toddler, movement, outfit. Not hard decisions &mdash; just relentless ones. Mother OS makes them, so the day doesn&rsquo;t start already spent.</p>\n\n    <div class=\"ab-feats\">\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#127869;</div><b>Dinner, decided</b><span>Already picked, fits tonight.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#129528;</div><b>Toddler, sorted</b><span>No-prep, no craft-store trip.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#128694;</div><b>Movement that fits</b><span>Sized to the nap window.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#128087;</div><b>One outfit</b><span>Decided, not browsed.</span></div>\n    </div>\n\n    <div class=\"ab-hand\">Research to a working MVP, solo, in five days. &#9825;</div>\n  </div>\n\n  <div class=\"ab-scene\">\n    <img class=\"bg\" src=\"assets/media/mos-loop-poster.jpg\" alt=\"\">\n    <div class=\"ab-float\" style=\"top:9%;left:5%;animation-delay:.1s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#9200;</span>\n      <span><b>Before the house wakes</b><span>Ready by 6am</span></span>\n    </div>\n    <div class=\"ab-float\" style=\"top:42%;left:1%;animation-delay:1.1s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#128260;</span>\n      <span><b>Swap, don&rsquo;t configure</b><span>One tap to change it</span></span>\n    </div>\n    <div class=\"ab-float\" style=\"bottom:9%;left:7%;animation-delay:2s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#128172;</span>\n      <span><b>Built with 18 moms</b><span>Their mornings, not mine</span></span>\n    </div>\n    <div class=\"ab-app\" style=\"padding:0;overflow:hidden;border-radius:22px\">\n      <img src=\"assets/motheros/shots/meals.jpg\" alt=\"Mother OS dinner screen\" style=\"width:100%;display:block\">\n    </div>\n  </div>\n</div>\n\n<div class=\"ab-strip\">\n  <img src=\"assets/motheros/shots/child.jpg\" alt=\"\">\n  <div class=\"s1\">Moms aren&rsquo;t short on apps. They&rsquo;re short on decisions being made.</div>\n  <div class=\"s2\">Not another app.<br>Fewer decisions. &#9825;</div>\n</div>\n<div class=\"ab-safe\">&#128274; Built solo with Claude + Lovable. Live at motheros.lovable.app</div>";
+
+function render(){
+  var c = CH[cur], st = c.steps, s = st[step], h = '';
+
+  if (c.about){
+    document.getElementById('canvas').innerHTML = '<div class="blk">' + ABOUT_HTML + '</div>';
+    document.getElementById('crumbch').textContent = 'ABOUT MOTHER OS';
+    document.getElementById('vcap').textContent = c.t;
+    document.getElementById('vposter').src = c.poster;
+    nav.querySelectorAll('.chap').forEach(function(b){ b.classList.remove('on'); });
+    document.querySelectorAll('#aboutnav .chap').forEach(function(b){ b.classList.add('on'); });
+    bar.querySelectorAll('.cchip').forEach(function(b,i){ b.classList.toggle('on', i===cur); });
+    syncStep();
+    return;
+  }
+  document.querySelectorAll('#aboutnav .chap').forEach(function(b){ b.classList.remove('on'); });
+
+  h += '<div class="head blk">';
+  h +=   '<div>';
+  h +=     '<div class="kick">'+c.kicker+'</div>';
+  h +=     '<h1 class="ch">'+c.head+'</h1>';
+  h +=     '<p class="lede">'+c.intro+'</p>';
+  if (c.note) h += '<div class="note"><span class="ni">&#128161;</span><div><b>'+c.note[0]+'</b><p>'+c.note[1]+'</p></div></div>';
+  h +=   '</div>';
+  h +=   '<div>';
+  h +=     '<div class="vwrap"><video id="chvid" src="'+c.video+'" poster="'+c.poster+'" controls preload="none" playsinline></video></div>';
+  h +=     '<div class="walk"><div class="wl">I&rsquo;LL WALK YOU THROUGH</div>'
+         +   st.map(function(x,i){ return '<div class="wi'+(i===step?' on':'')+'" data-s="'+i+'"><span class="wn">'+(i+1)+'</span>'+x.label+'</div>'; }).join('')
+         + '</div>';
+  h +=   '</div>';
+  h += '</div>';
+
+  h += '<div id="steps">' + st.map(function(x,i){
+         var b = '<div class="step'+(i===step?' on':'')+'">' + x.html;
+         if (x.quote || x.take){
+           b += '<div class="qt">';
+           b += '<div class="qbox">';
+           if (x.quote){ b += '<div class="qm">&ldquo;</div><p>'+x.quote+'</p>'+(x.who?'<div class="who">— '+x.who+'</div>':''); }
+           else { b += '<div class="qm">&ldquo;</div><p>'+x.label+'</p>'; }
+           b += '';
+           b += '</div>';
+           if (x.take){ b += '<div class="tbox"><div class="tl">KEY TAKEAWAY</div>' + x.take.map(function(t){ return '<p>'+t+'</p>'; }).join('') + '</div>'; }
+           b += '</div>';
+         }
+         return b + '</div>';
+       }).join('') + '</div>';
+
+  document.getElementById('canvas').innerHTML = h;
+  document.querySelectorAll('.wi').forEach(function(el){ el.onclick=function(){ setStep(+el.dataset.s); }; });
+
+  document.getElementById('crumbch').textContent = 'CHAPTER ' + c.n + ' OF ' + NCHP;
+  document.getElementById('vcap').textContent = c.t;
+  document.getElementById('vposter').src = c.poster;
+  nav.querySelectorAll('.chap').forEach(function(b){ b.classList.toggle('on', +b.dataset.i === cur); });
+  bar.querySelectorAll('.cchip').forEach(function(b,i){ b.classList.toggle('on', i===cur); });
+  syncStep();
+}
+
+function syncStep(){
+  var st = CH[cur].steps;
+  var isAbout = !!CH[cur].about;
+  document.querySelector('.prog').style.visibility = isAbout ? 'hidden' : 'visible';
+  document.querySelectorAll('#top .tbtn')[0].style.display = isAbout ? 'none' : '';
+  if (isAbout){
+    document.getElementById('backTxt').innerHTML = '<span class="lbl-long">Back to the start</span><span class="lbl-short">Back</span>';
+    document.getElementById('nextBtn').innerHTML =
+      '<span class="lbl-long">Start chapter 01: ' + CH[1].t + '</span><span class="lbl-short">Start</span> <em>&rarr;</em>';
+    return;
+  }
+  document.querySelectorAll('#steps .step').forEach(function(el,i){ el.classList.toggle('on', i===step); });
+  document.querySelectorAll('.wi').forEach(function(el,i){ el.classList.toggle('on', i===step); });
+  document.getElementById('stepTxt').textContent = 'STEP ' + (step+1) + ' OF ' + st.length;
+  document.getElementById('dots').innerHTML = st.map(function(x,i){
+    return '<span class="sd'+(i===step?' on':(i<step?' done':''))+'" data-s="'+i+'"></span>'; }).join('');
+  document.querySelectorAll('#dots .sd').forEach(function(d){ d.onclick=function(){ setStep(+d.dataset.s); }; });
+
+  var back = document.getElementById('backTxt');
+  var bl = (step>0) ? st[step-1].label : (cur>0 ? CH[cur-1].t : 'Back to all chapters');
+  back.innerHTML = '<span class="lbl-long">'+bl+'</span><span class="lbl-short">Back</span>';
+
+  var nx = document.getElementById('nextBtn');
+  var lbl;
+  if (step < st.length-1)      lbl = 'Continue: ' + st[step+1].label;
+  else if (cur < TOTAL-1)      lbl = 'Next chapter: ' + CH[cur+1].t;
+  else                         lbl = 'Read the full case study';
+  nx.innerHTML = '<span class="lbl-long">'+lbl+'</span><span class="lbl-short">'
+               + (step < st.length-1 ? 'Continue' : (cur < TOTAL-1 ? 'Next chapter' : 'Case study'))
+               + '</span> <em>&rarr;</em>';
+}
+
+function setStep(i){
+  var st = CH[cur].steps;
+  if (i < 0){ if (cur>0){ go(cur-1, CH[cur-1].steps.length-1); } return; }
+  if (i >= st.length) return;
+  step = i; syncStep();
+  var el = document.querySelector('#steps');   // the About tab has no step list
+  if (el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function go(i, atStep){
+  if (i < 0 || i >= TOTAL) return;
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('shell').classList.add('on');
+  cur = i; step = atStep || 0;
+  render();
+  history.replaceState(null,'','#'+CH[i].id);
+  window.scrollTo(0,0);
+}
+
+function watch(){
+  var v = document.getElementById('chvid');
+  if (!v) return;
+  v.scrollIntoView({behavior:'smooth', block:'center'});
+  v.play().catch(function(){});
+}
+
+document.getElementById('backBtn').onclick = function(){
+  if (step > 0) setStep(step-1);
+  else if (cur > 0) go(cur-1, CH[cur-1].steps.length-1);
+  else { document.getElementById('shell').classList.remove('on');
+         document.getElementById('intro').style.display=''; history.replaceState(null,'',' '); window.scrollTo(0,0); }
+};
+document.getElementById('nextBtn').onclick = function(){
+  var st = CH[cur].steps;
+  if (step < st.length-1) setStep(step+1);
+  else if (cur < TOTAL-1) go(cur+1);
+  else location.href = 'case-studies.html';
+};
+window.addEventListener('keydown', function(e){
+  if (/INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  if (!document.getElementById('shell').classList.contains('on')) return;
+  if (e.key === 'ArrowRight') document.getElementById('nextBtn').click();
+  if (e.key === 'ArrowLeft')  document.getElementById('backBtn').click();
+});
+
+(function(){
+  var m = (location.hash||'').match(/^#ch(\d{2})$/);
+  if (m){ var i = +m[1]-1; if (i>=0 && i<TOTAL) go(i); }
+})();
+</script>
+
+<script>
+/* shared header — burger works on every page, not just home */
+(function(){
+  var b=document.getElementById('snburger'), l=document.getElementById('snlinks');
+  if(!b||!l) return;
+  b.onclick=function(){ var o=l.classList.toggle('open');
+    b.setAttribute('aria-expanded',o?'true':'false'); b.innerHTML=o?'&#10005;':'&#9776;'; };
+  l.querySelectorAll('a').forEach(function(a){ a.onclick=function(){
+    l.classList.remove('open'); b.setAttribute('aria-expanded','false'); b.innerHTML='&#9776;'; }; });
+})();
+</script>
+
+<script>
+/* the header is fixed; publish its real height so layouts can reserve the space */
+(function(){
+  var n=document.getElementById('sitenav'); if(!n) return;
+  function sync(){ document.documentElement.style.setProperty('--sitenav-h', n.offsetHeight+'px'); }
+  sync();
+  addEventListener('resize', sync);
+  if (window.ResizeObserver) new ResizeObserver(sync).observe(n);
+  addEventListener('load', sync);
+})();
+</script>
+</body>
+</html>

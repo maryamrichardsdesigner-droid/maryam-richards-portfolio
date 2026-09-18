@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snap2Meal — How I Built It</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231B1A17'/%3E%3Ccircle cx='50' cy='50' r='21' fill='%23DDE84A'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://www.maryam-richards.com/snap2meal-series.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maryam Richards — Senior Product Designer">
+  <meta property="og:title" content="Snap2Meal — How I Built It">
+  <meta property="og:description" content="A 13-chapter guided walkthrough of how Snap2Meal was built solo with AI — the opportunity, the strategy, where AI earns its place, the build and the launch.">
+  <meta property="og:url" content="https://www.maryam-richards.com/snap2meal-series.html">
+  <meta property="og:image" content="https://www.maryam-richards.com/assets/projects/device/snap2meal.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Snap2Meal — How I Built It">
+  <meta name="twitter:description" content="A 13-chapter guided walkthrough of how Snap2Meal was built solo with AI — the opportunity, the strategy, where AI earns its place, the build and the launch.">
+  <meta name="twitter:image" content="https://www.maryam-richards.com/assets/projects/device/snap2meal.png">
+
+<meta name="description" content="A 13-chapter guided walkthrough of how Snap2Meal was built solo with AI — the opportunity, the strategy, where AI earns its place, the build and the launch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&family=Playfair+Display:wght@700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --panel:#F7F3EA; --card:#FFFFFF;
+  --ink:#1A1815; --ink2:rgba(26,24,21,.74); --dim:rgba(26,24,21,.52); --dim2:rgba(26,24,21,.34);
+  --line:rgba(26,24,21,.11); --line2:rgba(26,24,21,.17);
+  --gr:#E8734A; --gr-soft:rgba(232,115,74,.09); --gr-line:rgba(232,115,74,.30);
+  --shadow:0 1px 2px rgba(26,24,21,.04),0 8px 24px rgba(26,24,21,.06);
+  --bgt:rgba(255,255,255,.92); --bgt0:rgba(255,255,255,0);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gr);color:#fff}
+.mono{font-family:'Space Mono',monospace}
+img{max-width:100%}
+
+/* ---------------- intro ---------------- */
+#intro{min-height:100vh;display:flex;align-items:center;padding:99px 40px 70px}
+#intro .wrap{max-width:1180px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.brandline{display:flex;align-items:center;gap:12px}
+.bmark{width:44px;height:44px;border-radius:13px;background:var(--gr);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;flex:none}
+.bname{font-weight:900;font-size:16px;letter-spacing:.02em}
+.bsub{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.24em;color:var(--gr);margin-top:3px}
+#intro h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(38px,5.4vw,68px);line-height:1.02;letter-spacing:-.035em;margin:30px 0 0}
+#intro h1 em{font-family:'Caveat',cursive;font-style:normal;font-weight:700;color:var(--gr);font-size:1.12em;line-height:.9}
+#intro .lede{font-size:17px;line-height:1.65;color:var(--ink2);max-width:520px;margin:22px 0 0}
+.covers{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0}
+.covers span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink2);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+.cta{display:inline-flex;align-items:center;gap:11px;background:var(--gr);color:#fff;border:0;cursor:pointer;font-family:'Archivo';font-weight:700;font-size:15px;border-radius:999px;padding:16px 28px;box-shadow:0 6px 18px rgba(47,125,79,.26);transition:transform .3s cubic-bezier(.2,.9,.25,1),box-shadow .3s ease}
+.cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(47,125,79,.32)}
+.cta em{font-style:normal;transition:transform .3s cubic-bezier(.2,.9,.25,1)}
+.cta:hover em{transform:translateX(4px)}
+.quiet{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--dim);border-bottom:1px solid var(--line2);padding-bottom:2px;transition:color .25s ease,border-color .25s ease}
+.quiet:hover{color:var(--gr);border-color:var(--gr-line)}
+.ctarow{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:34px}
+.handwrite{font-family:'Caveat',cursive;font-size:23px;color:var(--gr);margin-top:30px}
+
+.toc{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:12px;box-shadow:var(--shadow)}
+.toc .th{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.22em;color:var(--dim);padding:14px 16px 10px}
+.toc button{width:100%;display:flex;gap:14px;align-items:baseline;text-align:left;background:none;border:0;cursor:pointer;font-family:inherit;padding:11px 16px;border-radius:14px;transition:background .2s ease}
+.toc button:hover{background:var(--panel)}
+.toc .tn{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--gr);flex:none;width:20px}
+.toc .tt{font-weight:700;font-size:14.5px}
+.toc .ts{display:block;font-family:'Space Mono',monospace;font-size:9.5px;color:var(--dim);margin-top:3px;font-weight:400}
+
+/* ---------------- shell ---------------- */
+#shell{display:none;padding-top:var(--sitenav-h,60px);grid-template-columns:300px 1fr;min-height:100vh}
+#shell.on{display:grid;padding-top:var(--sitenav-h,60px)}
+
+#side{background:var(--panel);border-right:1px solid var(--line);padding:24px 0 28px;position:sticky;top:var(--sitenav-h,60px);height:calc(100vh - var(--sitenav-h,60px));overflow-y:auto}
+#side::-webkit-scrollbar{width:5px}
+#side::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+.sbrand{display:flex;align-items:center;gap:12px;padding:0 22px 20px}
+.slabel{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.22em;color:var(--dim);padding:0 22px 10px}
+.chap{width:100%;display:flex;gap:13px;align-items:flex-start;text-align:left;background:none;border:0;border-left:3px solid transparent;cursor:pointer;font-family:inherit;color:var(--ink2);padding:11px 20px 11px 19px;transition:background .2s ease,color .2s ease}
+.chap:hover{background:rgba(34,39,31,.035);color:var(--ink)}
+.chap.on{background:var(--gr-soft);border-left-color:var(--gr);color:var(--ink)}
+.chap .cn{flex:none;width:26px;height:26px;border-radius:8px;background:#fff;border:1px solid var(--line2);color:var(--dim);font-family:'Space Mono',monospace;font-size:10px;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:.2s}
+.chap.on .cn{background:var(--gr);border-color:var(--gr);color:#fff}
+.chap .ct{font-weight:700;font-size:14.5px;line-height:1.25}
+.chap .cs{display:block;font-family:'Space Mono',monospace;font-size:9.5px;color:var(--dim);margin-top:3px;font-weight:400;line-height:1.4}
+
+.qa{margin:22px 16px 0;padding-top:20px;border-top:1px solid var(--line)}
+.qa .slabel{padding:0 6px 10px}
+.vcard{position:relative;display:block;border-radius:16px;overflow:hidden;border:1px solid var(--line);cursor:pointer;background:#000}
+.vcard img{width:100%;height:96px;object-fit:cover;display:block;opacity:.92;transition:transform .5s cubic-bezier(.2,.9,.25,1)}
+.vcard:hover img{transform:scale(1.05)}
+.vcard .vp{position:absolute;top:34px;left:16px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gr)}
+.vcard .vm{display:block;background:#fff;padding:11px 14px}
+.vcard .vm b{display:block;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:var(--gr)}
+.vcard .vm span{display:block;font-size:12px;color:var(--dim);margin-top:3px}
+.sbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:9px;border:1px solid var(--line2);border-radius:12px;padding:11px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink2);background:#fff;transition:.2s;cursor:pointer}
+.sbtn:hover{border-color:var(--gr-line);color:var(--gr)}
+
+/* ---------------- main ---------------- */
+#main{display:flex;flex-direction:column;min-width:0}
+#top{position:sticky;top:var(--sitenav-h,60px);z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 34px;background:var(--bgt);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.crumb{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim)}
+.crumb a:hover{color:var(--gr)}
+.crumb b{color:var(--gr);font-weight:400}
+.tbtn{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;font-family:inherit;transition:.22s}
+.tbtn:hover{border-color:var(--gr-line);color:var(--gr)}
+.tbtn .ic{width:20px;height:20px;border-radius:50%;background:var(--gr-soft);color:var(--gr);display:flex;align-items:center;justify-content:center;font-size:9px;flex:none}
+
+#canvas{flex:1;padding:36px 34px 120px;max-width:1320px;width:100%;margin:0 auto}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.blk{animation:fadeUp .45s cubic-bezier(.2,.9,.25,1) both}
+
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:44px;align-items:start}
+.kick{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--gr)}
+h1.ch{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-.032em;margin:14px 0 0}
+h1.ch em{font-style:normal;color:var(--gr)}
+.lede{font-size:16px;line-height:1.62;color:var(--ink2);margin:18px 0 0}
+.note{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:24px}
+.note .ni{flex:none;font-size:16px;line-height:1.2}
+.note b{display:block;font-size:14px;font-weight:800}
+.note p{margin:6px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink2)}
+
+.vwrap{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:var(--shadow)}
+.vwrap video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.walk{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-top:16px;box-shadow:var(--shadow)}
+.walk .wl{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.2em;color:var(--dim);margin-bottom:12px}
+.walk .wi{display:flex;gap:12px;align-items:flex-start;padding:7px 0;font-size:14px;line-height:1.45;color:var(--ink2);cursor:pointer;transition:color .2s ease}
+.walk .wi:hover{color:var(--gr)}
+.walk .wi.on{color:var(--ink);font-weight:600}
+.walk .wn{flex:none;width:22px;height:22px;border-radius:50%;background:var(--panel);color:var(--dim);font-family:'Space Mono',monospace;font-size:10px;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:.2s}
+.walk .wi.on .wn{background:var(--gr-soft);color:var(--gr)}
+
+/* ---------------- about tab ---------------- */
+.about{display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center}
+.ab-head{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(32px,3.6vw,50px);line-height:1.02;letter-spacing:-.038em;margin:0}
+.ab-head em{font-family:'Caveat',cursive;font-style:normal;font-weight:700;color:var(--gr);font-size:1.14em}
+.ab-lede{font-size:16.5px;line-height:1.6;color:var(--ink2);max-width:430px;margin:18px 0 0}
+.ab-feats{display:grid;grid-template-columns:repeat(4,1fr);margin:32px 0 0}
+.ab-feats div{padding:0 16px;border-left:1px solid var(--line)}
+.ab-feats div:first-child{padding-left:0;border-left:0}
+.ab-feats .fi{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:11px}
+.ab-feats b{display:block;font-size:13.5px;font-weight:800;line-height:1.25}
+.ab-feats span{display:block;font-size:11.5px;line-height:1.5;color:var(--dim);margin-top:5px}
+.ab-hand{font-family:'Caveat',cursive;font-size:22px;color:var(--gr);margin:30px 0 0}
+
+.ab-scene{position:relative;border-radius:24px;overflow:hidden;min-height:440px;background:var(--panel)}
+.ab-scene>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ab-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(253,252,248,.93) 0%,rgba(253,252,248,.55) 36%,rgba(253,252,248,.08) 66%)}
+.ab-float{position:absolute;z-index:3;display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:15px;padding:11px 14px;box-shadow:0 10px 26px rgba(34,39,31,.10);animation:abfloat 6s ease-in-out infinite}
+@keyframes abfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.ab-float .fic{width:28px;height:28px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+.ab-float b{display:block;font-size:12.5px;font-weight:800;white-space:nowrap}
+.ab-float span{display:block;font-size:10.5px;line-height:1.45;color:var(--dim);margin-top:3px}
+
+.ab-app{position:absolute;right:18px;top:50%;transform:translateY(-50%);z-index:4;width:224px;background:#fff;border-radius:24px;border:1px solid var(--line);box-shadow:0 22px 54px rgba(34,39,31,.20);padding:14px 12px 11px}
+.ab-app .ah{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ab-app .ah b{font-size:11.5px;font-weight:800}
+.ab-app .ah i{font-style:normal;font-size:9.5px;color:var(--dim);display:block;margin-top:2px}
+.ab-app .av{width:24px;height:24px;border-radius:50%;background:var(--gr-soft);flex:none}
+.ab-app .idea{position:relative;margin-top:10px;border-radius:13px;overflow:hidden;height:86px}
+.ab-app .idea img{width:100%;height:100%;object-fit:cover;display:block}
+.ab-app .idea .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.62));color:#fff;padding:8px 10px;display:flex;flex-direction:column;justify-content:flex-end}
+.ab-app .idea .ov i{font-style:normal;font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.1em;opacity:.85}
+.ab-app .idea .ov b{font-size:11.5px;margin-top:2px;line-height:1.25}
+.ab-app .idea .tag{position:absolute;top:7px;left:8px;background:rgba(255,255,255,.93);color:var(--gr);font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.06em;border-radius:999px;padding:3px 7px}
+.ab-app .prog{display:flex;align-items:baseline;justify-content:space-between;margin-top:11px}
+.ab-app .prog b{font-size:10.5px;font-weight:800}
+.ab-app .prog i{font-style:normal;font-family:'Space Mono',monospace;font-size:7.5px;color:var(--dim)}
+.ab-app .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:7px}
+.ab-app .nums div{background:var(--panel);border-radius:10px;padding:8px 5px;text-align:center}
+.ab-app .nums b{display:block;font-size:15px;font-weight:900;color:var(--gr);line-height:1}
+.ab-app .nums i{display:block;font-style:normal;font-family:'Space Mono',monospace;font-size:6.5px;letter-spacing:.05em;color:var(--dim);margin-top:4px}
+.ab-app .row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.ab-app .row img{width:27px;height:27px;border-radius:8px;object-fit:cover;flex:none}
+.ab-app .row b{display:block;font-size:10.5px;font-weight:700}
+.ab-app .row i{display:block;font-style:normal;font-size:8.5px;color:var(--dim);margin-top:1px}
+.ab-app .row u{margin-left:auto;text-decoration:none;font-family:'Space Mono',monospace;font-size:8.5px;color:var(--gr)}
+
+.ab-strip{display:flex;align-items:center;gap:26px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 24px;margin-top:26px}
+.ab-strip img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}
+.ab-strip .s1{font-size:15px;line-height:1.45;font-weight:600;max-width:250px}
+.ab-strip .s2{font-family:'Caveat',cursive;font-size:21px;color:var(--gr);line-height:1.2;border-left:1px solid var(--line2);padding-left:24px}
+.ab-safe{font-size:12px;color:var(--dim);margin-top:12px}
+
+/* step body */
+.step{display:none}
+.step.on{display:block;animation:fadeUp .45s cubic-bezier(.2,.9,.25,1) both}
+#steps{margin-top:34px}
+
+.journey{display:flex;align-items:stretch;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 20px;box-shadow:var(--shadow);overflow-x:auto}
+.journey .jstep{flex:1;min-width:150px;text-align:center;padding:0 10px}
+.journey .jic{width:52px;height:52px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:19px;margin:0 auto 12px}
+.journey b{display:block;font-size:15px;font-weight:800}
+.journey span{display:block;font-size:12.5px;line-height:1.5;color:var(--dim);margin-top:6px}
+.journey i{flex:none;display:flex;align-items:center;color:var(--gr);font-style:normal;font-size:15px;padding-bottom:34px}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pane{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow)}
+.pane.on{background:var(--gr-soft);border-color:var(--gr-line)}
+.pl{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.16em;color:var(--dim)}
+.pane.on .pl{color:var(--gr)}
+.pane b{display:block;font-size:19px;font-weight:800;margin-top:10px;letter-spacing:-.01em}
+.pane.on b{color:var(--gr)}
+.pane p{margin:9px 0 0;font-size:13.5px;line-height:1.62;color:var(--ink2)}
+
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cards3 .c{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.cards3 .c p{margin:10px 0 0;font-size:13.5px;line-height:1.62;color:var(--ink2)}
+
+.rows{display:flex;flex-direction:column;gap:12px}
+.rows .r{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow)}
+.rows .ric{flex:none;width:42px;height:42px;border-radius:12px;background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:17px}
+.rows b{display:block;font-size:16px;font-weight:800}
+.rows p{margin:6px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink2)}
+
+.bigstat{background:var(--gr-soft);border:1px solid var(--gr-line);border-radius:20px;padding:30px 32px}
+.bigstat b{display:block;font-size:30px;font-weight:900;letter-spacing:-.03em;color:var(--gr)}
+.bigstat span{display:block;font-size:15px;line-height:1.6;color:var(--ink2);margin-top:10px;max-width:640px}
+
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stats3 div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+.stats3 b{display:block;font-size:38px;font-weight:900;letter-spacing:-.03em;color:var(--gr);line-height:1}
+.stats3 span{display:block;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:var(--dim);margin-top:9px}
+.stats3.muted b{color:var(--dim2)}
+.pnote{font-size:13.5px;line-height:1.62;color:var(--ink2);margin:16px 0 0;max-width:640px}
+
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pillars.small{grid-template-columns:repeat(4,1fr)}
+.pillars figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.pillars img{width:100%;height:200px;object-fit:cover;object-position:top;display:block;background:#F3EFE6}
+.pillars figcaption{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--ink2);padding:11px 14px}
+
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ph{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.ph.next{background:transparent;border-style:dashed;box-shadow:none}
+.pn{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--gr);color:#fff;font-family:'Space Mono',monospace;font-size:11px;align-items:center;justify-content:center}
+.ph.next .pn{background:var(--panel);color:var(--dim)}
+.ph b{display:block;font-size:15.5px;font-weight:800;margin-top:12px}
+.ph i{display:block;font-family:'Space Mono',monospace;font-style:normal;font-size:9px;letter-spacing:.1em;color:var(--gr);margin-top:4px}
+.ph.next i{color:var(--dim)}
+.ph ul{margin:12px 0 0;padding-left:16px;font-size:12.5px;line-height:1.85;color:var(--ink2)}
+
+.lessons{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lessons .l{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.lessons .l span{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--gr-soft);color:var(--gr);font-family:'Space Mono',monospace;font-size:11px;align-items:center;justify-content:center}
+.lessons .l b{display:block;font-size:16px;font-weight:800;margin-top:12px}
+.lessons .l p{margin:8px 0 0;font-size:13.5px;line-height:1.62;color:var(--ink2)}
+
+/* quote + takeaway */
+.qt{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin-top:18px}
+.qbox{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px 32px;overflow:hidden}
+.qbox .qm{font-size:44px;line-height:.6;color:var(--gr);opacity:.5}
+.qbox p{margin:16px 0 0;font-size:17px;line-height:1.62;max-width:88%}
+.qbox p b{color:var(--gr);font-weight:700}
+.qbox .who{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:var(--dim);margin-top:16px}
+.qbox svg{position:absolute;right:20px;bottom:14px;width:96px;height:96px;opacity:.5}
+.tbox{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gr);border-radius:18px;padding:24px 26px;box-shadow:var(--shadow)}
+.tbox .tl{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.18em;color:var(--gr)}
+.tbox p{margin:14px 0 0;font-size:14.5px;line-height:1.6;color:var(--ink2)}
+.tbox p+p{margin-top:14px;font-weight:700;color:var(--ink)}
+
+/* bottom */
+#bot{position:sticky;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 34px 22px;background:linear-gradient(180deg,var(--bgt0),var(--bg) 34%);max-width:1320px;width:100%;margin:0 auto}
+.back{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:12px 20px;font-size:13px;color:var(--ink2);cursor:pointer;font-family:inherit;transition:.22s}
+.back:hover{border-color:var(--gr-line);color:var(--gr)}
+.lbl-short{display:none}
+.prog{display:flex;align-items:center;gap:14px}
+.prog .pt{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--dim)}
+.prog .dots{display:flex;gap:6px}
+.sd{width:26px;height:5px;border-radius:3px;background:var(--line2);cursor:pointer;transition:.25s}
+.sd.on{background:var(--gr)}
+.sd.done{background:var(--gr-line)}
+.next{display:inline-flex;align-items:center;gap:10px;background:var(--gr);color:#fff;border:0;border-radius:999px;padding:14px 24px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 18px rgba(47,125,79,.24);transition:transform .3s cubic-bezier(.2,.9,.25,1),box-shadow .3s ease}
+.next:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(47,125,79,.3)}
+.next em{font-style:normal;transition:transform .3s cubic-bezier(.2,.9,.25,1)}
+.next:hover em{transform:translateX(4px)}
+
+/* responsive */
+#chapbar{display:none}
+@media(max-width:1120px){
+  .about{grid-template-columns:1fr;gap:30px}
+  .ab-app{position:static;transform:none;width:100%;max-width:270px;margin:0 auto}
+  .ab-scene{min-height:auto;padding:22px}
+  .ab-scene>img.bg,.ab-scene:after{display:none}
+  .ab-float{position:static;animation:none;margin-bottom:10px}
+  .head{grid-template-columns:1fr;gap:26px}
+  .qt{grid-template-columns:1fr}
+  .pillars,.cards3{grid-template-columns:repeat(2,1fr)}
+  .pillars.small{grid-template-columns:repeat(2,1fr)}
+  .phases{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:980px){
+  #intro .wrap{grid-template-columns:1fr;gap:36px}
+  #shell.on{grid-template-columns:1fr}
+  #side{display:none}
+  #chapbar{display:flex;gap:8px;overflow-x:auto;padding:11px 20px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:calc(var(--sitenav-h,60px) + 61px);z-index:29}
+  #chapbar::-webkit-scrollbar{height:3px}
+  .cchip{flex:none;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:8px 14px;font-family:'Space Mono',monospace;font-size:10px;white-space:nowrap;cursor:pointer;color:var(--ink2)}
+  .cchip.on{background:var(--gr);border-color:var(--gr);color:#fff}
+}
+@media(max-width:720px){
+  #intro{padding:48px 22px}
+  #canvas{padding:26px 20px 130px}
+  #top{padding:13px 20px;flex-wrap:wrap;row-gap:10px}
+  #top .crumb{width:100%}
+  .tbtn{flex:1;justify-content:center;font-size:12px;padding:9px 12px}
+  #chapbar{top:auto;position:static}
+  .split,.lessons,.stats3,.cards3,.pillars,.pillars.small,.phases{grid-template-columns:1fr}
+  .ab-feats{grid-template-columns:1fr 1fr;gap:20px 0}
+  .ab-feats div:nth-child(3){padding-left:0;border-left:0}
+  .ab-strip .s2{border-left:0;padding-left:0}
+  #bot{flex-wrap:wrap;gap:12px;padding:14px 20px 20px;background:var(--bg);border-top:1px solid var(--line)}
+  .lbl-short{display:inline}
+  .lbl-long{display:none}
+  .next,.back{white-space:nowrap}
+  .prog{order:3;width:100%;justify-content:center}
+  .next{flex:1;justify-content:center}
+  .back{flex:1;justify-content:center}
+  .qbox svg{display:none}
+}
+@media(prefers-reduced-motion:reduce){.blk,.step.on{animation:none!important}.cta,.next,.vcard img{transition:none!important}}
+
+/* ---------- shared site header ---------- */
+#sitenav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px clamp(16px,3vw,32px);backdrop-filter:blur(14px);font-family:'Archivo',system-ui,sans-serif}
+#sitenav.lt{background:rgba(253,252,248,.88);border-bottom:1px solid rgba(27,26,23,.10);color:#1B1A17}
+#sitenav.dk{background:rgba(10,10,10,.82);border-bottom:1px solid rgba(245,243,240,.12);color:#F5F3F0}
+#sitenav .snbrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;letter-spacing:-.01em;text-decoration:none;color:inherit;flex:none}
+#sitenav .snbrand span.dot{width:19px;height:19px;border-radius:50%;background:#DDE84A;border:2px solid currentColor;display:inline-block}
+#sitenav .snlinks{display:flex;gap:24px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+#sitenav .snlinks a{color:inherit;text-decoration:none;opacity:.72;transition:opacity .2s ease,border-color .2s ease;border-bottom:2px solid transparent;padding-bottom:2px}
+#sitenav .snlinks a:hover{opacity:1}
+#sitenav .snlinks a[aria-current="page"]{opacity:1;border-bottom-color:#DDE84A}
+#sitenav .snli{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-decoration:none;border-radius:999px;padding:8px 14px;flex:none}
+#sitenav.lt .snli{background:#1B1A17;color:#F2EEE4}
+#sitenav.dk .snli{background:#F5F3F0;color:#0A0A0A}
+#snburger{display:none;background:none;border:1.5px solid currentColor;color:inherit;border-radius:9px;width:38px;height:34px;font-size:15px;cursor:pointer;line-height:1;flex:none}
+@media(max-width:860px){
+  #sitenav .snlinks{position:fixed;top:var(--sitenav-h,60px);left:0;right:0;flex-direction:column;gap:0;padding:8px 20px 16px;display:none}
+  #sitenav.lt .snlinks{background:rgba(253,252,248,.98);border-bottom:1px solid rgba(27,26,23,.12)}
+  #sitenav.dk .snlinks{background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,243,240,.14)}
+  #sitenav .snlinks.open{display:flex}
+  #sitenav .snlinks a{padding:13px 0;border-bottom:1px solid rgba(128,128,128,.16)}
+  #sitenav .snlinks a[aria-current="page"]{border-bottom-color:#DDE84A}
+  #snburger{display:inline-flex;align-items:center;justify-content:center}
+  #sitenav .snli{display:none}
+}
+
+
+/* chapter titles were buttons with no colour set, so they fell back to the browser's black */
+.toc button{color:var(--ink)}
+.toc button:hover .tt{color:var(--gr)}
+/* the app, floating in front of the chapter list with a little depth */
+.heroside{position:relative;perspective:1400px}
+.heromock{display:block;margin:0 0 -80px auto;width:min(52%,268px);height:auto;position:relative;z-index:2;
+  transform:rotateY(-19deg) rotateX(7deg) rotateZ(2deg);transform-origin:center;
+  filter:drop-shadow(0 34px 44px rgba(0,0,0,.42)) drop-shadow(0 8px 12px rgba(0,0,0,.2));
+  animation:mockfloat 7s ease-in-out infinite}
+.heromock.wide{width:min(80%,440px);margin-bottom:-60px}
+.heroside .toc{position:relative;z-index:1}
+@keyframes mockfloat{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@media(prefers-reduced-motion:reduce){.heromock{animation:none}}
+@media(max-width:900px){.heromock{width:min(62%,240px);margin:0 auto -54px}.heromock.wide{width:min(88%,360px)}}
+</style>
+</head>
+<body>
+
+<nav id="sitenav" class="lt">
+  <a class="snbrand" href="index.html"><span class="dot"></span>Maryam<span style="font-family:'Caveat',cursive;font-size:21px;color:#E64A2E;line-height:0">.</span></a>
+  <div class="snlinks" id="snlinks"><a href="index.html#projects-section">Work</a><a href="case-studies.html">Case Studies</a><a href="index.html#process">Thinking</a><a href="index.html#connect">Contact</a><a href="Maryam-Richards-CV.pdf?v=20260918" target="_blank" rel="noopener">CV</a></div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a class="snli" href="https://www.linkedin.com/in/maryam-r-37a0a0122/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+    <button id="snburger" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+
+<!-- ============================ INTRO ============================ -->
+<section id="intro">
+  <div class="wrap">
+    <div>
+      <div class="brandline">
+        <div class="bmark"><img src="assets/snap2meal/logo-mark.png" alt="" style="width:76%;height:76%;object-fit:contain"></div>
+        <div><div class="bname">SNAP2MEAL</div><div class="bsub">HOW I BUILT IT</div></div>
+      </div>
+
+      <h1>Thirteen chapters on<br>building <em>Snap2Meal</em>.</h1>
+      <p class="lede">The opportunity I found, how I decided where AI actually earns its place, what the unit economics forced me to cut, and how it got built and launched solo. Roughly two minutes a chapter.</p>
+
+      <div class="covers">
+        <span>THE OPPORTUNITY</span><span>STRATEGY &amp; JTBD</span><span>WHERE AI ADDS VALUE</span><span>UNIT ECONOMICS</span><span>BUILD &amp; LAUNCH</span>
+      </div>
+
+      <div class="ctarow">
+        <button class="cta" onclick="go(0)">Start the journey <em>&rarr;</em></button>
+        <a class="quiet" href="case-studies.html">See the other case studies</a>
+      </div>
+
+      <div class="handwrite">Prototype the problem before you formalise it. &#9825;</div>
+    </div>
+
+    <div class="heroside"><img class="heromock" src="assets/projects/device/snap2meal.png" alt="Snap2Meal app on a phone" width="640" height="790"><div class="toc">
+      <div class="th">THE THIRTEEN CHAPTERS</div>
+            <button onclick="go(1)"><span class="tn">01</span><span><span class="tt">Finding the Opportunity</span><span class="ts">The problem</span></span></button>
+      <button onclick="go(2)"><span class="tn">02</span><span><span class="tt">Research &amp; Competitor Analysis</span><span class="ts">The landscape</span></span></button>
+      <button onclick="go(3)"><span class="tn">03</span><span><span class="tt">Product Strategy &amp; JTBD</span><span class="ts">The job to be done</span></span></button>
+      <button onclick="go(4)"><span class="tn">04</span><span><span class="tt">Design Thinking in an AI Era</span><span class="ts">How AI changes the process</span></span></button>
+      <button onclick="go(5)"><span class="tn">05</span><span><span class="tt">Defining the MVP</span><span class="ts">What shipped first</span></span></button>
+      <button onclick="go(6)"><span class="tn">06</span><span><span class="tt">Where AI Adds Value (and Where It Doesn&rsquo;t)</span><span class="ts">The honest test</span></span></button>
+      <button onclick="go(7)"><span class="tn">07</span><span><span class="tt">API Cost &amp; Unit Economics</span><span class="ts">What the maths forced</span></span></button>
+      <button onclick="go(8)"><span class="tn">08</span><span><span class="tt">UX/UI Design Decisions</span><span class="ts">How it feels</span></span></button>
+      <button onclick="go(9)"><span class="tn">09</span><span><span class="tt">Rapid Prototyping with Lovable</span><span class="ts">Idea to running app</span></span></button>
+      <button onclick="go(10)"><span class="tn">10</span><span><span class="tt">GitHub + Claude Workflow</span><span class="ts">Owning the code</span></span></button>
+      <button onclick="go(11)"><span class="tn">11</span><span><span class="tt">Firebase Hosting &amp; Technical Decisions</span><span class="ts">The infrastructure</span></span></button>
+      <button onclick="go(12)"><span class="tn">12</span><span><span class="tt">Domain Purchase &amp; Launch</span><span class="ts">Making it real</span></span></button>
+      <button onclick="go(13)"><span class="tn">13</span><span><span class="tt">Metrics, Learnings &amp; Roadmap</span><span class="ts">What&rsquo;s next</span></span></button>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============================ SHELL ============================ -->
+<div id="shell">
+  <aside id="side">
+    <div class="sbrand">
+      <div class="bmark"><img src="assets/snap2meal/logo-mark.png" alt="" style="width:76%;height:76%;object-fit:contain"></div>
+      <div><div class="bname">SNAP2MEAL</div><div class="bsub">HOW I BUILT IT</div></div>
+    </div>
+    <nav id="aboutnav"></nav>
+    <div class="slabel" style="padding-top:16px">CHAPTERS</div>
+    <nav id="chapnav"></nav>
+
+    <div class="qa">
+      <div class="slabel">QUICK ACTIONS</div>
+      <a class="vcard" onclick="watch()">
+        <img id="vposter" src="assets/media/snap2meal-build-poster.jpg" alt="">
+        <span class="vp">&#9654;</span>
+        <span class="vm"><b>WATCH CHAPTER (2 MIN)</b><span id="vcap"></span></span>
+      </a>
+      <a class="sbtn" href="case-studies.html">&#8592; ALL WORK</a>
+    </div>
+  </aside>
+
+  <div id="main">
+    <div id="top">
+      <div class="crumb">
+        <a href="case-studies.html">ALL WORK</a> / <span style="color:var(--dim)">SNAP2MEAL</span> / <b id="crumbch"></b>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="tbtn" onclick="watch()"><span class="ic">&#9654;</span> <span class="lbl-long">Watch chapter (2 min)</span><span class="lbl-short">Watch</span></button>
+        
+      </div>
+    </div>
+
+    <div id="chapbar"></div>
+    <main id="canvas"></main>
+
+    <div id="bot">
+      <button class="back" id="backBtn">&#8592; <span id="backTxt">Back to all chapters</span></button>
+      <div class="prog"><span class="pt" id="stepTxt"></span><div class="dots" id="dots"></div></div>
+      <button class="next" id="nextBtn">Continue <em>&rarr;</em></button>
+    </div>
+  </div>
+</div>
+
+<script>
+var CH = [{"id": "ch00", "n": "00", "t": "About Snap2Meal", "s": "What it is", "kicker": "ABOUT", "about": true, "head": "", "intro": "", "note": null, "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "What Snap2Meal is", "html": "", "quote": null, "who": null, "take": null}]}, {"id": "ch01", "n": "01", "t": "Finding the Opportunity", "s": "The problem", "kicker": "THE PROBLEM", "about": false, "head": "Every night, the same question: <em>what do I cook?</em>", "intro": "Not a fun creative moment.<br><b>Just decision fatigue, on repeat, after a long day.</b>", "note": ["Problem in one line", "The fridge is full and the answer still isn&rsquo;t obvious &mdash; because the work is deciding, not finding."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "The 6pm fridge stare", "html": "<div class=\"journey\"><div class=\"jstep\"><span class=\"jic\">&#128682;</span><b>Get home</b><span>Tired, hungry, done deciding</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#129371;</span><b>Open the fridge</b><span>Full of things, none of them dinner</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#128241;</span><b>Search a recipe</b><span>Needs three things you don&rsquo;t have</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#127831;</span><b>Order in</b><span>Again</span></div></div>", "quote": null, "who": null, "take": ["The fridge was never empty.", "The decision was the bottleneck, not the ingredients."]}, {"label": "Why I started here", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">THE SAFE START</span><b>Write a spec first</b><p>Formalise the idea, then decide whether to build it.</p></div><div class=\"pane on\"><span class=\"pl\">WHAT I DID</span><b>Prototype the problem</b><p>Put a real interface in front of the feeling and see if it survives.</p></div></div>", "quote": "It isn&rsquo;t a recipe problem. It&rsquo;s a decision problem.", "who": null, "take": ["I started as the user, then checked I wasn&rsquo;t alone.", "The spec can come after the idea survives a real interface."]}]}, {"id": "ch02", "n": "02", "t": "Research &amp; Competitor Analysis", "s": "The landscape", "kicker": "RESEARCH", "about": false, "head": "Everyone solves the <em>finding</em>. Nobody solves the <em>deciding</em>.", "intro": "Recipe apps, meal planners, delivery boxes.<br><b>All of them hand the decision back to you.</b>", "note": ["What the category gets wrong", "More recipes is the answer to a question nobody was asking."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "What already exists", "html": "<div class=\"cards3\"><div class=\"c\"><span class=\"pl\">RECIPE APPS</span><p>Enormous catalogues. You still have to pick, and you still have to shop.</p></div><div class=\"c\"><span class=\"pl\">MEAL PLANNERS</span><p>A week of decisions in one sitting &mdash; the thing that keeps failing.</p></div><div class=\"c\"><span class=\"pl\">DELIVERY BOXES</span><p>Solves the decision by removing your own fridge from the equation entirely.</p></div></div>", "quote": null, "who": null, "take": ["Everyone optimises discovery.", "The gap sits one step later, at the moment of choosing."]}, {"label": "What was true", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">WHAT I ASSUMED</span><b>People want more recipes</b><p>Better search, better filters, bigger library.</p></div><div class=\"pane on\"><span class=\"pl\">WHAT WAS TRUE</span><b>People want one less decision</b><p>And they want it to use what&rsquo;s already in the house.</p></div></div>", "quote": null, "who": null, "take": ["The research reframed the product from library to assistant.", "It also made the AI case obvious &mdash; and bounded."]}]}, {"id": "ch03", "n": "03", "t": "Product Strategy &amp; JTBD", "s": "The job to be done", "kicker": "STRATEGY", "about": false, "head": "The job: <em>get me to dinner</em>, with what I have.", "intro": "Not &ldquo;inspire me&rdquo;. Not &ldquo;teach me to cook&rdquo;.<br><b>Get me from a full fridge to a decided meal.</b>", "note": ["The job statement", "When it&rsquo;s 6pm and I&rsquo;m out of energy, help me turn what&rsquo;s already here into dinner &mdash; so I stop deciding and start cooking."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "The job, stated", "html": "<div class=\"bigstat\"><b>Snap &rarr; three options &rarr; cook</b><span>The whole product collapses to that. Anything that doesn&rsquo;t serve it is a distraction.</span></div>", "quote": null, "who": null, "take": ["A tight job statement is a scoping weapon.", "It settled a dozen arguments before they started."]}, {"label": "What that ruled out", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#128683;</span><div><b>Meal planning for the week</b><p>The pain is tonight, not Sunday.</p></div></div><div class=\"r\"><span class=\"ric\">&#128683;</span><div><b>Social &amp; sharing</b><p>Nobody in this moment wants an audience.</p></div></div><div class=\"r\"><span class=\"ric\">&#128683;</span><div><b>Nutrition tracking</b><p>A different job, a different product.</p></div></div></div>", "quote": null, "who": null, "take": ["Three whole feature areas, ruled out on one sentence.", "The job statement earned its keep immediately."]}]}, {"id": "ch04", "n": "04", "t": "Design Thinking in an AI Era", "s": "How AI changes the process", "kicker": "PROCESS", "about": false, "head": "The interface came <em>before</em> the spec.", "intro": "AI collapsed the distance between idea and running product.<br><b>So I stopped writing documents and started testing interfaces.</b>", "note": ["What changed", "When a prototype costs an afternoon, the cheapest way to test an idea is to build it badly and look at it."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "Old process vs new", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">THE OLD ORDER</span><b>Research &rarr; spec &rarr; design &rarr; build</b><p>Each stage a gate, each gate a delay.</p></div><div class=\"pane on\"><span class=\"pl\">WHAT I DID</span><b>Problem &rarr; prototype &rarr; spec</b><p>The spec describes something that already exists and already works.</p></div></div>", "quote": null, "who": null, "take": ["Prototype the problem before you formalise it.", "The document is a record, not a plan."]}, {"label": "Where judgment still sits", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#129504;</span><div><b>Deciding what to build</b><p>AI has no opinion about what matters.</p></div></div><div class=\"r\"><span class=\"ric\">&#9986;</span><div><b>Deciding what to cut</b><p>It will happily build all of it.</p></div></div><div class=\"r\"><span class=\"ric\">&#128269;</span><div><b>Deciding when it&rsquo;s wrong</b><p>Plausible output is not correct output.</p></div></div></div>", "quote": "I decide what and why. AI implements.", "who": null, "take": ["Speed changed. Judgment didn&rsquo;t.", "The bottleneck moved to knowing what&rsquo;s worth building."]}]}, {"id": "ch05", "n": "05", "t": "Defining the MVP", "s": "What shipped first", "kicker": "PRODUCT THINKING", "about": false, "head": "One flow, done <em>properly</em>.", "intro": "Snap, detect, suggest, cook.<br><b>Everything else waited for evidence that the core loop works.</b>", "note": ["The MVP rule", "If it doesn&rsquo;t sit on the path from photo to dinner, it isn&rsquo;t in version one."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "The core loop", "html": "<div class=\"pillars small\"><figure><img src=\"assets/snap2meal/series/scan-1.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Point at the fridge</figcaption></figure><figure><img src=\"assets/snap2meal/series/scan-2.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Detect what&rsquo;s there</figcaption></figure><figure><img src=\"assets/snap2meal/series/meals.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Three real options</figcaption></figure><figure><img src=\"assets/snap2meal/series/full-recipe.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Cook it tonight</figcaption></figure></div>", "quote": null, "who": null, "take": ["Four screens carry the entire promise.", "Everything else is support."]}, {"label": "In and out", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">IN</span><b>Snap, detect, three suggestions, full recipe</b><p>The loop, end to end, working.</p></div><div class=\"pane on\"><span class=\"pl\">OUT &mdash; FOR NOW</span><b>Pantry inventory, shopping lists, meal history</b><p>All sensible. All later.</p></div></div>", "quote": null, "who": null, "take": ["A narrow MVP is easier to judge honestly.", "You find out whether the idea works, not whether the app is big."]}]}, {"id": "ch06", "n": "06", "t": "Where AI Adds Value (and Where It Doesn&rsquo;t)", "s": "The honest test", "kicker": "AI DECISIONS", "about": false, "head": "AI earns its place, or it <em>doesn&rsquo;t ship</em>.", "intro": "I ran every candidate feature through the same six questions.<br><b>Most of them failed.</b>", "note": ["The framework", "User value &middot; engineering complexity &middot; API cost per interaction &middot; frequency of use &middot; business sustainability &middot; whether traditional software does it better."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "The six-question test", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#9989;</span><div><b>Image recognition &rarr; ingredients</b><p>Genuinely hard without AI. High value, used every session. Ships.</p></div></div><div class=\"r\"><span class=\"ric\">&#9989;</span><div><b>Ingredients &rarr; meal suggestions</b><p>The actual product. Ships.</p></div></div><div class=\"r\"><span class=\"ric\">&#10060;</span><div><b>AI-generated shopping lists</b><p>A database query in a costume. Traditional software does it better and cheaper.</p></div></div><div class=\"r\"><span class=\"ric\">&#10060;</span><div><b>Conversational meal chat</b><p>Delightful in a demo. Nobody wants a conversation at 6pm.</p></div></div></div>", "quote": null, "who": null, "take": ["Two AI features earned their place. Several didn&rsquo;t.", "&ldquo;Could use AI&rdquo; is not &ldquo;should use AI&rdquo;."]}, {"label": "The test that mattered most", "html": "<div class=\"bigstat\"><b>Would traditional software do this better?</b><span>It&rsquo;s the question that kills the most features &mdash; and the one most AI products skip.</span></div>", "quote": null, "who": null, "take": ["Ask it before the cost question, not after.", "It saves you from building an expensive version of a lookup."]}]}, {"id": "ch07", "n": "07", "t": "API Cost &amp; Unit Economics", "s": "What the maths forced", "kicker": "UNIT ECONOMICS", "about": false, "head": "Every snap has a <em>price</em>.", "intro": "A vision call plus a generation call, per interaction.<br><b>That number changes what you&rsquo;re allowed to build.</b>", "note": ["Why this chapter exists", "Most AI side-projects skip the arithmetic. The arithmetic is the product constraint."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "The cost shape", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#128247;</span><div><b>Vision call</b><p>Per snap. Unavoidable &mdash; it&rsquo;s the core interaction.</p></div></div><div class=\"r\"><span class=\"ric\">&#10024;</span><div><b>Generation call</b><p>Per set of suggestions. Cacheable in ways the vision call isn&rsquo;t.</p></div></div><div class=\"r\"><span class=\"ric\">&#128176;</span><div><b>The consequence</b><p>Frequency of use and cost per use fight each other. Design has to resolve it.</p></div></div></div>", "quote": null, "who": null, "take": ["Cost per interaction is a design constraint.", "It belongs in the wireframe, not the spreadsheet."]}, {"label": "What it changed", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">WHAT I WANTED</span><b>Snap freely, as often as you like</b><p>Delightful. Unaffordable at any real scale.</p></div><div class=\"pane on\"><span class=\"pl\">WHAT SHIPPED</span><b>One snap, three good options</b><p>Fewer calls, better output, sustainable per user.</p></div></div>", "quote": "The unit economics decided the interaction design, not the other way round.", "who": null, "take": ["Three good options beats infinite mediocre ones.", "The constraint made the product better, not worse."]}]}, {"id": "ch08", "n": "08", "t": "UX/UI Design Decisions", "s": "How it feels", "kicker": "THE DESIGN", "about": false, "head": "Three taps, <em>no typing</em>.", "intro": "The whole interface is built around a person with one free hand.<br><b>Typing at 6pm is a failure state.</b>", "note": ["The interaction rule", "If a step needs the keyboard, it needs redesigning."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "Onboarding that earns itself", "html": "<div class=\"pillars small\"><figure><img src=\"assets/snap2meal/series/onboarding-1.jpg\" alt=\"\" loading=\"lazy\"><figcaption>What it does, in one line</figcaption></figure><figure><img src=\"assets/snap2meal/series/onboarding-diet.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Diet &mdash; asked once</figcaption></figure><figure><img src=\"assets/snap2meal/series/onboarding-allergies.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Allergies &mdash; safety, not preference</figcaption></figure><figure><img src=\"assets/snap2meal/series/dashboard-first-time.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Straight into the loop</figcaption></figure></div>", "quote": null, "who": null, "take": ["Two questions, both load-bearing.", "Everything else is inferred from use."]}, {"label": "Designing for the AI wait", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#9203;</span><div><b>The scan is the moment of doubt</b><p>So the detection labels appear live, one by one, as proof it&rsquo;s working.</p></div></div><div class=\"r\"><span class=\"ric\">&#128200;</span><div><b>Progress over spinners</b><p>&ldquo;Generating 3 tasty meals&rdquo; sets an expectation a spinner can&rsquo;t.</p></div></div><div class=\"r\"><span class=\"ric\">&#128260;</span><div><b>Wrong detection is normal</b><p>Adding a missed ingredient is one tap, not a re-scan.</p></div></div></div>", "quote": "The AI latency is a design problem, not an engineering one.", "who": null, "take": ["Show the work while the model thinks.", "Design for wrong output, because it will happen."]}, {"label": "Designing for when it&rsquo;s wrong", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#128290;</span><div><b>Show the confidence</b><p>Detection is a guess. Labelling it as one is the difference between a tool you trust and a tool you stop using the first time it&rsquo;s wrong.</p></div></div><div class=\"r\"><span class=\"ric\">&#9997;</span><div><b>One tap to correct</b><p>Adding a missed ingredient never costs a re-scan. The correction is cheaper than the mistake.</p></div></div><div class=\"r\"><span class=\"ric\">&#9997;&#65039;</span><div><b>A manual way through</b><p>If the model can&rsquo;t see it, you can type it. An AI product without a fallback is a dead end wearing a feature.</p></div></div></div>", "quote": "AI is a cost &mdash; latency, error, trust. Design for the error case or you&rsquo;ve only designed the demo.", "who": null, "take": ["Most AI products design the happy path and ship the rest as luck."]}]}, {"id": "ch09", "n": "09", "t": "Rapid Prototyping with Lovable", "s": "Idea to running app", "kicker": "THE BUILD", "about": false, "head": "No spec. No deck. Just the <em>problem</em>.", "intro": "I described the problem in plain language.<br><b>The first working version existed the same day.</b>", "note": ["Why this worked", "The fastest way to find out whether an idea survives contact with an interface is to build the interface."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "How it went", "html": "<div class=\"journey\"><div class=\"jstep\"><span class=\"jic\">&#128172;</span><b>Describe the problem</b><span>In plain language, not requirements</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#9889;</span><b>Get a running app</b><span>Same day, rough but real</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#128064;</span><b>Use it myself</b><span>The fridge test, that evening</span></div><i>&rarr;</i><div class=\"jstep\"><span class=\"jic\">&#128260;</span><b>Iterate</b><span>On what actually annoyed me</span></div></div>", "quote": null, "who": null, "take": ["The first version was bad and that was the point.", "You can&rsquo;t evaluate a feeling from a document."]}, {"label": "Where it stopped being enough", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">WHAT IT&rsquo;S GREAT AT</span><b>Getting to something real, fast</b><p>Zero to running, in an afternoon.</p></div><div class=\"pane on\"><span class=\"pl\">WHERE IT ENDS</span><b>Owning the thing you built</b><p>Once it matters, you need the code somewhere you control.</p></div></div>", "quote": null, "who": null, "take": ["Prototyping tools are a starting point, not a home.", "Plan the exit before you need it."]}]}, {"id": "ch10", "n": "10", "t": "GitHub + Claude Workflow", "s": "Owning the code", "kicker": "THE WORKFLOW", "about": false, "head": "One repo. One <em>source of truth</em>.", "intro": "I moved the code somewhere I own, then brought Claude in against the repo.<br><b>That changed the quality of the help I got.</b>", "note": ["Why it mattered", "An assistant that can see the whole codebase gives different answers to one that can see a snippet."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "The setup", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#128193;</span><div><b>GitHub</b><p>The code lives somewhere I control, with history.</p></div></div><div class=\"r\"><span class=\"ric\">&#129302;</span><div><b>Claude against the repo</b><p>Full context, not snippets &mdash; so refactors are safe.</p></div></div><div class=\"r\"><span class=\"ric\">&#128221;</span><div><b>Decisions written down</b><p>The repo holds the why, not just the what.</p></div></div></div>", "quote": null, "who": null, "take": ["Ownership changed the workflow, not just the hosting.", "Context is what makes an AI assistant useful on real code."]}, {"label": "What I&rsquo;d tell another builder", "html": "<div class=\"bigstat\"><b>Move it early</b><span>The migration is cheap on day three and expensive on day thirty. Do it before the codebase has opinions.</span></div>", "quote": "One repo, one source of truth.", "who": null, "take": ["Prototype fast, then take ownership fast.", "The gap between those two is where projects die."]}]}, {"id": "ch11", "n": "11", "t": "Firebase Hosting &amp; Technical Decisions", "s": "The infrastructure", "kicker": "TECHNICAL", "about": false, "head": "Boring infrastructure, <em>on purpose</em>.", "intro": "Auth, storage, hosting, functions &mdash; one platform.<br><b>The only backend a solo builder can actually run.</b>", "note": ["The rule", "Choose the stack you can debug at 11pm, not the one that benchmarks best."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "The stack", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#128293;</span><div><b>Firebase</b><p>Auth, storage, hosting and functions in one place.</p></div></div><div class=\"r\"><span class=\"ric\">&#128273;</span><div><b>API keys server-side</b><p>Vision and generation calls never touch the client.</p></div></div><div class=\"r\"><span class=\"ric\">&#128176;</span><div><b>Rate limiting from day one</b><p>Because the cost per interaction is real money.</p></div></div></div>", "quote": null, "who": null, "take": ["One platform beats four best-of-breed services, solo.", "The cost model forced security and limits early."]}, {"label": "What I&rsquo;d change", "html": "<div class=\"split\"><div class=\"pane\"><span class=\"pl\">WHAT I DID</span><b>Ship, then instrument</b><p>Get it live, add measurement after.</p></div><div class=\"pane on\"><span class=\"pl\">WHAT I&rsquo;D DO</span><b>Instrument, then ship</b><p>Cost and usage data from the first real user.</p></div></div>", "quote": null, "who": null, "take": ["I spent a week guessing at usage patterns.", "The data would have been cheaper than the guessing."]}]}, {"id": "ch12", "n": "12", "t": "Domain Purchase &amp; Launch", "s": "Making it real", "kicker": "LAUNCH", "about": false, "head": "A domain makes it <em>real</em>.", "intro": "The moment it stops being a project and starts being a product.<br><b>Small step, disproportionate effect.</b>", "note": ["Why it matters", "You test differently when the thing has a name and a URL you'd give to a stranger."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "What launching changed", "html": "<div class=\"rows\"><div class=\"r\"><span class=\"ric\">&#127760;</span><div><b>A name and a URL</b><p>Something you can send, not screenshot.</p></div></div><div class=\"r\"><span class=\"ric\">&#128064;</span><div><b>Real first impressions</b><p>Strangers don&rsquo;t forgive what you&rsquo;ve stopped noticing.</p></div></div><div class=\"r\"><span class=\"ric\">&#128274;</span><div><b>Real responsibility</b><p>Someone else&rsquo;s photos, someone else&rsquo;s data.</p></div></div></div>", "quote": null, "who": null, "take": ["Shipping publicly raises your own bar.", "The onboarding got rewritten the week it went live."]}, {"label": "First-run, rewritten", "html": "<div class=\"pillars small\"><figure><img src=\"assets/snap2meal/series/splash.jpg\" alt=\"\" loading=\"lazy\"><figcaption>First impression</figcaption></figure><figure><img src=\"assets/snap2meal/series/onboarding-2.jpg\" alt=\"\" loading=\"lazy\"><figcaption>What it needs from you</figcaption></figure><figure><img src=\"assets/snap2meal/series/dashboard-returning.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Coming back</figcaption></figure><figure><img src=\"assets/snap2meal/series/add-ingredients.jpg\" alt=\"\" loading=\"lazy\"><figcaption>Fixing a miss</figcaption></figure></div>", "quote": null, "who": null, "take": ["The first thirty seconds carry the whole product.", "Nothing exposes them like a stranger using it."]}]}, {"id": "ch13", "n": "13", "t": "Metrics, Learnings &amp; Roadmap", "s": "What&rsquo;s next", "kicker": "REFLECTION", "about": false, "head": "What I&rsquo;d <em>keep</em>, and what I&rsquo;d change.", "intro": "The honest state: an early product with a working loop.<br><b>And a set of questions I can&rsquo;t answer yet.</b>", "note": ["The open question", "Whether the snap-and-cook habit survives past the first fortnight."], "video": "assets/media/snap2meal-build.mp4", "poster": "assets/media/snap2meal-build-poster.jpg", "steps": [{"label": "Key lessons", "html": "<div class=\"lessons\"><div class=\"l\"><span>1</span><b>Prototype the problem before you formalise it</b><p>The spec can come after the idea survives a real interface. Everything I wrote before building was wrong in some way I couldn&rsquo;t have predicted.</p></div><div class=\"l\"><span>2</span><b>Cost per interaction is a design constraint</b><p>The unit economics decided the interaction design. Skipping that arithmetic is how AI side-projects die quietly.</p></div></div>", "quote": null, "who": null, "take": ["The two lessons I&rsquo;d carry to any AI product.", "Both are about constraints, not capabilities."]}, {"label": "Honest status", "html": "<div class=\"stats3 muted\"><div><b>&mdash;</b><span>WEEKLY ACTIVE USERS</span></div><div><b>&mdash;</b><span>SNAPS PER USER</span></div><div><b>&mdash;</b><span>RETURN RATE</span></div></div><p class=\"pnote\">Not measured properly yet. The instrumentation is the next piece of work, not another feature.</p>", "quote": "The spec can come after the idea survives a real interface.", "who": null, "take": ["Retention is the only question that matters next.", "More features would be avoiding it."]}]}];
+var TOTAL = CH.length;
+var NCH = CH.filter(function(c){ return !c.about; }).length;   // About isn't a numbered chapter
+var NCHP = (NCH < 10 ? '0' : '') + NCH;
+var cur = 0, step = 0;
+
+/* ---- sidebar + chapter bar ---- */
+var nav = document.getElementById('chapnav');
+nav.innerHTML = CH.map(function(c,i){
+  if (c.about) return '';
+  return '<button class="chap" data-i="'+i+'"><span class="cn">'+c.n+'</span>'
+       + '<span><span class="ct">'+c.t+'</span><span class="cs">'+c.s+'</span></span></button>';
+}).join('');
+nav.querySelectorAll('.chap').forEach(function(b){ b.onclick=function(){ go(+b.dataset.i); }; });
+
+document.getElementById('aboutnav').innerHTML = CH.map(function(c,i){
+  if (!c.about) return '';
+  return '<button class="chap about" data-i="'+i+'"><span class="cn">&#9432;</span>'
+       + '<span><span class="ct">'+c.t+'</span><span class="cs">'+c.s+'</span></span></button>';
+}).join('');
+document.querySelectorAll('#aboutnav .chap').forEach(function(b){ b.onclick=function(){ go(+b.dataset.i); }; });
+
+var bar = document.getElementById('chapbar');
+bar.innerHTML = CH.map(function(c,i){ return '<button class="cchip" data-i="'+i+'">'+(c.about?'&#9432; About':c.n+' · '+c.t)+'</button>'; }).join('');
+bar.querySelectorAll('.cchip').forEach(function(b){ b.onclick=function(){ go(+b.dataset.i); }; });
+
+/* ---- render ---- */
+var ABOUT_HTML = "<div class=\"about\">\n  <div>\n    <div class=\"kick\">ABOUT SNAP2MEAL</div>\n    <h1 class=\"ab-head\" style=\"margin-top:14px\">Snap your fridge.<br><em>Get dinner.</em></h1>\n    <p class=\"ab-lede\">An AI pantry and cooking assistant. Photograph what you already have, get three real meals you can cook tonight &mdash; no shopping list, no recipe-blog fantasy.</p>\n\n    <div class=\"ab-feats\">\n      <div><div class=\"fi\" style=\"background:rgba(232,115,74,.12)\">&#128247;</div><b>Snap what you have</b><span>One photo, no typing.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,115,74,.12)\">&#10024;</div><b>AI does the matching</b><span>Three options, seconds later.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,115,74,.12)\">&#127859;</div><b>Real meals</b><span>Built from real groceries.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,115,74,.12)\">&#128337;</div><b>Cook it tonight</b><span>Fits the time you actually have.</span></div>\n    </div>\n\n    <div class=\"ab-hand\">Prototype the problem before you formalise it. &#9825;</div>\n  </div>\n\n  <div class=\"ab-scene\">\n    <img class=\"bg\" src=\"assets/snap2meal/fridge-real.jpg\" alt=\"\">\n    <div class=\"ab-float\" style=\"top:9%;left:5%;animation-delay:.1s\">\n      <span class=\"fic\" style=\"background:rgba(232,115,74,.14)\">&#128064;</span>\n      <span><b>The 6pm fridge stare</b><span>Every night, same question</span></span>\n    </div>\n    <div class=\"ab-float\" style=\"top:42%;left:1%;animation-delay:1.1s\">\n      <span class=\"fic\" style=\"background:rgba(232,115,74,.14)\">&#129371;</span>\n      <span><b>Detects what&rsquo;s there</b><span>Chicken, carrots, spinach</span></span>\n    </div>\n    <div class=\"ab-float\" style=\"bottom:9%;left:7%;animation-delay:2s\">\n      <span class=\"fic\" style=\"background:rgba(232,115,74,.14)\">&#127869;</span>\n      <span><b>Three meals</b><span>Cookable tonight</span></span>\n    </div>\n    <div class=\"ab-app\" style=\"padding:0;overflow:hidden;border-radius:22px\">\n      <img src=\"assets/snap2meal/series/meals.jpg\" alt=\"Snap2Meal meal suggestions\" style=\"width:100%;display:block\">\n    </div>\n  </div>\n</div>\n\n<div class=\"ab-strip\">\n  <img src=\"assets/snap2meal/series/scan-2.jpg\" alt=\"\">\n  <div class=\"s1\">It isn&rsquo;t a recipe problem. It&rsquo;s a decision problem.</div>\n  <div class=\"s2\">Snap. Choose.<br>Cook. &#9825;</div>\n</div>\n<div class=\"ab-safe\">&#128295; Built in Lovable, moved to GitHub, hosted on Firebase.</div>";
+
+function render(){
+  var c = CH[cur], st = c.steps, s = st[step], h = '';
+
+  if (c.about){
+    document.getElementById('canvas').innerHTML = '<div class="blk">' + ABOUT_HTML + '</div>';
+    document.getElementById('crumbch').textContent = 'ABOUT SNAP2MEAL';
+    document.getElementById('vcap').textContent = c.t;
+    document.getElementById('vposter').src = c.poster;
+    nav.querySelectorAll('.chap').forEach(function(b){ b.classList.remove('on'); });
+    document.querySelectorAll('#aboutnav .chap').forEach(function(b){ b.classList.add('on'); });
+    bar.querySelectorAll('.cchip').forEach(function(b,i){ b.classList.toggle('on', i===cur); });
+    syncStep();
+    return;
+  }
+  document.querySelectorAll('#aboutnav .chap').forEach(function(b){ b.classList.remove('on'); });
+
+  h += '<div class="head blk">';
+  h +=   '<div>';
+  h +=     '<div class="kick">'+c.kicker+'</div>';
+  h +=     '<h1 class="ch">'+c.head+'</h1>';
+  h +=     '<p class="lede">'+c.intro+'</p>';
+  if (c.note) h += '<div class="note"><span class="ni">&#128161;</span><div><b>'+c.note[0]+'</b><p>'+c.note[1]+'</p></div></div>';
+  h +=   '</div>';
+  h +=   '<div>';
+  h +=     '<div class="vwrap"><video id="chvid" src="'+c.video+'" poster="'+c.poster+'" controls preload="none" playsinline></video></div>';
+  h +=     '<div class="walk"><div class="wl">I&rsquo;LL WALK YOU THROUGH</div>'
+         +   st.map(function(x,i){ return '<div class="wi'+(i===step?' on':'')+'" data-s="'+i+'"><span class="wn">'+(i+1)+'</span>'+x.label+'</div>'; }).join('')
+         + '</div>';
+  h +=   '</div>';
+  h += '</div>';
+
+  h += '<div id="steps">' + st.map(function(x,i){
+         var b = '<div class="step'+(i===step?' on':'')+'">' + x.html;
+         if (x.quote || x.take){
+           b += '<div class="qt">';
+           b += '<div class="qbox">';
+           if (x.quote){ b += '<div class="qm">&ldquo;</div><p>'+x.quote+'</p>'+(x.who?'<div class="who">— '+x.who+'</div>':''); }
+           else { b += '<div class="qm">&ldquo;</div><p>'+x.label+'</p>'; }
+           b += '';
+           b += '</div>';
+           if (x.take){ b += '<div class="tbox"><div class="tl">KEY TAKEAWAY</div>' + x.take.map(function(t){ return '<p>'+t+'</p>'; }).join('') + '</div>'; }
+           b += '</div>';
+         }
+         return b + '</div>';
+       }).join('') + '</div>';
+
+  document.getElementById('canvas').innerHTML = h;
+  document.querySelectorAll('.wi').forEach(function(el){ el.onclick=function(){ setStep(+el.dataset.s); }; });
+
+  document.getElementById('crumbch').textContent = 'CHAPTER ' + c.n + ' OF ' + NCHP;
+  document.getElementById('vcap').textContent = c.t;
+  document.getElementById('vposter').src = c.poster;
+  nav.querySelectorAll('.chap').forEach(function(b){ b.classList.toggle('on', +b.dataset.i === cur); });
+  bar.querySelectorAll('.cchip').forEach(function(b,i){ b.classList.toggle('on', i===cur); });
+  syncStep();
+}
+
+function syncStep(){
+  var st = CH[cur].steps;
+  var isAbout = !!CH[cur].about;
+  document.querySelector('.prog').style.visibility = isAbout ? 'hidden' : 'visible';
+  document.querySelectorAll('#top .tbtn')[0].style.display = isAbout ? 'none' : '';
+  if (isAbout){
+    document.getElementById('backTxt').innerHTML = '<span class="lbl-long">Back to the start</span><span class="lbl-short">Back</span>';
+    document.getElementById('nextBtn').innerHTML =
+      '<span class="lbl-long">Start chapter 01: ' + CH[1].t + '</span><span class="lbl-short">Start</span> <em>&rarr;</em>';
+    return;
+  }
+  document.querySelectorAll('#steps .step').forEach(function(el,i){ el.classList.toggle('on', i===step); });
+  document.querySelectorAll('.wi').forEach(function(el,i){ el.classList.toggle('on', i===step); });
+  document.getElementById('stepTxt').textContent = 'STEP ' + (step+1) + ' OF ' + st.length;
+  document.getElementById('dots').innerHTML = st.map(function(x,i){
+    return '<span class="sd'+(i===step?' on':(i<step?' done':''))+'" data-s="'+i+'"></span>'; }).join('');
+  document.querySelectorAll('#dots .sd').forEach(function(d){ d.onclick=function(){ setStep(+d.dataset.s); }; });
+
+  var back = document.getElementById('backTxt');
+  var bl = (step>0) ? st[step-1].label : (cur>0 ? CH[cur-1].t : 'Back to all chapters');
+  back.innerHTML = '<span class="lbl-long">'+bl+'</span><span class="lbl-short">Back</span>';
+
+  var nx = document.getElementById('nextBtn');
+  var lbl;
+  if (step < st.length-1)      lbl = 'Continue: ' + st[step+1].label;
+  else if (cur < TOTAL-1)      lbl = 'Next chapter: ' + CH[cur+1].t;
+  else                         lbl = 'Read the full case study';
+  nx.innerHTML = '<span class="lbl-long">'+lbl+'</span><span class="lbl-short">'
+               + (step < st.length-1 ? 'Continue' : (cur < TOTAL-1 ? 'Next chapter' : 'Case study'))
+               + '</span> <em>&rarr;</em>';
+}
+
+function setStep(i){
+  var st = CH[cur].steps;
+  if (i < 0){ if (cur>0){ go(cur-1, CH[cur-1].steps.length-1); } return; }
+  if (i >= st.length) return;
+  step = i; syncStep();
+  var el = document.querySelector('#steps');   // the About tab has no step list
+  if (el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function go(i, atStep){
+  if (i < 0 || i >= TOTAL) return;
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('shell').classList.add('on');
+  cur = i; step = atStep || 0;
+  render();
+  history.replaceState(null,'','#'+CH[i].id);
+  window.scrollTo(0,0);
+}
+
+function watch(){
+  var v = document.getElementById('chvid');
+  if (!v) return;
+  v.scrollIntoView({behavior:'smooth', block:'center'});
+  v.play().catch(function(){});
+}
+
+document.getElementById('backBtn').onclick = function(){
+  if (step > 0) setStep(step-1);
+  else if (cur > 0) go(cur-1, CH[cur-1].steps.length-1);
+  else { document.getElementById('shell').classList.remove('on');
+         document.getElementById('intro').style.display=''; history.replaceState(null,'',' '); window.scrollTo(0,0); }
+};
+document.getElementById('nextBtn').onclick = function(){
+  var st = CH[cur].steps;
+  if (step < st.length-1) setStep(step+1);
+  else if (cur < TOTAL-1) go(cur+1);
+  else location.href = 'case-studies.html';
+};
+window.addEventListener('keydown', function(e){
+  if (/INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  if (!document.getElementById('shell').classList.contains('on')) return;
+  if (e.key === 'ArrowRight') document.getElementById('nextBtn').click();
+  if (e.key === 'ArrowLeft')  document.getElementById('backBtn').click();
+});
+
+(function(){
+  var m = (location.hash||'').match(/^#ch(\d{2})$/);
+  if (m){ var i = +m[1]-1; if (i>=0 && i<TOTAL) go(i); }
+})();
+</script>
+
+<script>
+/* shared header — burger works on every page, not just home */
+(function(){
+  var b=document.getElementById('snburger'), l=document.getElementById('snlinks');
+  if(!b||!l) return;
+  b.onclick=function(){ var o=l.classList.toggle('open');
+    b.setAttribute('aria-expanded',o?'true':'false'); b.innerHTML=o?'&#10005;':'&#9776;'; };
+  l.querySelectorAll('a').forEach(function(a){ a.onclick=function(){
+    l.classList.remove('open'); b.setAttribute('aria-expanded','false'); b.innerHTML='&#9776;'; }; });
+})();
+</script>
+
+<script>
+/* the header is fixed; publish its real height so layouts can reserve the space */
+(function(){
+  var n=document.getElementById('sitenav'); if(!n) return;
+  function sync(){ document.documentElement.style.setProperty('--sitenav-h', n.offsetHeight+'px'); }
+  sync();
+  addEventListener('resize', sync);
+  if (window.ResizeObserver) new ResizeObserver(sync).observe(n);
+  addEventListener('load', sync);
+})();
+</script>
+</body>
+</html>
