@@ -767,15 +767,29 @@ a.ac-live:focus-visible{outline:2px solid #F96C43;outline-offset:3px}
   </div>
 </section>
 <script>
+/* Which videos exist is read once from assets/video/manifest.json (always present, possibly
+   empty). Asking the server for each missing file instead would log 404s on every page load. */
+window.videoReady = (function(){
+  var ready = (window.fetch ? fetch('assets/video/manifest.json', {cache:'no-cache'})
+      .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+      : Promise.resolve([]));
+  return function(src){
+    return ready.then(function(list){
+      var name = String(src || '').split('/').pop();
+      return (list || []).indexOf(name) !== -1;
+    });
+  };
+})();
+</script>
+<script>
 /* The walkthrough video goes live on its own the moment assets/video/how-i-think.mp4 exists. */
 (function(){
   var v=document.getElementById('hitVid'), pip=document.getElementById('hitPip'); if(!v) return;
   var src=v.getAttribute('data-src');
-  if(!window.fetch) return;
-  fetch(src,{method:'HEAD'}).then(function(r){
-    if(!r.ok) return;
+  videoReady(src).then(function(ok){
+    if(!ok) return;
     v.src=src; v.controls=true; pip.classList.add('ready');
-  }).catch(function(){});
+  });
 })();
 </script>
 
@@ -1587,12 +1601,10 @@ document.getElementById('voToggleBtn').addEventListener('click', voToggle);
     vid.pause(); vid.removeAttribute('src'); show(false);
     box.hidden=false; document.documentElement.style.overflow='hidden';
     box.querySelector('.tb-close').focus();
-    if(window.fetch){
-      fetch(src,{method:'HEAD'}).then(function(r){
-        if(!r.ok||box.hidden) return;
-        vid.src=src; show(true); var p=vid.play(); if(p&&p.catch) p.catch(function(){});
-      }).catch(function(){});
-    }
+    videoReady(src).then(function(ok){
+      if(!ok||box.hidden) return;
+      vid.src=src; show(true); var p=vid.play(); if(p&&p.catch) p.catch(function(){});
+    });
   }
   function close(){
     vid.pause(); box.hidden=true; document.documentElement.style.overflow='';
@@ -1652,9 +1664,8 @@ document.getElementById('voToggleBtn').addEventListener('click', voToggle);
 /* Anything that promises a video stays hidden until that file is actually on the server.
    Drop the file into assets/video/ and it appears — no HTML to edit. */
 (function(){
-  if(!window.fetch) return;
   document.querySelectorAll('[data-when-exists]').forEach(function(el){
-    fetch(el.getAttribute('data-when-exists'),{method:'HEAD'}).then(function(r){ if(r.ok) el.hidden=false; }).catch(function(){});
+    videoReady(el.getAttribute('data-when-exists')).then(function(ok){ if(ok) el.hidden=false; });
   });
 })();
 </script>

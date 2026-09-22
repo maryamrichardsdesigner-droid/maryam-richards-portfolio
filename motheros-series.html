@@ -9,17 +9,17 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Maryam Richards — Senior Product Designer">
   <meta property="og:title" content="Mother OS — How I Built It">
-  <meta property="og:description" content="An 8-chapter guided walkthrough of how Mother OS went from an overwhelming morning to a working MVP in five days — research, the reframe, scoping, the AI build and the first feedback.">
+  <meta property="og:description" content="How Mother OS went from an overwhelming morning to a working MVP in five days: research, the reframe, scoping and the AI build.">
   <meta property="og:url" content="https://www.maryam-richards.com/motheros-series.html">
   <meta property="og:image" content="https://www.maryam-richards.com/assets/photos/maryam-portrait.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mother OS — How I Built It">
-  <meta name="twitter:description" content="An 8-chapter guided walkthrough of how Mother OS went from an overwhelming morning to a working MVP in five days — research, the reframe, scoping, the AI build and the first feedback.">
+  <meta name="twitter:description" content="How Mother OS went from an overwhelming morning to a working MVP in five days: research, the reframe, scoping and the AI build.">
   <meta name="twitter:image" content="https://www.maryam-richards.com/assets/photos/maryam-portrait.jpg">
 
-<meta name="description" content="An 8-chapter guided walkthrough of how Mother OS went from an overwhelming morning to a working MVP in five days — research, the reframe, scoping, the AI build and the first feedback.">
+<meta name="description" content="How Mother OS went from an overwhelming morning to a working MVP in five days: research, the reframe, scoping and the AI build.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -114,7 +114,7 @@ img{max-width:100%}
 
 .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:44px;align-items:start}
 .kick{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--gr)}
-h1.ch{font-weight:900;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-.032em;margin:14px 0 0}
+h2.ch{font-weight:900;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-.032em;margin:14px 0 0}
 h1.ch em{font-style:normal;color:var(--gr)}
 .lede{font-size:16px;line-height:1.62;color:var(--ink2);margin:18px 0 0}
 .note{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:24px}
@@ -486,7 +486,7 @@ bar.innerHTML = CH.map(function(c,i){ return '<button class="cchip" data-i="'+i+
 bar.querySelectorAll('.cchip').forEach(function(b){ b.onclick=function(){ go(+b.dataset.i); }; });
 
 /* ---- render ---- */
-var ABOUT_HTML = "<div class=\"about\">\n  <div>\n    <div class=\"kick\">ABOUT MOTHER OS</div>\n    <h1 class=\"ab-head\" style=\"margin-top:14px\">Four decisions,<br>made <em>before 6am</em>.</h1>\n    <p class=\"ab-lede\">Dinner, toddler, movement, outfit. Not hard decisions &mdash; just relentless ones. Mother OS makes them, so the day doesn&rsquo;t start already spent.</p>\n\n    <div class=\"ab-feats\">\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#127869;</div><b>Dinner, decided</b><span>Already picked, fits tonight.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#129528;</div><b>Toddler, sorted</b><span>No-prep, no craft-store trip.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#128694;</div><b>Movement that fits</b><span>Sized to the nap window.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#128087;</div><b>One outfit</b><span>Decided, not browsed.</span></div>\n    </div>\n\n    <div class=\"ab-hand\">Research to a working MVP, solo, in five days. &#9825;</div>\n  </div>\n\n  <div class=\"ab-scene\">\n    <img class=\"bg\" src=\"assets/media/mos-loop-poster.jpg\" alt=\"\">\n    <div class=\"ab-float\" style=\"top:9%;left:5%;animation-delay:.1s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#9200;</span>\n      <span><b>Before the house wakes</b><span>Ready by 6am</span></span>\n    </div>\n    <div class=\"ab-float\" style=\"top:42%;left:1%;animation-delay:1.1s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#128260;</span>\n      <span><b>Swap, don&rsquo;t configure</b><span>One tap to change it</span></span>\n    </div>\n    <div class=\"ab-float\" style=\"bottom:9%;left:7%;animation-delay:2s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#128172;</span>\n      <span><b>Built with 18 moms</b><span>Their mornings, not mine</span></span>\n    </div>\n    <div class=\"ab-app\" style=\"padding:0;overflow:hidden;border-radius:22px\">\n      <img src=\"assets/motheros/shots/meals.jpg\" alt=\"Mother OS dinner screen\" style=\"width:100%;display:block\">\n    </div>\n  </div>\n</div>\n\n<div class=\"ab-strip\">\n  <img src=\"assets/motheros/shots/child.jpg\" alt=\"\">\n  <div class=\"s1\">Moms aren&rsquo;t short on apps. They&rsquo;re short on decisions being made.</div>\n  <div class=\"s2\">Not another app.<br>Fewer decisions. &#9825;</div>\n</div>\n<div class=\"ab-safe\">&#128274; Built solo with Claude + Lovable. Live at motheros.lovable.app</div>";
+var ABOUT_HTML = "<div class=\"about\">\n  <div>\n    <div class=\"kick\">ABOUT MOTHER OS</div>\n    <h2 class=\"ab-head\" style=\"margin-top:14px\">Four decisions,<br>made <em>before 6am</em>.</h2>\n    <p class=\"ab-lede\">Dinner, toddler, movement, outfit. Not hard decisions &mdash; just relentless ones. Mother OS makes them, so the day doesn&rsquo;t start already spent.</p>\n\n    <div class=\"ab-feats\">\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#127869;</div><b>Dinner, decided</b><span>Already picked, fits tonight.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#129528;</div><b>Toddler, sorted</b><span>No-prep, no craft-store trip.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#128694;</div><b>Movement that fits</b><span>Sized to the nap window.</span></div>\n      <div><div class=\"fi\" style=\"background:rgba(232,93,117,.14)\">&#128087;</div><b>One outfit</b><span>Decided, not browsed.</span></div>\n    </div>\n\n    <div class=\"ab-hand\">Research to a working MVP, solo, in five days. &#9825;</div>\n  </div>\n\n  <div class=\"ab-scene\">\n    <img class=\"bg\" src=\"assets/media/mos-loop-poster.jpg\" alt=\"\">\n    <div class=\"ab-float\" style=\"top:9%;left:5%;animation-delay:.1s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#9200;</span>\n      <span><b>Before the house wakes</b><span>Ready by 6am</span></span>\n    </div>\n    <div class=\"ab-float\" style=\"top:42%;left:1%;animation-delay:1.1s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#128260;</span>\n      <span><b>Swap, don&rsquo;t configure</b><span>One tap to change it</span></span>\n    </div>\n    <div class=\"ab-float\" style=\"bottom:9%;left:7%;animation-delay:2s\">\n      <span class=\"fic\" style=\"background:rgba(232,93,117,.16)\">&#128172;</span>\n      <span><b>Built with 18 moms</b><span>Their mornings, not mine</span></span>\n    </div>\n    <div class=\"ab-app\" style=\"padding:0;overflow:hidden;border-radius:22px\">\n      <img src=\"assets/motheros/shots/meals.jpg\" alt=\"Mother OS dinner screen\" style=\"width:100%;display:block\">\n    </div>\n  </div>\n</div>\n\n<div class=\"ab-strip\">\n  <img src=\"assets/motheros/shots/child.jpg\" alt=\"\">\n  <div class=\"s1\">Moms aren&rsquo;t short on apps. They&rsquo;re short on decisions being made.</div>\n  <div class=\"s2\">Not another app.<br>Fewer decisions. &#9825;</div>\n</div>\n<div class=\"ab-safe\">&#128274; Built solo with Claude + Lovable. Live at motheros.lovable.app</div>";
 
 function render(){
   var c = CH[cur], st = c.steps, s = st[step], h = '';
@@ -507,7 +507,7 @@ function render(){
   h += '<div class="head blk">';
   h +=   '<div>';
   h +=     '<div class="kick">'+c.kicker+'</div>';
-  h +=     '<h1 class="ch">'+c.head+'</h1>';
+  h +=     '<h2 class="ch">'+c.head+'</h2>';
   h +=     '<p class="lede">'+c.intro+'</p>';
   if (c.note) h += '<div class="note"><span class="ni">&#128161;</span><div><b>'+c.note[0]+'</b><p>'+c.note[1]+'</p></div></div>';
   h +=   '</div>';
