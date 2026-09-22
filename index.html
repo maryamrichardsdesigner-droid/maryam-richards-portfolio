@@ -758,7 +758,7 @@ a.ac-live:focus-visible{outline:2px solid #F96C43;outline-offset:3px}
         </div>
 
         <figure class="hit-pip" id="hitPip" hidden data-when-exists="assets/video/how-i-think.mp4">
-          <video id="hitVid" data-src="assets/video/how-i-think.mp4" poster="assets/photos/maryam-portrait.jpg" playsinline preload="none" aria-label="Maryam talking through how she thinks"></video>
+          <video id="hitVid" data-file="assets/video/how-i-think.mp4" poster="assets/photos/maryam-portrait.jpg" playsinline preload="none" aria-label="Maryam talking through how she thinks"></video>
           <figcaption><span class="pip-live"></span>Watch me think it through<span class="pip-soon">RECORDING SOON</span></figcaption>
         </figure>
       </div>
@@ -785,7 +785,7 @@ window.videoReady = (function(){
 /* The walkthrough video goes live on its own the moment assets/video/how-i-think.mp4 exists. */
 (function(){
   var v=document.getElementById('hitVid'), pip=document.getElementById('hitPip'); if(!v) return;
-  var src=v.getAttribute('data-src');
+  var src=v.getAttribute('data-file');
   videoReady(src).then(function(ok){
     if(!ok) return;
     v.src=src; v.controls=true; pip.classList.add('ready');
